@@ -6,7 +6,7 @@ This repository hosts the official website for the GraphRAG-Bench project, a com
 ## Website Overview
 
 ### 🎉 News
-- **[2025-05-25]** [Leaderboard](https://graphrag-bench.github.io) is on!
+- **[2025-05-25]** We release [GraphRAG-Bench](https://graphrag-bench.github.io), the benchmark for evaluating GraphRAG models.
 - **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://www.kaggle.com/datasets/wuchuanjie/graphrag-bench).
 - **[2025-01-21]** We release the [GraphRAG survey](https://github.com/DEEP-PolyU/Awesome-GraphRAG).
 
@@ -66,7 +66,7 @@ cd GraphRAG-Benchmark
 ## Contribution
 Contributions to improve the benchmark website are welcome. Please contact the project team via email.
 
-## 🍀 Citation
+# 🍀 Citation
 If you find this survey helpful, please cite our paper:
 ```
 @misc{xiang2025usegraphsragcomprehensive,
