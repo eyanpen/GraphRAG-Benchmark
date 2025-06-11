@@ -7,6 +7,8 @@ This repository hosts the official website for the GraphRAG-Bench project, a com
 
 ### 🎉 News
 - **[2025-05-25]** [Leaderboard](https://graphrag-bench.github.io) is on!
+- **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://www.kaggle.com/datasets/wuchuanjie/graphrag-bench).
+- **[2025-01-21]** We release the [GraphRAG survey](https://github.com/DEEP-PolyU/Awesome-GraphRAG).
 
 ### 📖 About
 - Introduces Graph Retrieval-Augmented Generation (GraphRAG) concept
