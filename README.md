@@ -1,4 +1,4 @@
-# GraphRAG-Bench
+# GraphRAG-Bench Website
 
 This repository hosts the official website for the GraphRAG-Bench project, a comprehensive benchmark for evaluating Graph Retrieval-Augmented Generation models.
 ![pipeline](./pipeline.jpg)
@@ -6,9 +6,7 @@ This repository hosts the official website for the GraphRAG-Bench project, a com
 ## Website Overview
 
 ### 🎉 News
-- **[2025-05-25]** We release [GraphRAG-Bench](https://graphrag-bench.github.io), the benchmark for evaluating GraphRAG models.
-- **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://www.kaggle.com/datasets/wuchuanjie/graphrag-bench).
-- **[2025-01-21]** We release the [GraphRAG survey](https://github.com/DEEP-PolyU/Awesome-GraphRAG).
+- **[2025-05-25]** [Leaderboard](https://graphrag-bench.github.io) is on!
 
 ### 📖 About
 - Introduces Graph Retrieval-Augmented Generation (GraphRAG) concept
@@ -65,17 +63,3 @@ cd GraphRAG-Benchmark
 
 ## Contribution
 Contributions to improve the benchmark website are welcome. Please contact the project team via email.
-
-# 🍀 Citation
-If you find this survey helpful, please cite our paper:
-```
-@misc{xiang2025usegraphsragcomprehensive,
-      title={When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation}, 
-      author={Zhishang Xiang and Chuanjie Wu and Qinggang Zhang and Shengyuan Chen and Zijin Hong and Xiao Huang and Jinsong Su},
-      year={2025},
-      eprint={2506.05690},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2506.05690}, 
-}
-```
