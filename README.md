@@ -1,4 +1,4 @@
-# GraphRAG-Bench Website
+# GraphRAG-Bench
 
 This repository hosts the official website for the GraphRAG-Bench project, a comprehensive benchmark for evaluating Graph Retrieval-Augmented Generation models.
 ![pipeline](./pipeline.jpg)
@@ -6,7 +6,9 @@ This repository hosts the official website for the GraphRAG-Bench project, a com
 ## Website Overview
 
 ### 🎉 News
-- **[2025-05-25]** [Leaderboard](https://graphrag-bench.github.io) is on!
+- **[2025-05-25]** We release [GraphRAG-Bench](https://graphrag-bench.github.io), the benchmark for evaluating GraphRAG models.
+- **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://www.kaggle.com/datasets/wuchuanjie/graphrag-bench).
+- **[2025-01-21]** We release the [GraphRAG survey](https://github.com/DEEP-PolyU/Awesome-GraphRAG).
 
 ### 📖 About
 - Introduces Graph Retrieval-Augmented Generation (GraphRAG) concept
