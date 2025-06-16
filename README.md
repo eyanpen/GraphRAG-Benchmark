@@ -64,4 +64,18 @@ cd GraphRAG-Benchmark
 ```
 
 ## Contribution
-Contributions to improve the benchmark website are welcome. Please contact the project team via email.
+Contributions to improve the benchmark website are welcome. Please contact the project team via <a href="mailto:GraphRAG@hotmail.com">GraphRAG@hotmail.com</a>.
+
+# 🍀 Citation
+If you find this survey helpful, please cite our paper:
+```
+@misc{xiang2025usegraphsragcomprehensive,
+      title={When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation}, 
+      author={Zhishang Xiang and Chuanjie Wu and Qinggang Zhang and Shengyuan Chen and Zijin Hong and Xiao Huang and Jinsong Su},
+      year={2025},
+      eprint={2506.05690},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2506.05690}, 
+}
+```
