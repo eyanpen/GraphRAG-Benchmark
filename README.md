@@ -67,7 +67,7 @@ cd GraphRAG-Benchmark
 Contributions to improve the benchmark website are welcome. Please contact the project team via <a href="mailto:GraphRAG@hotmail.com">GraphRAG@hotmail.com</a>.
 
 # 🍀 Citation
-If you find this survey helpful, please cite our paper:
+If you find this benchmark helpful, please cite our paper:
 ```
 @article{xiang2025use,
   title={When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation},
