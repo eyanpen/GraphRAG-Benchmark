@@ -69,13 +69,11 @@ Contributions to improve the benchmark website are welcome. Please contact the p
 # 🍀 Citation
 If you find this survey helpful, please cite our paper:
 ```
-@misc{xiang2025usegraphsragcomprehensive,
-      title={When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation}, 
-      author={Zhishang Xiang and Chuanjie Wu and Qinggang Zhang and Shengyuan Chen and Zijin Hong and Xiao Huang and Jinsong Su},
-      year={2025},
-      eprint={2506.05690},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2506.05690}, 
+@article{xiang2025use,
+  title={When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation},
+  author={Xiang, Zhishang and Wu, Chuanjie and Zhang, Qinggang and Chen, Shengyuan and Hong, Zijin and Huang, Xiao and Su, Jinsong},
+  journal={arXiv preprint arXiv:2506.05690},
+  year={2025}
 }
+
 ```
