@@ -7,7 +7,7 @@ This repository hosts the official website for the GraphRAG-Bench project, a com
 
 ### 🎉 News
 - **[2025-05-25]** We release [GraphRAG-Bench](https://graphrag-bench.github.io), the benchmark for evaluating GraphRAG models.
-- **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://www.kaggle.com/datasets/wuchuanjie/graphrag-bench).
+- **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://huggingface.co/datasets/GraphRAG-Bench/GraphRAG-Bench).
 - **[2025-01-21]** We release the [GraphRAG survey](https://github.com/DEEP-PolyU/Awesome-GraphRAG).
 
 ### 📖 About
