@@ -1,6 +1,6 @@
 # GraphRAG-Bench
 
-This repository hosts the official website for the GraphRAG-Bench project, a comprehensive benchmark for evaluating Graph Retrieval-Augmented Generation models.
+This repository is for the GraphRAG-Bench project, a comprehensive benchmark for evaluating Graph Retrieval-Augmented Generation models.
 ![pipeline](./pipeline.jpg)
 
 ## Website Overview
