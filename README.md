@@ -58,9 +58,8 @@ Our benchmark was released:
 
 ## Getting Started
 ```bash
-git clone https://github.com/GraphRAG-Bench/GraphRAG-Bench.git
+git clone https://github.com/GraphRAG-Bench/GraphRAG-Benchmark.git
 cd GraphRAG-Benchmark
-# Open index.html in browser
 ```
 
 ## Contribution
