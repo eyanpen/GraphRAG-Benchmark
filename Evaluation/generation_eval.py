@@ -121,29 +121,43 @@ async def main(args: argparse.Namespace):
     # Load evaluation data
     print(f"Loading evaluation data from {args.data_file}...")
     with open(args.data_file, 'r') as f:
-        file_data = json.load(f)
+        file_data = json.load(f)  # Now a list of question items
     
     # Define the evaluation metrics for each question type
     metric_config = {
-        'type1': ["rouge_score", "answer_correctness"],
-        'type2': ["rouge_score", "answer_correctness"],
-        'type3': ["answer_correctness", "coverage_score"],
-        'type4': ["answer_correctness", "coverage_score", "faithfulness"]
+        'Fact Retrieval': ["rouge_score", "answer_correctness"],
+        'Complex Reasoning': ["rouge_score", "answer_correctness"],
+        'Contextual Summarize': ["answer_correctness", "coverage_score"],
+        'Creative Generation': ["answer_correctness", "coverage_score", "faithfulness"]
     }
+    
+    # Group data by question type
+    grouped_data = {}
+    for item in file_data:
+        q_type = item.get("question_type", "Uncategorized")
+        if q_type not in grouped_data:
+            grouped_data[q_type] = []
+        grouped_data[q_type].append(item)
     
     all_results = {}
     
-    # Evaluate each question type
-    for question_type in ['type1', 'type2', 'type3', 'type4']:
+    # Evaluate each found question type (only those in metric_config)
+    for question_type in list(grouped_data.keys()):
+        # Skip types not defined in metric_config
+        if question_type not in metric_config:
+            print(f"Skipping undefined question type: {question_type}")
+            continue
+            
         print(f"\n{'='*50}")
         print(f"Evaluating question type: {question_type}")
         print(f"{'='*50}")
         
-        # Prepare data
-        questions = [item['question'] for item in file_data[question_type]]
-        ground_truths = [item['gold_answer'] for item in file_data[question_type]]
-        answers = [item['generated_answer'] for item in file_data[question_type]]
-        contexts = [item['context'] for item in file_data[question_type]]
+        # Prepare data from grouped items
+        group_items = grouped_data[question_type]
+        questions = [item['question'] for item in group_items]
+        ground_truths = [item['gold_answer'] for item in group_items]
+        answers = [item['generated_answer'] for item in group_items]
+        contexts = [item['context'] for item in group_items]
         
         # Create dataset
         data = {

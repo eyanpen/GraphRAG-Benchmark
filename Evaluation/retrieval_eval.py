@@ -8,10 +8,8 @@ from langchain_core.language_models import BaseLanguageModel
 from langchain_core.embeddings import Embeddings
 from datasets import Dataset
 from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAIEmbeddings
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from ragas.embeddings import LangchainEmbeddingsWrapper
-from ragas.llms import LangchainLLMWrapper
 from .metrics import compute_context_relevance, compute_context_recall
 
 async def evaluate_dataset(
@@ -19,51 +17,45 @@ async def evaluate_dataset(
     llm: BaseLanguageModel,
     embeddings: Embeddings
 ) -> Dict[str, float]:
-    """
-    Evaluate context relevance and context recall for a dataset
-    
-    Args:
-        dataset: Dataset containing questions, answers, contexts, and ground truths
-        llm: Language model for evaluation
-        embeddings: Embeddings model for semantic analysis
-    
-    Returns:
-        Dictionary with average scores for both metrics
-    """
+    """Evaluate context relevance and recall for a dataset"""
     results = {
         "context_relevancy": [],
         "context_recall": []
     }
     
     questions = dataset["question"]
-    answers = dataset["answer"]
     contexts_list = dataset["contexts"]
     ground_truths = dataset["ground_truth"]
     
-    # Evaluate all samples in parallel
+    total_samples = len(questions)
+    print(f"\nStarting evaluation of {total_samples} samples...")
+    
+    # Create evaluation tasks
     tasks = []
-    for i in range(len(dataset)):
-        task = asyncio.create_task(
+    for i in range(total_samples):
+        tasks.append(
             evaluate_sample(
                 question=questions[i],
-                answer=answers[i],
                 contexts=contexts_list[i],
                 ground_truth=ground_truths[i],
                 llm=llm,
                 embeddings=embeddings
             )
         )
-        tasks.append(task)
     
-    sample_results = await asyncio.gather(*tasks)
+    # Collect results with progress
+    sample_results = []
+    for i, future in enumerate(asyncio.as_completed(tasks)):
+        result = await future
+        sample_results.append(result)
+        print(f"Completed sample {i+1}/{total_samples} - {((i+1)/total_samples)*100:.1f}%")
     
     # Aggregate results
     for sample in sample_results:
         for metric, score in sample.items():
-            if not np.isnan(score):  # Skip invalid scores
+            if not np.isnan(score):
                 results[metric].append(score)
     
-    # Calculate average scores
     return {
         "context_relevancy": np.nanmean(results["context_relevancy"]),
         "context_recall": np.nanmean(results["context_recall"])
@@ -71,34 +63,15 @@ async def evaluate_dataset(
 
 async def evaluate_sample(
     question: str,
-    answer: str,
     contexts: List[str],
     ground_truth: str,
     llm: BaseLanguageModel,
     embeddings: Embeddings
 ) -> Dict[str, float]:
-    """
-    Evaluate context relevance and context recall for a single sample
-    
-    Args:
-        question: User question
-        answer: Generated answer
-        contexts: Retrieved contexts
-        ground_truth: Reference answer
-        llm: Language model for evaluation
-        embeddings: Embeddings model for semantic analysis
-    
-    Returns:
-        Dictionary with scores for both metrics
-    """
+    """Evaluate retrieval metrics for a single sample"""
     # Evaluate both metrics in parallel
-    relevance_task = asyncio.create_task(
-        compute_context_relevance(question, contexts, llm)
-    )
-    
-    recall_task = asyncio.create_task(
-        compute_context_recall(question, contexts, ground_truth, llm)
-    )
+    relevance_task = compute_context_relevance(question, contexts, llm)
+    recall_task = compute_context_recall(question, contexts, ground_truth, embeddings)
     
     # Wait for both tasks to complete
     relevance_score, recall_score = await asyncio.gather(relevance_task, recall_task)
@@ -108,74 +81,67 @@ async def evaluate_sample(
         "context_recall": recall_score
     }
 
-def parse_arguments():
-    """Parse command-line arguments for evaluation configuration"""
-    parser = argparse.ArgumentParser(description='RAG Evaluation Script')
-    parser.add_argument('--data_path', type=str, required=True, 
-                        help='Path to evaluation data file')
-    parser.add_argument('--llm_model', type=str, required=True,
-                        help='LLM model name for evaluation')
-    parser.add_argument('--embedding_model', type=str, required=True,
-                        help='Embedding model name')
-    parser.add_argument('--base_url', type=str, default=None,
-                        help='Base URL for API endpoint (optional)')
-    parser.add_argument('--question_types', nargs='+', default=['type1', 'type2', 'type3', 'type4'],
-                        help='List of question types to evaluate')
-    parser.add_argument('--num_samples', type=int, default=5,
-                        help='Number of samples per question type to evaluate')
-    return parser.parse_args()
-
-async def main():
-    args = parse_arguments()
+async def main(args: argparse.Namespace):
+    """Main retrieval evaluation function"""
+    # Check API key
+    if not os.getenv("OPENAI_API_KEY"):
+        raise ValueError("OPENAI_API_KEY environment variable is not set")
     
-    # Get API key from environment variable
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise ValueError("OPENAI_API_KEY environment variable not set")
-
     # Initialize models
     llm = ChatOpenAI(
-        model=args.llm_model,
+        model=args.model,
         base_url=args.base_url,
-        api_key=api_key
+        api_key=os.getenv("OPENAI_API_KEY"),
+        temperature=0.0,
+        max_retries=3,
+        timeout=30
     )
     
     # Initialize embeddings
-    bge_embeddings = HuggingFaceBgeEmbeddings(
-        model_name=args.embedding_model
-    )
+    bge_embeddings = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
     embedding = LangchainEmbeddingsWrapper(embeddings=bge_embeddings)
     
     # Load evaluation data
-    with open(args.data_path, 'r') as f:
-        file_data = json.load(f)
+    print(f"Loading evaluation data from {args.data_file}...")
+    with open(args.data_file, 'r') as f:
+        file_data = json.load(f)  # List of question items
+    
+    # Group data by question type
+    grouped_data = {}
+    for item in file_data:
+        q_type = item.get("question_type", "Uncategorized")
+        if q_type not in grouped_data:
+            grouped_data[q_type] = []
+        grouped_data[q_type].append(item)
     
     all_results = {}
     
     # Evaluate each question type
-    for question_type in args.question_types:
-        if question_type not in file_data:
-            print(f"Warning: Question type '{question_type}' not found in data file")
-            continue
-            
-        print(f"\nEvaluating question type: {question_type}")
+    for question_type in list(grouped_data.keys()):
+        print(f"\n{'='*50}")
+        print(f"Evaluating question type: {question_type}")
+        print(f"{'='*50}")
         
-        # Prepare data
-        questions = [item['question'] for item in file_data[question_type][:args.num_samples]]
-        ground_truths = [item['gold_answer'] for item in file_data[question_type][:args.num_samples]]
-        answers = [item['generated_answer'] for item in file_data[question_type][:args.num_samples]]
-        contexts = [item['context'] for item in file_data[question_type][:args.num_samples]]
+        # Prepare data from grouped items
+        group_items = grouped_data[question_type]
+        
+        # Apply sample limit if specified
+        if args.num_samples:
+            group_items = group_items[:args.num_samples]
+        
+        questions = [item['question'] for item in group_items]
+        ground_truths = [item['gold_answer'] for item in group_items]
+        contexts = [item['context'] for item in group_items]
         
         # Create dataset
         data = {
             "question": questions,
-            "answer": answers,
             "contexts": contexts,
             "ground_truth": ground_truths
         }
         dataset = Dataset.from_dict(data)
         
-        # Evaluate
+        # Perform evaluation
         results = await evaluate_dataset(
             dataset=dataset,
             llm=llm, 
@@ -183,16 +149,78 @@ async def main():
         )
         
         all_results[question_type] = results
-        print(f"Results for {question_type}:")
-        print(f"  Context Relevance: {results['context_relevancy']:.4f}")
-        print(f"  Context Recall: {results['context_recall']:.4f}")
+        print(f"\nResults for {question_type}:")
+        for metric, score in results.items():
+            print(f"  {metric}: {score:.4f}")
     
     # Save final results
+    if args.output_file:
+        print(f"\nSaving results to {args.output_file}...")
+        with open(args.output_file, 'w') as f:
+            json.dump(all_results, f, indent=2)
+    
+    # Print final summary
     print("\nFinal Evaluation Summary:")
+    print("=" * 50)
     for q_type, metrics in all_results.items():
         print(f"\nQuestion Type: {q_type}")
-        print(f"  Context Relevance: {metrics['context_relevancy']:.4f}")
-        print(f"  Context Recall: {metrics['context_recall']:.4f}")
+        for metric, score in metrics.items():
+            print(f"  {metric}: {score:.4f}")
+    
+    print('\nEvaluation complete.')
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # Create argument parser
+    parser = argparse.ArgumentParser(
+        description="Evaluate RAG retrieval performance",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    
+    # Add command-line arguments
+    parser.add_argument(
+        "--model", 
+        type=str,
+        default="gpt-4-turbo",
+        help="OpenAI model to use for evaluation"
+    )
+    
+    parser.add_argument(
+        "--base_url", 
+        type=str,
+        default="https://api.openai.com/v1",
+        help="Base URL for the OpenAI API"
+    )
+    
+    parser.add_argument(
+        "--bge_model", 
+        type=str,
+        default="BAAI/bge-large-en-v1.5",
+        help="HuggingFace model for BGE embeddings"
+    )
+    
+    parser.add_argument(
+        "--data_file", 
+        type=str,
+        required=True,
+        help="Path to JSON file containing evaluation data"
+    )
+    
+    parser.add_argument(
+        "--output_file", 
+        type=str,
+        default="retrieval_results.json",
+        help="Path to save evaluation results"
+    )
+    
+    parser.add_argument(
+        "--num_samples", 
+        type=int,
+        default=None,
+        help="Number of samples per question type to evaluate (optional)"
+    )
+    
+    # Parse arguments
+    args = parser.parse_args()
+    
+    # Run the main function
+    asyncio.run(main(args))
