@@ -11,7 +11,7 @@ from langchain_openai import ChatOpenAI
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from ragas.embeddings import LangchainEmbeddingsWrapper
 from ragas.llms import LangchainLLMWrapper
-from .metrics import compute_answer_correctness, compute_coverage_score, compute_faithfulness_score, compute_rouge_score
+from Evaluation.metrics import compute_answer_correctness, compute_coverage_score, compute_faithfulness_score, compute_rouge_score
 
 async def evaluate_dataset(
     dataset: Dataset,
@@ -101,14 +101,14 @@ async def evaluate_sample(
 async def main(args: argparse.Namespace):
     """Main evaluation function that accepts command-line arguments."""
     # Check if the API key is set
-    if not os.getenv("OPENAI_API_KEY"):
-        raise ValueError("OPENAI_API_KEY environment variable is not set")
+    if not os.getenv("LLM_API_KEY"):
+        raise ValueError("LLM_API_KEY environment variable is not set")
     
     # Initialize the model
     llm = ChatOpenAI(
         model=args.model,
         base_url=args.base_url,
-        api_key=os.getenv("OPENAI_API_KEY"),
+        api_key=os.getenv("LLM_API_KEY"),
         temperature=0.0,
         max_retries=3,
         timeout=30
@@ -198,13 +198,11 @@ async def main(args: argparse.Namespace):
     print('\nEvaluation complete.')
 
 if __name__ == "__main__":
-    # Create a command-line argument parser
     parser = argparse.ArgumentParser(
         description="Evaluate RAG performance using various metrics",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
     
-    # Add command-line arguments
     parser.add_argument(
         "--model", 
         type=str,
@@ -240,8 +238,6 @@ if __name__ == "__main__":
         help="Path to save evaluation results"
     )
     
-    # Parse arguments
     args = parser.parse_args()
     
-    # Run the main function
     asyncio.run(main(args))

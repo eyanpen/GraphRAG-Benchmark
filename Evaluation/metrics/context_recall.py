@@ -6,16 +6,17 @@ from langchain_core.callbacks import Callbacks
 
 CONTEXT_RECALL_PROMPT = """
 ### Task
-Analyze each sentence in the Answer and determine if it can be attributed to the Context.
-Respond ONLY with a JSON object containing a "classifications" list. Each item should have:
-- "statement": the exact sentence from Answer
-- "reason": brief explanation (1 sentence)
-- "attributed": 1 for yes, 0 for no
+You are given a list of evidences and a Context. For each evidence, determine whether it can be attributed to the Context.
+
+Respond ONLY with a JSON object containing a "classifications" list. Each item should include:
+- "statement": the exact evidence string
+- "reason": a brief explanation (1 sentence)
+- "attributed": 1 if the evidence can be attributed to the Context, otherwise 0
 
 ### Example
 Input:
 Context: "Einstein won the Nobel Prize in 1921 for physics."
-Answer: "Einstein received the Nobel Prize. He was born in Germany."
+Evidence: ["Einstein received the Nobel Prize", "He was born in Germany"]
 
 Output:
 {{
@@ -36,7 +37,7 @@ Output:
 ### Actual Input
 Context: "{context}"
 
-Answer: "{answer}"
+Evidence: {evidence}
 
 Question: "{question}" (for reference only)
 
@@ -46,18 +47,16 @@ Question: "{question}" (for reference only)
 async def compute_context_recall(
     question: str,
     contexts: List[str],
-    reference_answer: str,
+    reference_evidence: List[str],
     llm: BaseLanguageModel,
     callbacks: Callbacks = None,
     max_retries: int = 2
 ) -> float:
     """
     Calculate context recall score (0.0-1.0) by measuring what percentage of 
-    reference answer statements are supported by the context.
+    reference evidence are supported by the context.
     """
     # Handle edge cases
-    if not reference_answer.strip():
-        return 1.0  # Perfect recall for empty reference
     
     context_str = "\n".join(contexts)
     if not context_str.strip():
@@ -66,8 +65,8 @@ async def compute_context_recall(
     # Format prompt with actual data
     prompt = CONTEXT_RECALL_PROMPT.format(
         question=question,
-        context=context_str[:10000],  # Truncate long contexts
-        answer=reference_answer[:2000]  # Truncate long answers
+        context=context_str[:20000],  # Truncate long contexts
+        evidence=reference_evidence  # Truncate long answers
     )
     
     # Get LLM classification with retries

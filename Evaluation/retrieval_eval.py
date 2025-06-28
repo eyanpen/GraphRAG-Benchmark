@@ -10,7 +10,7 @@ from datasets import Dataset
 from langchain_openai import ChatOpenAI
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from ragas.embeddings import LangchainEmbeddingsWrapper
-from .metrics import compute_context_relevance, compute_context_recall
+from Evaluation.metrics import compute_context_relevance, compute_context_recall
 
 async def evaluate_dataset(
     dataset: Dataset,
@@ -71,7 +71,7 @@ async def evaluate_sample(
     """Evaluate retrieval metrics for a single sample"""
     # Evaluate both metrics in parallel
     relevance_task = compute_context_relevance(question, contexts, llm)
-    recall_task = compute_context_recall(question, contexts, ground_truth, embeddings)
+    recall_task = compute_context_recall(question, contexts, ground_truth, llm)
     
     # Wait for both tasks to complete
     relevance_score, recall_score = await asyncio.gather(relevance_task, recall_task)
@@ -84,14 +84,14 @@ async def evaluate_sample(
 async def main(args: argparse.Namespace):
     """Main retrieval evaluation function"""
     # Check API key
-    if not os.getenv("OPENAI_API_KEY"):
-        raise ValueError("OPENAI_API_KEY environment variable is not set")
+    if not os.getenv("LLM_API_KEY"):
+        raise ValueError("LLM_API_KEY environment variable is not set")
     
     # Initialize models
     llm = ChatOpenAI(
         model=args.model,
         base_url=args.base_url,
-        api_key=os.getenv("OPENAI_API_KEY"),
+        api_key=os.getenv("LLM_API_KEY"),
         temperature=0.0,
         max_retries=3,
         timeout=30
