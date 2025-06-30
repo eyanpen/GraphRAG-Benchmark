@@ -75,4 +75,6 @@ If you find this benchmark helpful, please cite our paper:
   year={2025}
 }
 
+# ✨Stars History
+![history](./star-history.png)
 ```
