@@ -23,6 +23,29 @@ pip install -e .
 Next, we provide detailed instructions on how to use GraphRAG-Bench to evaluate each framework. Specifically, we introduce how to perform index construction and batch inference for each framework. Note that the evaluation code is standardized across all frameworks to ensure fair comparison.
 ### 1. Indexing and inference
 #### a. LightRAG
+Before running the above script, you need to modify the source code(LightRAG) to enable extraction of the corresponding context used during generation. Please make the following changes:
+1. In lightrag/operate.py, update the kg_query method to return the context along with the response:
+```python
+# Original Code
+async def kg_query(...) -> str | AsyncIterator[str]:
+  return response
+
+# Modified Code
+async def kg_query(...) -> tuple[str, str] | tuple[AsyncIterator[str], str]:
+  return response, context
+```
+2. In lightrag/lightrag.py, update the aquery method to receive and return the context when calling kg_query:
+```python
+# Modified Code
+async def aquery(...):
+  ...
+  if param.mode in ["local", "global", "hybrid"]:
+      response, context = await kg_query(...)
+  ...
+  return response, context
+
+```
+Then you can run the following command to indexing and inference:
 ```shell
 export LLM_API_KEY=your_actual_api_key_here
 
