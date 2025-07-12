@@ -3,8 +3,7 @@
 # GraphRAG-Bench
 
 [![Static Badge](https://img.shields.io/badge/arxiv-2501.18362-ff0000?style=for-the-badge&labelColor=000)](https://arxiv.org/abs/2506.05690)  [![Static Badge](https://img.shields.io/badge/huggingface-fcd022?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/datasets/GraphRAG-Bench/GraphRAG-Bench)  [![Static Badge](https://img.shields.io/badge/leaderboard-steelblue?style=for-the-badge&logo=googlechrome&logoColor=ffffff)](https://graphrag-bench.github.io/)  [![Static Badge](https://img.shields.io/badge/license-mit-teal?style=for-the-badge&labelColor=000)](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark/blob/main/LICENSE)
-</div>
-<div align="center">
+
   <p>
     <a href="#news" style="text-decoration: none; font-weight: bold;">🎉News</a> •
     <a href="#about" style="text-decoration: none; font-weight: bold;">📖About</a> •
@@ -15,21 +14,22 @@
   <p>
   <a href="#getting-started" style="text-decoration: none; font-weight: bold;">🔧Getting Started</a> •
     <a href="#contribution--contact" style="text-decoration: none; font-weight: bold;">📬Contact</a> •
-    <a href="#citation" style="text-decoration: none; font-weight: bold;">📝Citation</a>
+    <a href="#citation" style="text-decoration: none; font-weight: bold;">📝Citation</a> •
     <a href="#stars" style="text-decoration: none; font-weight: bold;">✨Stars History</a>
   </p>
 </div>
 
-
 This repository is for the GraphRAG-Bench project, a comprehensive benchmark for evaluating Graph Retrieval-Augmented Generation models.
 ![pipeline](./pipeline.jpg)
 
-<h2 id="news">📰 News</h2>
+<h2 id="news">🎉 News</h2>
+
 - **[2025-05-25]** We release [GraphRAG-Bench](https://graphrag-bench.github.io), the benchmark for evaluating GraphRAG models.
 - **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://huggingface.co/datasets/GraphRAG-Bench/GraphRAG-Bench).
 - **[2025-01-21]** We release the [GraphRAG survey](https://github.com/DEEP-PolyU/Awesome-GraphRAG).
 
 <h2 id="about">📖 About</h2>
+
 - Introduces Graph Retrieval-Augmented Generation (GraphRAG) concept
 - Compares traditional RAG vs GraphRAG approach
 - Explains research objective: Identify scenarios where GraphRAG outperforms traditional RAG
@@ -45,6 +45,7 @@ Graph retrieval-augmented generation (GraphRAG) has emerged as a powerful paradi
 </details>
 
 <h2 id="leaderboards">🏆 Leaderboards</h2>
+
 Two domain-specific leaderboards with comprehensive metrics:
 
 **1. GraphRAG-Bench (Novel)**
@@ -76,6 +77,7 @@ Four difficulty levels with representative examples:
 
 
 <h2 id="getting-started">🔧 Getting Started(GraphRAG-Bench Examples)</h2>
+
 The  **'Examples'** directory contains example implementations for running inference on the GraphRAG-Bench dataset using various RAG frameworks. Each framework has a dedicated implementation file that generates prediction outputs compatible with our unified evaluation pipeline.
 
 ### Installation Guide
@@ -204,9 +206,11 @@ python -m Evaluation.retrieval_eval \
 ```
 
 ## <h2 id="contribution--contact">📬 Contribution & Contact</h2>
+
 Contributions to improve the benchmark website are welcome. Please contact the project team via <a href="mailto:GraphRAG@hotmail.com">GraphRAG@hotmail.com</a>.
 
 ## <h2 id="citation">📝 Citation</h2>
+
 If you find this benchmark helpful, please cite our paper:
 ```
 @article{xiang2025use,
@@ -217,4 +221,5 @@ If you find this benchmark helpful, please cite our paper:
 }
 ```
 <h2 id="stars">✨ Stars History</h2>
+
 ![history](./star-history.png)
