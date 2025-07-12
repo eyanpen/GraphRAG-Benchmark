@@ -4,18 +4,32 @@
 
 [![Static Badge](https://img.shields.io/badge/arxiv-2501.18362-ff0000?style=for-the-badge&labelColor=000)](https://arxiv.org/abs/2506.05690)  [![Static Badge](https://img.shields.io/badge/huggingface-fcd022?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/datasets/GraphRAG-Bench/GraphRAG-Bench)  [![Static Badge](https://img.shields.io/badge/leaderboard-steelblue?style=for-the-badge&logo=googlechrome&logoColor=ffffff)](https://graphrag-bench.github.io/)  [![Static Badge](https://img.shields.io/badge/license-mit-teal?style=for-the-badge&labelColor=000)](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark/blob/main/LICENSE)
 </div>
+<div align="center">
+  <p>
+    <a href="#news" style="text-decoration: none; font-weight: bold;">🎉News</a> •
+    <a href="#about" style="text-decoration: none; font-weight: bold;">📖About</a> •
+    <a href="#leaderboards" style="text-decoration: none; font-weight: bold;">🏆Leaderboards</a> •
+    <a href="#task-examples" style="text-decoration: none; font-weight: bold;">🧩Task Examples</a> 
+    
+  </p>
+  <p>
+  <a href="#getting-started" style="text-decoration: none; font-weight: bold;">🔧Getting Started</a> •
+    <a href="#contribution--contact" style="text-decoration: none; font-weight: bold;">📬Contact</a> •
+    <a href="#citation" style="text-decoration: none; font-weight: bold;">📝Citation</a>
+    <a href="#stars" style="text-decoration: none; font-weight: bold;">✨Stars History</a>
+  </p>
+</div>
+
 
 This repository is for the GraphRAG-Bench project, a comprehensive benchmark for evaluating Graph Retrieval-Augmented Generation models.
 ![pipeline](./pipeline.jpg)
 
-## 1. Website Overview
-
-### 🎉 News
+<h2 id="news">📰 News</h2>
 - **[2025-05-25]** We release [GraphRAG-Bench](https://graphrag-bench.github.io), the benchmark for evaluating GraphRAG models.
 - **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://huggingface.co/datasets/GraphRAG-Bench/GraphRAG-Bench).
 - **[2025-01-21]** We release the [GraphRAG survey](https://github.com/DEEP-PolyU/Awesome-GraphRAG).
 
-### 📖 About
+<h2 id="about">📖 About</h2>
 - Introduces Graph Retrieval-Augmented Generation (GraphRAG) concept
 - Compares traditional RAG vs GraphRAG approach
 - Explains research objective: Identify scenarios where GraphRAG outperforms traditional RAG
@@ -23,8 +37,14 @@ This repository is for the GraphRAG-Bench project, a comprehensive benchmark for
 
 ![overview](./RAGvsGraphRAG.jpg)
 
+<details>
+<summary>
+  More Details
+</summary>
+Graph retrieval-augmented generation (GraphRAG) has emerged as a powerful paradigm for enhancing large language models (LLMs) with external knowledge. It leverages graphs to model the hierarchical structure between specific concepts, enabling more coherent and effective knowledge retrieval for accurate reasoning. Despite its conceptual promise, recent studies report that GraphRAG frequently underperforms vanilla RAG on many real-world tasks. This raises a critical question: Is GraphRAG really effective, and in which scenarios do graph structures provide measurable benefits for RAG systems? To address this, we propose GraphRAG-Bench, a comprehensive benchmark designed to evaluate GraphRAG models on both hierarchical knowledge retrieval and deep contextual reasoning. GraphRAG-Bench features a comprehensive dataset with tasks of increasing difficulty, covering fact retrieval, complex reasoning, contextual summarization, and creative generation, and a systematic evaluation across the entire pipeline, from graph construction and knowledge retrieval to final generation. Leveraging this novel benchmark, we systematically investigate the conditions when GraphRAG surpasses traditional RAG and the underlying reasons for its success, offering guidelines for its practical application.
+</details>
 
-### 🏆 Leaderboards
+<h2 id="leaderboards">🏆 Leaderboards</h2>
 Two domain-specific leaderboards with comprehensive metrics:
 
 **1. GraphRAG-Bench (Novel)**
@@ -39,7 +59,7 @@ Two domain-specific leaderboards with comprehensive metrics:
 - Contextual Summarization (Accuracy, Coverage)
 - Creative Generation (Accuracy, Factual Score, Coverage)
 
-### 🧩 Task Examples
+<h2 id="task-examples">🧩 Task Examples</h2>
 Four difficulty levels with representative examples:
 
 **Level 1: Fact Retrieval**  
@@ -55,14 +75,10 @@ Four difficulty levels with representative examples:
 *Example: "Retell King Arthur's comparison to John Curgenven as a newspaper article."*
 
 
-## 2. Access the Website
-Our benchmark was released:  
-[**https://graphrag-bench.github.io**](https://graphrag-bench.github.io)
-
-## 3. Getting Started(GraphRAG-Bench Examples)
+<h2 id="getting-started">🔧 Getting Started(GraphRAG-Bench Examples)</h2>
 The  **'Examples'** directory contains example implementations for running inference on the GraphRAG-Bench dataset using various RAG frameworks. Each framework has a dedicated implementation file that generates prediction outputs compatible with our unified evaluation pipeline.
 
-### 🛠 Installation Guide
+### Installation Guide
 
 **To prevent dependency conflicts, we strongly recommend using separate Conda environments for each framework:**
 
@@ -79,7 +95,7 @@ pip install -e .
 
 ```
 
-### 🚀 Running Example
+### Running Example
 Next, we provide detailed instructions on how to use GraphRAG-Bench to evaluate each framework. Specifically, we introduce how to perform index construction and batch inference for each framework. Note that the evaluation code is standardized across all frameworks to ensure fair comparison.
 #### 1. Indexing and inference
 ##### a. LightRAG
@@ -187,10 +203,10 @@ python -m Evaluation.retrieval_eval \
   --output_file ./results/evaluation_results.json
 ```
 
-## 4. Contribution & Contact
+## <h2 id="contribution--contact">📬 Contribution & Contact</h2>
 Contributions to improve the benchmark website are welcome. Please contact the project team via <a href="mailto:GraphRAG@hotmail.com">GraphRAG@hotmail.com</a>.
 
-## 5. Citation
+## <h2 id="citation">📝 Citation</h2>
 If you find this benchmark helpful, please cite our paper:
 ```
 @article{xiang2025use,
@@ -200,5 +216,5 @@ If you find this benchmark helpful, please cite our paper:
   year={2025}
 }
 ```
-## 6.Stars History
+<h2 id="stars">✨ Stars History</h2>
 ![history](./star-history.png)
