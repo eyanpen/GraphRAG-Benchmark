@@ -78,6 +78,11 @@ Four difficulty levels with representative examples:
 
 <h2 id="getting-started">🔧 Getting Started(GraphRAG-Bench Examples)</h2>
 
+First, install the necessary dependencies for GraphRAG-Bench.
+```bash
+pip install -r requirements.txt
+```
+
 The  **'Examples'** directory contains example implementations for running inference on the GraphRAG-Bench dataset using various RAG frameworks. Each framework has a dedicated implementation file that generates prediction outputs compatible with our unified evaluation pipeline.
 
 ### Installation Guide
