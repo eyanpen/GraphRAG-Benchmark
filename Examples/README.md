@@ -23,6 +23,8 @@ pip install -e .
 Next, we provide detailed instructions on how to use GraphRAG-Bench to evaluate each framework. Specifically, we introduce how to perform index construction and batch inference for each framework. Note that the evaluation code is standardized across all frameworks to ensure fair comparison.
 ### 1. Indexing and inference
 #### a. LightRAG
+**We use LightRAG version v1.2.5.**
+
 Before running the above script, you need to modify the source code(LightRAG) to enable extraction of the corresponding context used during generation. Please make the following changes:
 1. In `lightrag/operate.py`, update the kg_query method to return the context along with the response:
 ```python
@@ -178,6 +180,7 @@ python run_fast-graphrag.py \
 ```
 
 #### c. hipporag2
+**We use hipporag2 version v1.0.0**.
 
 ```shell
 export OPENAI_API_KEY=your_actual_api_key_here
