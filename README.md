@@ -332,4 +332,4 @@ If you find this benchmark helpful, please cite our paper:
 ```
 <h2 id="stars">✨ Stars History</h2>
 
-![history](./star-history.png)
+[![Star History Chart](https://api.star-history.com/svg?repos=GraphRAG-Bench/GraphRAG-Benchmark&type=Date)](https://www.star-history.com/#GraphRAG-Bench/GraphRAG-Benchmark&Date)

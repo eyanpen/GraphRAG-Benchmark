@@ -9,7 +9,6 @@ from langchain_core.embeddings import Embeddings
 from datasets import Dataset
 from langchain_openai import ChatOpenAI
 from langchain.embeddings import HuggingFaceBgeEmbeddings
-from ragas.embeddings import LangchainEmbeddingsWrapper
 from Evaluation.metrics import compute_answer_correctness, compute_coverage_score, compute_faithfulness_score, compute_rouge_score
 
 async def evaluate_dataset(
@@ -114,8 +113,7 @@ async def main(args: argparse.Namespace):
     )
     
     # Initialize the embedding model
-    bge_embeddings = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
-    embedding = LangchainEmbeddingsWrapper(embeddings=bge_embeddings)
+    embedding = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
     
     # Load evaluation data
     print(f"Loading evaluation data from {args.data_file}...")

@@ -4,6 +4,7 @@ import numpy as np
 from pydantic import BaseModel
 from typing import List, Dict, Tuple, Optional
 from langchain_core.language_models import BaseLanguageModel
+import re
 from langchain_core.embeddings import Embeddings
 from langchain_core.callbacks import Callbacks
 
@@ -30,35 +31,31 @@ def fbeta_score(tp: int, fp: int, fn: int, beta: float = 1.0) -> float:
 
 # Statement generation prompt template
 STATEMENT_GENERATOR_PROMPT = """
-Generate concise independent statements from the given text that represent factual claims.
-Respond ONLY with a JSON array of strings. Do not include any other text.
+Given a question and an answer, analyze the complexity of each sentence in the answer. Break down each sentence into one or more fully understandable statements. Ensure that no pronouns are used in any statement. Format the outputs in JSON.
 
 Example Input: 
-"The sun is powered by nuclear fusion. This process creates light and heat."
+Question: Who was Albert Einstein and what is he best known for?
+Answer: He was a German-born theoretical physicist, widely acknowledged to be one of the greatest and most influential physicists of all time. He was best known for developing the theory of relativity, he also made important contributions to the development of the theory of quantum mechanics.
 
 Example Output:
-["The sun is powered by nuclear fusion", "Nuclear fusion creates light and heat"]
+["Albert Einstein was a German-born theoretical physicist.", "Albert Einstein is recognized as one of the greatest and most influential physicists of all time.","Albert Einstein was best known for developing the theory of relativity.","Albert Einstein also made important contributions to the development of the theory of quantum mechanics."]
 
 Input Text:
-{text}
+Question:{question}
+Answer: {answer}
 
 Generated Statements:
 """
 
 # Correctness classification prompt template
 CORRECTNESS_PROMPT_TEMPLATE = """
-Analyze statements from an answer compared to ground truth. Classify each as:
-- TP (True Positive): Present in answer and supported by ground truth
-- FP (False Positive): Present in answer but unsupported
-- FN (False Negative): Missing from answer but present in ground truth
-
-Provide JSON output with lists of TP, FP, FN objects containing 'statement' and 'reason'.
+Given a ground truth and an answer statements, analyze each statement and classify them in one of the following categories: TP (true positive): statements that are present in answer that are also directly supported by the one or more statements in ground truth, FP (false positive): statements present in the answer but not directly supported by any statement in ground truth, FN (false negative): statements found in the ground truth but not present in answer. Each statement can only belong to one of the categories. Provide a reason for each classification.
 
 Examples:
 {examples}
 
 Current Analysis:
-Question: "{question}"
+Question: {question}
 Answer Statements: {answer}
 Ground Truth Statements: {ground_truth}
 """
@@ -67,23 +64,80 @@ Ground Truth Statements: {ground_truth}
 CORRECTNESS_EXAMPLES = [
     {
         "input": {
-            "question": "What powers the sun and its primary function?",
+            "question": "What powers the sun and what is its primary function?",
             "answer": [
-                "The sun is powered by nuclear fission",
-                "Its primary function is providing light"
+                "The sun is powered by nuclear fission, similar to nuclear reactors on Earth.",
+                "The primary function of the sun is to provide light to the solar system."
             ],
             "ground_truth": [
-                "The sun is powered by nuclear fusion",
-                "Fusion creates energy for heat and light",
-                "Sunlight is essential for Earth's climate"
+                "The sun is powered by nuclear fusion, where hydrogen atoms fuse to form helium.",
+                "This fusion process in the sun's core releases a tremendous amount of energy.",
+                "The energy from the sun provides heat and light, which are essential for life on Earth.",
+                "The sun's light plays a critical role in Earth's climate system.",
+                "Sunlight helps to drive the weather and ocean currents."
             ]
         },
         "output": {
-            "TP": [{"statement": "Its primary function is providing light", "reason": "Matches ground truth about light"}],
-            "FP": [{"statement": "The sun is powered by nuclear fission", "reason": "Contradicts fusion fact"}],
+            "TP": [
+                {
+                    "statement": "The primary function of the sun is to provide light to the solar system.",
+                    "reason": "This statement is somewhat supported by the ground truth mentioning the sun providing light and its roles, though it focuses more broadly on the sun's energy."
+                }
+            ],
+            "FP": [
+                {
+                    "statement": "The sun is powered by nuclear fission, similar to nuclear reactors on Earth.",
+                    "reason": "This statement is incorrect and contradicts the ground truth which states that the sun is powered by nuclear fusion."
+                }
+            ],
             "FN": [
-                {"statement": "The sun is powered by nuclear fusion", "reason": "Missing correct power source"},
-                {"statement": "Fusion creates energy for heat and light", "reason": "Missing energy creation detail"}
+                {
+                    "statement": "The sun is powered by nuclear fusion, where hydrogen atoms fuse to form helium.",
+                    "reason": "This accurate description of the sun’s power source is not included in the answer."
+                },
+                {
+                    "statement": "This fusion process in the sun's core releases a tremendous amount of energy.",
+                    "reason": "This process and its significance are not mentioned in the answer."
+                },
+                {
+                    "statement": "The energy from the sun provides heat and light, which are essential for life on Earth.",
+                    "reason": "The answer only mentions light, omitting the essential aspects of heat and its necessity for life, which the ground truth covers."
+                },
+                {
+                    "statement": "The sun's light plays a critical role in Earth's climate system.",
+                    "reason": "This broader impact of the sun’s light on Earth's climate system is not addressed in the answer."
+                },
+                {
+                    "statement": "Sunlight helps to drive the weather and ocean currents.",
+                    "reason": "The effect of sunlight on weather patterns and ocean currents is omitted in the answer."
+                }
+            ]
+        }
+    },
+    {
+        "input": {
+            "question": "What is the boiling point of water?",
+            "answer": [
+                "The boiling point of water is 100 degrees Celsius at sea level"
+            ],
+            "ground_truth": [
+                "The boiling point of water is 100 degrees Celsius (212 degrees Fahrenheit) at sea level.",
+                "The boiling point of water can change with altitude."
+            ]
+        },
+        "output": {
+            "TP": [
+                {
+                    "statement": "The boiling point of water is 100 degrees Celsius at sea level",
+                    "reason": "This statement is directly supported by the ground truth which specifies the boiling point of water as 100 degrees Celsius at sea level."
+                }
+            ],
+            "FP": [],
+            "FN": [
+                {
+                    "statement": "The boiling point of water can change with altitude.",
+                    "reason": "This additional information about how the boiling point of water can vary with altitude is not mentioned in the answer."
+                }
             ]
         }
     }
@@ -101,14 +155,13 @@ async def compute_answer_correctness(
 ) -> float:
     """Compute answer correctness score combining factuality and semantic similarity"""
     # Generate statements from answer and ground truth
-    answer_statements = await generate_statements(llm, answer, callbacks)
-    gt_statements = await generate_statements(llm, ground_truth, callbacks)
+    answer_statements = await generate_statements(llm, question, answer, callbacks)
+    gt_statements = await generate_statements(llm, question, ground_truth, callbacks)
 
     # Calculate factuality score using statement classification
     factuality_score = await calculate_factuality(
         llm, question, answer_statements, gt_statements, callbacks, beta
     ) if weights[0] != 0 else 0.0
-
     # Calculate semantic similarity
     similarity_score = await calculate_semantic_similarity(
         embeddings, answer, ground_truth
@@ -118,13 +171,14 @@ async def compute_answer_correctness(
     return float(np.average([factuality_score, similarity_score], weights=weights))
 
 async def generate_statements(
-    llm: BaseLanguageModel, text: str, callbacks: Callbacks
+    llm: BaseLanguageModel, question: str, answer:str, callbacks: Callbacks
 ) -> List[str]:
     """Generate concise factual statements from text"""
-    prompt = STATEMENT_GENERATOR_PROMPT.format(text=text)
+    prompt = STATEMENT_GENERATOR_PROMPT.format(question=question, answer=answer)
     response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
+    content = re.sub(r"```json|```", "", response.content).strip()
     try:
-        return json.loads(response.content)
+        return json.loads(content)
     except json.JSONDecodeError:
         return []
 
