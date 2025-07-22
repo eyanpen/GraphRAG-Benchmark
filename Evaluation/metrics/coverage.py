@@ -1,15 +1,15 @@
 import json
+import re
 import numpy as np
 from typing import List, Dict, Optional
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.callbacks import Callbacks
 
 FACT_EXTRACTION_PROMPT = """
-### Task
-Extract distinct factual statements from the reference answer that could be independently verified.
-Respond ONLY with a JSON object containing a "facts" list of strings.
+You are given a question and a reference answer. Break down the reference answer into a list of distinct factual statements (facts) that could be independently verified. 
+Output them as a JSON list of strings under the 'facts' field.
 
-### Example
+Example
 Input:
   Question: "What causes seasons?"
   Reference: "Seasonal changes result from Earth's axial tilt. This tilt causes different hemispheres to receive varying sunlight."
@@ -110,7 +110,8 @@ async def _extract_facts(
     for _ in range(max_retries + 1):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            data = json.loads(response.content)
+            content = re.sub(r"```json|```", "", response.content).strip()
+            data = json.loads(content)
             return _validate_facts(data.get("facts", []))
         except (json.JSONDecodeError, KeyError, TypeError):
             continue
@@ -138,7 +139,8 @@ async def _check_fact_coverage(
     for _ in range(max_retries + 1):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            data = json.loads(response.content)
+            content = re.sub(r"```json|```", "", response.content).strip()
+            data = json.loads(content)
             return _validate_classifications(data.get("classifications", []))
         except (json.JSONDecodeError, KeyError, TypeError):
             continue

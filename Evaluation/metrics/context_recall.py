@@ -3,6 +3,7 @@ import numpy as np
 from typing import List, Dict, Optional
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.callbacks import Callbacks
+import re
 
 CONTEXT_RECALL_PROMPT = """
 ### Task
@@ -90,7 +91,8 @@ async def _get_classifications(
     for _ in range(max_retries + 1):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            data = json.loads(response.content)
+            content = re.sub(r"```json|```", "", response.content).strip()
+            data = json.loads(content)
             return _validate_classifications(data.get("classifications", []))
         except (json.JSONDecodeError, KeyError, TypeError):
             continue
