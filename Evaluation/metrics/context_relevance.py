@@ -98,7 +98,7 @@ async def _get_llm_rating(
     max_retries: int
 ) -> float:
     """Get a single relevance rating from LLM with retries"""
-    prompt = CONTEXT_RELEVANCE_PROMPT.format(question=question, context=context)
+    prompt = CONTEXT_RELEVANCE_PROMPT.format(query=question, context=context)
     
     for _ in range(max_retries):
         try:

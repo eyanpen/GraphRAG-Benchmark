@@ -61,7 +61,7 @@ Examples:
 
 Current Analysis:
 Context: {context}
-Statements: {statemens}
+Statements: {statements}
 """
 
 async def compute_faithfulness_score(
