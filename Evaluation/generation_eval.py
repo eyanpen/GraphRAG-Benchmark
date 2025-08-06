@@ -9,7 +9,6 @@ from langchain_core.embeddings import Embeddings
 from datasets import Dataset
 from langchain_openai import ChatOpenAI
 from langchain.embeddings import HuggingFaceBgeEmbeddings
-from ragas.embeddings import LangchainEmbeddingsWrapper
 from Evaluation.metrics import compute_answer_correctness, compute_coverage_score, compute_faithfulness_score, compute_rouge_score
 from langchain_community.embeddings import OllamaEmbeddings
 from .metrics.ollama_client import OllamaClient
@@ -122,22 +121,22 @@ async def main(args: argparse.Namespace):
     """Main evaluation function that accepts command-line arguments."""
     if args.mode == "API":
     # Check if the API key is set
-        if not os.getenv("LLM_API_KEY"):
-            raise ValueError("LLM_API_KEY environment variable is not set")
-        
-        # Initialize the model
-        llm = ChatOpenAI(
-            model=args.model,
-            base_url=args.base_url,
-            api_key=os.getenv("LLM_API_KEY"),
-            temperature=0.0,
-            max_retries=3,
-            timeout=30
-        )
-        
-        # Initialize the embedding model
-        bge_embeddings = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
-        embedding = LangchainEmbeddingsWrapper(embeddings=bge_embeddings)
+
+    if not os.getenv("LLM_API_KEY"):
+        raise ValueError("LLM_API_KEY environment variable is not set")
+    
+    # Initialize the model
+    llm = ChatOpenAI(
+        model=args.model,
+        base_url=args.base_url,
+        api_key=os.getenv("LLM_API_KEY"),
+        temperature=0.0,
+        max_retries=3,
+        timeout=30
+    )
+    
+    # Initialize the embedding model
+    embedding = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
     
     elif args.mode == "ollama":
         ollama_client = OllamaClient(base_url=args.base_url)

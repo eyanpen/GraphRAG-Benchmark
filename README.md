@@ -86,9 +86,7 @@ First, install the necessary dependencies for GraphRAG-Bench.
 pip install -r requirements.txt
 ```
 
-The  **'Examples'** directory contains example implementations for running inference on the GraphRAG-Bench dataset using various RAG frameworks. Each framework has a dedicated implementation file that generates prediction outputs compatible with our unified evaluation pipeline.
-
-### Installation Guide
+## 🛠 Installation Guide
 
 **To prevent dependency conflicts, we strongly recommend using separate Conda environments for each framework:**
 
@@ -106,17 +104,14 @@ pip install -e .
 
 ```
 
-### Running Example
-
+## 🚀 Running Example
 Next, we provide detailed instructions on how to use GraphRAG-Bench to evaluate each framework. Specifically, we introduce how to perform index construction and batch inference for each framework. Note that the evaluation code is standardized across all frameworks to ensure fair comparison.
-
-#### 1. Indexing and inference
-
-##### a. LightRAG
+### 1. Indexing and inference
+#### a. LightRAG
+**We use LightRAG version v1.2.5.**
 
 Before running the above script, you need to modify the source code(LightRAG) to enable extraction of the corresponding context used during generation. Please make the following changes:
-
-1. In lightrag/operate.py, update the kg_query method to return the context along with the response:
+1. In `lightrag/operate.py`, update the kg_query method to return the context along with the response:
 
 ```python
 # Original Code
@@ -128,7 +123,7 @@ async def kg_query(...) -> tuple[str, str] | tuple[AsyncIterator[str], str]:
   return response, context
 ```
 
-2. In lightrag/lightrag.py, update the aquery method to receive and return the context when calling kg_query:
+2. In `lightrag/lightrag.py`, update the aquery method to receive and return the context when calling kg_query:
 
 ```python
 # Modified Code
@@ -159,13 +154,10 @@ python run_lightrag.py \
   --llm_base_url https://api.openai.com/v1
 
 ```
-
-##### b. fast-graphrag
-
+#### b. fast-graphrag
 Since the original fast-LightRAG does not support HuggingFace Embedding, we need to adapt the library accordingly. The detailed adaptation process is as follows:
-
-1. Go to the `fast_graphrag/_llm` directory and create a new file named `_hf.py`.
-   The content of this file is as follows. This code mainly adds support for HuggingFace Embedding:
+1. Go to the `fast_graphrag/_llm` directory and create a new file named _hf.py.
+The content of this file is as follows. This code mainly adds support for HuggingFace Embedding:
 
 ```python
 import asyncio
@@ -285,7 +277,9 @@ python run_fast-graphrag.py \
 
 ```
 
-##### c. hipporag2
+#### c. hipporag2
+**We use hipporag2 version v1.0.0**.
+
 
 ```shell
 export OPENAI_API_KEY=your_actual_api_key_here
@@ -315,9 +309,8 @@ We will continue updating other GraphRAG frameworks as much as possible. If you 
 
 ```
 
-#### 2. Evaluation
-
-##### a. Generation
+### 2. Evaluation
+#### a. Generation
 
 ```shell
 cd Evaluation
@@ -332,7 +325,8 @@ python -m Evaluation.generation_eval \
   --output_file ./results/evaluation_results.json
 ```
 
-##### b. Retrieval
+
+#### b. Retrieval
 
 ```shell
 cd Evaluation
@@ -366,4 +360,4 @@ If you find this benchmark helpful, please cite our paper:
 
 <h2 id="stars">✨ Stars History</h2>
 
-![history](./star-history.png)
+[![Star History Chart](https://api.star-history.com/svg?repos=GraphRAG-Bench/GraphRAG-Benchmark&type=Date)](https://www.star-history.com/#GraphRAG-Bench/GraphRAG-Benchmark&Date)
