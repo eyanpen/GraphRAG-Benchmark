@@ -14,6 +14,7 @@ from lightrag.utils import EmbeddingFunc
 from lightrag.kg.shared_storage import initialize_pipeline_status
 from transformers import AutoModel, AutoTokenizer
 from tqdm import tqdm
+from lightrag.llm.ollama import ollama_model_complete, ollama_embed
 
 # Apply nest_asyncio for Jupyter environments
 nest_asyncio.apply()
@@ -77,6 +78,7 @@ async def llm_model_func(
 async def initialize_rag(
     base_dir: str,
     source: str,
+    mode:str,
     model_name: str,
     embed_model_name: str,
     llm_base_url: str,
@@ -88,21 +90,41 @@ async def initialize_rag(
     # Create directory for this corpus
     os.makedirs(working_dir, exist_ok=True)
     
-    # Initialize embedding function
-    tokenizer = AutoTokenizer.from_pretrained(embed_model_name)
-    embed_model = AutoModel.from_pretrained(embed_model_name)
-    embedding_func = EmbeddingFunc(
-        embedding_dim=1024,
-        max_token_size=8192,
-        func=lambda texts: hf_embed(texts, tokenizer, embed_model),
-    )
-    
-    # Create LLM configuration
-    llm_kwargs = {
-        "model_name": model_name,
-        "base_url": llm_base_url,
-        "api_key": llm_api_key
-    }
+    if mode == "API":
+        tokenizer = AutoTokenizer.from_pretrained(embed_model_name)
+        embed_model = AutoModel.from_pretrained(embed_model_name)
+        # Initialize embedding function
+        embedding_func = EmbeddingFunc(
+            embedding_dim=1024,
+            max_token_size=8192,
+            func=lambda texts: hf_embed(texts, tokenizer, embed_model),
+        )
+        
+        # Create LLM configuration
+        llm_kwargs = {
+            "model_name": model_name,
+            "base_url": llm_base_url,
+            "api_key": llm_api_key
+        }
+
+        llm_model_func_input = llm_model_func
+    elif mode == "ollama":
+        embedding_func = EmbeddingFunc(
+            embedding_dim=1024,
+            max_token_size=8192,
+            func=lambda texts: ollama_embed(
+                texts, embed_model=embed_model_name, host=llm_base_url
+            ),
+        )
+
+        llm_kwargs = {
+            "host": "http://localhost:11434",
+            "options": {"num_ctx": 32768},
+        }
+
+        llm_model_func = ollama_model_complete
+    else:
+        raise ValueError(f"Unsupported mode: {mode}. Use 'API' or 'ollama'.")
     
     # Create RAG instance
     rag = LightRAG(
@@ -125,6 +147,7 @@ async def process_corpus(
     corpus_name: str,
     context: str,
     base_dir: str,
+    mode: str,
     model_name: str,
     embed_model_name: str,
     llm_base_url: str,
@@ -140,6 +163,7 @@ async def process_corpus(
     rag = await initialize_rag(
         base_dir=base_dir,
         source=corpus_name,
+        mode=mode,
         model_name=model_name,
         embed_model_name=embed_model_name,
         llm_base_url=llm_base_url,
@@ -233,6 +257,7 @@ def main():
     parser.add_argument("--base_dir", default="./lightrag_workspace", help="Base working directory")
     
     # Model configuration
+    parser.add_argument("--mode", required=True, choices=["API", "ollama"], help="Use API or ollama for LLM")
     parser.add_argument("--model_name", default="qwen2.5-14b-instruct", help="LLM model identifier")
     parser.add_argument("--embed_model", default="bge-base-en", help="Embedding model name")
     parser.add_argument("--retrieve_topk", type=int, default=5, help="Number of top documents to retrieve")
@@ -246,9 +271,12 @@ def main():
 
     args = parser.parse_args()
     
-    # Validate subset
+    # Validate subset and mode
     if args.subset not in SUBSET_PATHS:
         logging.error(f"Invalid subset: {args.subset}. Valid options: {list(SUBSET_PATHS.keys())}")
+        return
+    if args.mode not in ["API", "ollama"]:
+        logging.error(f"Invalid mode: {args.subset}. Valid options: {["API", "ollama"]}")
         return
     
     # Get file paths for this subset
@@ -295,6 +323,7 @@ def main():
                 corpus_name=corpus_name,
                 context=context,
                 base_dir=args.base_dir,
+                mode=args.mode,
                 model_name=args.model_name,
                 embed_model_name=args.embed_model,
                 llm_base_url=args.llm_base_url,
