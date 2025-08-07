@@ -11,15 +11,7 @@ from langchain_openai import ChatOpenAI
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from Evaluation.metrics import compute_answer_correctness, compute_coverage_score, compute_faithfulness_score, compute_rouge_score
 from langchain_community.embeddings import OllamaEmbeddings
-from .metrics.ollama_client import OllamaClient
-
-class OllamaWrapper:
-    def __init__(self, client, model_name):
-        self.client = client
-        self.model_name = model_name
-        
-    async def ainvoke(self, prompt, config=None):
-        return await self.client.ainvoke(prompt, model=self.model_name)
+from Evaluation.llm import OllamaClient,OllamaWrapper
 
 async def evaluate_dataset(
     dataset: Dataset,
@@ -122,30 +114,29 @@ async def main(args: argparse.Namespace):
     if args.mode == "API":
     # Check if the API key is set
 
-    if not os.getenv("LLM_API_KEY"):
-        raise ValueError("LLM_API_KEY environment variable is not set")
+        if not os.getenv("LLM_API_KEY"):
+            raise ValueError("LLM_API_KEY environment variable is not set")
     
-    # Initialize the model
-    llm = ChatOpenAI(
-        model=args.model,
-        base_url=args.base_url,
-        api_key=os.getenv("LLM_API_KEY"),
-        temperature=0.0,
-        max_retries=3,
-        timeout=30
-    )
-    
-    # Initialize the embedding model
-    embedding = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
+        # Initialize the model
+        llm = ChatOpenAI(
+            model=args.model,
+            base_url=args.base_url,
+            api_key=os.getenv("LLM_API_KEY"),
+            temperature=0.0,
+            max_retries=3,
+            timeout=30
+        )
+        
+        # Initialize the embedding model
+        embedding = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
     
     elif args.mode == "ollama":
         ollama_client = OllamaClient(base_url=args.base_url)
         llm = OllamaWrapper(ollama_client, args.model)
-        ollama_embeddings = OllamaEmbeddings(
+        embedding = OllamaEmbeddings(
             model=args.bge_model,
             base_url=args.base_url
         )
-        embedding = LangchainEmbeddingsWrapper(embeddings=ollama_embeddings)
 
     # Load evaluation data
     print(f"Loading evaluation data from {args.data_file}...")

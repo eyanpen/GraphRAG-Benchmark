@@ -88,3 +88,11 @@ class OllamaClient:
 class OllamaResponse:
     def __init__(self, content: str):
         self.content = content
+
+class OllamaWrapper:
+    def __init__(self, client, model_name):
+        self.client = client
+        self.model_name = model_name
+        
+    async def ainvoke(self, prompt, config=None):
+        return await self.client.ainvoke(prompt, model=self.model_name)
