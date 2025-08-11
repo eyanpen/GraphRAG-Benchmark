@@ -11,11 +11,22 @@ from langchain_openai import ChatOpenAI
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from ragas.embeddings import LangchainEmbeddingsWrapper
 from Evaluation.metrics import compute_context_relevance, compute_context_recall
+from langchain_community.embeddings import OllamaEmbeddings
+from .metrics.ollama_client import OllamaClient
 
+class OllamaWrapper:
+    def __init__(self, client, model_name):
+        self.client = client
+        self.model_name = model_name
+        
+    async def ainvoke(self, prompt, config=None):
+        return await self.client.ainvoke(prompt, model=self.model_name)
+    
 async def evaluate_dataset(
     dataset: Dataset,
     llm: BaseLanguageModel,
-    embeddings: Embeddings
+    embeddings: Embeddings,
+    max_concurrent: int = 1  # Limit concurrent evaluations
 ) -> Dict[str, float]:
     """Evaluate context relevance and recall for a dataset"""
     results = {
@@ -30,26 +41,35 @@ async def evaluate_dataset(
     total_samples = len(questions)
     print(f"\nStarting evaluation of {total_samples} samples...")
     
-    # Create evaluation tasks
-    tasks = []
-    for i in range(total_samples):
-        tasks.append(
-            evaluate_sample(
+    # Use a semaphore to limit concurrent evaluations
+    semaphore = asyncio.Semaphore(max_concurrent)
+    
+    async def evaluate_with_semaphore(i):
+        async with semaphore:
+            return await evaluate_sample(
                 question=questions[i],
                 contexts=contexts_list[i],
                 ground_truth=ground_truths[i],
                 llm=llm,
                 embeddings=embeddings
             )
-        )
-    
+
+    # Create a list of tasks
+    tasks = [evaluate_with_semaphore(i) for i in range(total_samples)]
+
     # Collect results with progress
     sample_results = []
-    for i, future in enumerate(asyncio.as_completed(tasks)):
-        result = await future
-        sample_results.append(result)
-        print(f"Completed sample {i+1}/{total_samples} - {((i+1)/total_samples)*100:.1f}%")
-    
+    completed = 0
+    for future in asyncio.as_completed(tasks):
+        try:
+            result = await future
+            sample_results.append(result)
+            completed += 1
+            print(f"✅ Completed sample {completed}/{total_samples} - {(completed/total_samples)*100:.1f}%")
+        except Exception as e:
+            print(f"❌ Sample failed: {e}")
+            completed += 1
+            
     # Aggregate results
     for sample in sample_results:
         for metric, score in sample.items():
@@ -83,24 +103,34 @@ async def evaluate_sample(
 
 async def main(args: argparse.Namespace):
     """Main retrieval evaluation function"""
-    # Check API key
-    if not os.getenv("LLM_API_KEY"):
-        raise ValueError("LLM_API_KEY environment variable is not set")
-    
-    # Initialize models
-    llm = ChatOpenAI(
-        model=args.model,
-        base_url=args.base_url,
-        api_key=os.getenv("LLM_API_KEY"),
-        temperature=0.0,
-        max_retries=3,
-        timeout=30
-    )
-    
-    # Initialize embeddings
-    bge_embeddings = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
-    embedding = LangchainEmbeddingsWrapper(embeddings=bge_embeddings)
-    
+    if args.mode == "API":
+        # Check API key
+        if not os.getenv("LLM_API_KEY"):
+            raise ValueError("LLM_API_KEY environment variable is not set")
+        
+        # Initialize models
+        llm = ChatOpenAI(
+            model=args.model,
+            base_url=args.base_url,
+            api_key=os.getenv("LLM_API_KEY"),
+            temperature=0.0,
+            max_retries=3,
+            timeout=30
+        )
+        
+        # Initialize embeddings
+        bge_embeddings = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
+        embedding = LangchainEmbeddingsWrapper(embeddings=bge_embeddings)
+        
+    elif args.mode == "ollama":
+        ollama_client = OllamaClient(base_url=args.base_url)
+        llm = OllamaWrapper(ollama_client, args.model)
+        ollama_embeddings = OllamaEmbeddings(
+            model=args.bge_model,
+            base_url=args.base_url
+        )
+        embedding = LangchainEmbeddingsWrapper(embeddings=ollama_embeddings)
+
     # Load evaluation data
     print(f"Loading evaluation data from {args.data_file}...")
     with open(args.data_file, 'r') as f:
@@ -177,6 +207,15 @@ if __name__ == "__main__":
     )
     
     # Add command-line arguments
+    parser.add_argument(
+        "--mode", 
+        required=True,
+        choices=["API", "ollama"],
+        type=str,
+        default="API",
+        help="Use API or ollama for LLM"
+    )
+
     parser.add_argument(
         "--model", 
         type=str,

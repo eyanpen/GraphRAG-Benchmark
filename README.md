@@ -4,13 +4,13 @@
 
 [![Static Badge](https://img.shields.io/badge/arxiv-2506.05690-ff0000?style=for-the-badge&labelColor=000)](https://arxiv.org/abs/2506.05690)  [![Static Badge](https://img.shields.io/badge/huggingface-fcd022?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/datasets/GraphRAG-Bench/GraphRAG-Bench)  [![Static Badge](https://img.shields.io/badge/leaderboard-steelblue?style=for-the-badge&logo=googlechrome&logoColor=ffffff)](https://graphrag-bench.github.io/)  [![Static Badge](https://img.shields.io/badge/license-mit-teal?style=for-the-badge&labelColor=000)](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark/blob/main/LICENSE)
 
-  <p>
+<p>
     <a href="#news" style="text-decoration: none; font-weight: bold;">🎉News</a> •
     <a href="#about" style="text-decoration: none; font-weight: bold;">📖About</a> •
     <a href="#leaderboards" style="text-decoration: none; font-weight: bold;">🏆Leaderboards</a> •
-    <a href="#task-examples" style="text-decoration: none; font-weight: bold;">🧩Task Examples</a> 
-    
-  </p>
+    <a href="#task-examples" style="text-decoration: none; font-weight: bold;">🧩Task Examples</a>
+
+</p>
   <p>
   <a href="#getting-started" style="text-decoration: none; font-weight: bold;">🔧Getting Started</a> •
     <a href="#contribution--contact" style="text-decoration: none; font-weight: bold;">📬Contact</a> •
@@ -49,12 +49,15 @@ Graph retrieval-augmented generation (GraphRAG) has emerged as a powerful paradi
 Two domain-specific leaderboards with comprehensive metrics:
 
 **1. GraphRAG-Bench (Novel)**
+
 - Evaluates models on literary/fictional content
 
 **2. GraphRAG-Bench (Medical)**
+
 - Evaluates models on medical/healthcare content
 
 **Evaluation Dimensions:**
+
 - Fact Retrieval (Accuracy, ROUGE-L)
 - Complex Reasoning (Accuracy, ROUGE-L)
 - Contextual Summarization (Accuracy, Coverage)
@@ -63,22 +66,22 @@ Two domain-specific leaderboards with comprehensive metrics:
 <h2 id="task-examples">🧩 Task Examples</h2>
 Four difficulty levels with representative examples:
 
-**Level 1: Fact Retrieval**  
+**Level 1: Fact Retrieval**
 *Example: "Which region of France is Mont St. Michel located?"*
 
-**Level 2: Complex Reasoning**  
+**Level 2: Complex Reasoning**
 *Example: "How did Hinze's agreement with Felicia relate to the perception of England's rulers?"*
 
-**Level 3: Contextual Summarization**  
+**Level 3: Contextual Summarization**
 *Example: "What role does John Curgenven play as a Cornish boatman for visitors exploring this region?"*
 
-**Level 4: Creative Generation**  
+**Level 4: Creative Generation**
 *Example: "Retell King Arthur's comparison to John Curgenven as a newspaper article."*
-
 
 <h2 id="getting-started">🔧 Getting Started(GraphRAG-Bench Examples)</h2>
 
 First, install the necessary dependencies for GraphRAG-Bench.
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -88,6 +91,7 @@ pip install -r requirements.txt
 **To prevent dependency conflicts, we strongly recommend using separate Conda environments for each framework:**
 
 We use the installation of LightRAG as an example. For other frameworks, please refer to their respective installation instructions.
+
 ```bash
 # Create and activate environment (example for LightRAG)
 conda create -n lightrag python=3.10 -y
@@ -108,6 +112,7 @@ Next, we provide detailed instructions on how to use GraphRAG-Bench to evaluate 
 
 Before running the above script, you need to modify the source code(LightRAG) to enable extraction of the corresponding context used during generation. Please make the following changes:
 1. In `lightrag/operate.py`, update the kg_query method to return the context along with the response:
+
 ```python
 # Original Code
 async def kg_query(...) -> str | AsyncIterator[str]:
@@ -117,7 +122,9 @@ async def kg_query(...) -> str | AsyncIterator[str]:
 async def kg_query(...) -> tuple[str, str] | tuple[AsyncIterator[str], str]:
   return response, context
 ```
+
 2. In `lightrag/lightrag.py`, update the aquery method to receive and return the context when calling kg_query:
+
 ```python
 # Modified Code
 async def aquery(...):
@@ -128,12 +135,17 @@ async def aquery(...):
   return response, context
 
 ```
-Then you can run the following command to indexing and inference:
+
+Then you can run the following command to indexing and inference
+
+Note: Mode can choose:"API" or "ollama" and llm_base_url is where your ollama running(default: http://localhost:11434):
+
 ```shell
 export LLM_API_KEY=your_actual_api_key_here
 
 python run_lightrag.py \
   --subset medical \
+  --mode API \
   --base_dir ./Examples/lightrag_workspace \
   --model_name bge-large-en-v1.5 \
   --embed_model bge-base-en \
@@ -146,6 +158,7 @@ python run_lightrag.py \
 Since the original fast-LightRAG does not support HuggingFace Embedding, we need to adapt the library accordingly. The detailed adaptation process is as follows:
 1. Go to the `fast_graphrag/_llm` directory and create a new file named _hf.py.
 The content of this file is as follows. This code mainly adds support for HuggingFace Embedding:
+
 ```python
 import asyncio
 from dataclasses import dataclass, field
@@ -236,7 +249,9 @@ class HuggingFaceEmbeddingService(BaseEmbeddingService):
                         return embeddings.detach().cpu().numpy()
 
 ```
+
 2. Then, modify `fast_graphrag/_llm/__init__.py` to include the initialization of the newly added classes.
+
 ```python
 __all__ = [
     ...
@@ -246,7 +261,9 @@ __all__ = [
 from ._hf import HuggingFaceEmbeddingService
 
 ```
+
 Then you can run the following command to indexing and inference:
+
 ```shell
 export LLM_API_KEY=your_actual_api_key_here
 
@@ -263,6 +280,7 @@ python run_fast-graphrag.py \
 #### c. hipporag2
 **We use hipporag2 version v1.0.0**.
 
+
 ```shell
 export OPENAI_API_KEY=your_actual_api_key_here
 
@@ -274,7 +292,9 @@ python run_hipporag2.py \
 #   --sample 100 \
   --llm_base_url https://api.openai.com/v1
 ```
+
 We will continue updating other GraphRAG frameworks as much as possible. If you wish to integrate a different framework, you can refer to the structure of our result format. As long as your returned output matches the following fields, the evaluation code will run successfully:
+
 ```json
 {
   "id": q["id"],
@@ -288,13 +308,16 @@ We will continue updating other GraphRAG frameworks as much as possible. If you 
 }
 
 ```
+
 ### 2. Evaluation
 #### a. Generation
+
 ```shell
 cd Evaluation
 export OPENAI_API_KEY=your_actual_api_key_here
 
 python -m Evaluation.generation_eval \
+  --mode API \
   --model gpt-4-turbo \
   --base_url https://api.openai.com/v1 \
   --bge_model BAAI/bge-large-en-v1.5 \
@@ -302,12 +325,15 @@ python -m Evaluation.generation_eval \
   --output_file ./results/evaluation_results.json
 ```
 
+
 #### b. Retrieval
+
 ```shell
 cd Evaluation
 export OPENAI_API_KEY=your_actual_api_key_here
 
 python -m Evaluation.retrieval_eval \
+  --mode API \
   --model gpt-4-turbo \
   --base_url https://api.openai.com/v1 \
   --bge_model BAAI/bge-large-en-v1.5 \
@@ -315,13 +341,14 @@ python -m Evaluation.retrieval_eval \
   --output_file ./results/evaluation_results.json
 ```
 
-## <h2 id="contribution--contact">📬 Contribution & Contact</h2>
+## `<h2 id="contribution--contact">`📬 Contribution & Contact`</h2>`
 
-Contributions to improve the benchmark website are welcome. Please contact the project team via <a href="mailto:GraphRAG@hotmail.com">GraphRAG@hotmail.com</a>.
+Contributions to improve the benchmark website are welcome. Please contact the project team via `<a href="mailto:GraphRAG@hotmail.com">`GraphRAG@hotmail.com`</a>`.
 
-## <h2 id="citation">📝 Citation</h2>
+## `<h2 id="citation">`📝 Citation`</h2>`
 
 If you find this benchmark helpful, please cite our paper:
+
 ```
 @article{xiang2025use,
   title={When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation},
@@ -330,6 +357,7 @@ If you find this benchmark helpful, please cite our paper:
   year={2025}
 }
 ```
+
 <h2 id="stars">✨ Stars History</h2>
 
 [![Star History Chart](https://api.star-history.com/svg?repos=GraphRAG-Bench/GraphRAG-Benchmark&type=Date)](https://www.star-history.com/#GraphRAG-Bench/GraphRAG-Benchmark&Date)
