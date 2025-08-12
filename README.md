@@ -105,12 +105,17 @@ pip install -e .
 ```
 
 ## 🚀 Running Example
+
 Next, we provide detailed instructions on how to use GraphRAG-Bench to evaluate each framework. Specifically, we introduce how to perform index construction and batch inference for each framework. Note that the evaluation code is standardized across all frameworks to ensure fair comparison.
+
 ### 1. Indexing and inference
+
 #### a. LightRAG
+
 **We use LightRAG version v1.2.5.**
 
 Before running the above script, you need to modify the source code(LightRAG) to enable extraction of the corresponding context used during generation. Please make the following changes:
+
 1. In `lightrag/operate.py`, update the kg_query method to return the context along with the response:
 
 ```python
@@ -138,7 +143,7 @@ async def aquery(...):
 
 Then you can run the following command to indexing and inference
 
-Note: Mode can choose:"API" or "ollama" and llm_base_url is where your ollama running(default: http://localhost:11434):
+**Note**: Mode can choose:"API" or "ollama". When you choose "ollama" the "llm_base_url" is where your ollama running (default:http://localhost:11434):
 
 ```shell
 export LLM_API_KEY=your_actual_api_key_here
@@ -154,10 +159,13 @@ python run_lightrag.py \
   --llm_base_url https://api.openai.com/v1
 
 ```
+
 #### b. fast-graphrag
+
 Since the original fast-LightRAG does not support HuggingFace Embedding, we need to adapt the library accordingly. The detailed adaptation process is as follows:
+
 1. Go to the `fast_graphrag/_llm` directory and create a new file named _hf.py.
-The content of this file is as follows. This code mainly adds support for HuggingFace Embedding:
+   The content of this file is as follows. This code mainly adds support for HuggingFace Embedding:
 
 ```python
 import asyncio
@@ -278,8 +286,8 @@ python run_fast-graphrag.py \
 ```
 
 #### c. hipporag2
-**We use hipporag2 version v1.0.0**.
 
+**We use hipporag2 version v1.0.0**.
 
 ```shell
 export OPENAI_API_KEY=your_actual_api_key_here
@@ -310,6 +318,9 @@ We will continue updating other GraphRAG frameworks as much as possible. If you 
 ```
 
 ### 2. Evaluation
+
+**Note**: Mode can choose:"API" or "ollama". When you choose "ollama" the "llm_base_url" is where your ollama running (default:http://localhost:11434):s
+
 #### a. Generation
 
 ```shell
@@ -324,7 +335,6 @@ python -m Evaluation.generation_eval \
   --data_file ./results/lightrag.json \
   --output_file ./results/evaluation_results.json
 ```
-
 
 #### b. Retrieval
 
@@ -343,7 +353,7 @@ python -m Evaluation.retrieval_eval \
 
 ## 📬 Contribution & Contact
 
-Contributions to improve the benchmark website are welcome. Please contact the project team via `<a href="mailto:GraphRAG@hotmail.com">`GraphRAG@hotmail.com`</a>`.
+Contributions to improve the benchmark website are welcome. Please contact the project team via `<a href="mailto:GraphRAG@hotmail.com">`GraphRAG@hotmail.com `</a>`.
 
 ## 📝 Citation
 
