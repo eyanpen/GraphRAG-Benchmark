@@ -319,7 +319,8 @@ We will continue updating other GraphRAG frameworks as much as possible. If you 
 
 ### 2. Evaluation
 
-**Note**: Mode can choose:"API" or "ollama". When you choose "ollama" the "llm_base_url" is where your ollama running (default:http://localhost:11434):s
+**
+    Note**: Mode can choose:"API" or "ollama". When you choose "ollama" the "llm_base_url" is where your 	ollama running (default:http://localhost:11434):s
 
 #### a. Generation
 
