@@ -352,11 +352,11 @@ python -m Evaluation.retrieval_eval \
   --output_file ./results/evaluation_results.json
 ```
 
-## 📬 Contribution & Contact
+<h2 id="contribution--contact">📬 Contribution & Contact</h2>
 
 Contributions to improve the benchmark website are welcome. Please contact the project team via `<a href="mailto:GraphRAG@hotmail.com">`GraphRAG@hotmail.com `</a>`.
 
-## 📝 Citation
+<h2 id="citation">📝 Citation</h2>
 
 If you find this benchmark helpful, please cite our paper:
 
