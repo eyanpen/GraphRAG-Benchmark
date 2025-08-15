@@ -354,7 +354,7 @@ python -m Evaluation.retrieval_eval \
 
 <h2 id="contribution--contact">📬 Contribution & Contact</h2>
 
-Contributions to improve the benchmark website are welcome. Please contact the project team via `<a href="mailto:GraphRAG@hotmail.com">`GraphRAG@hotmail.com `</a>`.
+Contributions to improve the benchmark website are welcome. Please contact the project team via <a href="mailto:GraphRAG@hotmail.com">GraphRAG@hotmail.com </a>.
 
 <h2 id="citation">📝 Citation</h2>
 
