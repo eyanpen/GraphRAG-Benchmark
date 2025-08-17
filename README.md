@@ -308,11 +308,11 @@ We will continue updating other GraphRAG frameworks as much as possible. If you 
   "id": q["id"],
   "question": q["question"],
   "source": corpus_name,
-  "context": context,
+  "context": List[str],
   "evidence": q["evidence"],
   "question_type": q["question_type"],
   "generated_answer": predicted_answer,
-  "gold_answer": q["answer"]
+  "ground_truth": q["answer"]
 }
 
 ```
@@ -325,23 +325,23 @@ We will continue updating other GraphRAG frameworks as much as possible. If you 
 #### a. Generation
 
 ```shell
-cd Evaluation
-export OPENAI_API_KEY=your_actual_api_key_here
+export LLM_API_KEY=your_actual_api_key_here
 
 python -m Evaluation.generation_eval \
   --mode API \
   --model gpt-4-turbo \
   --base_url https://api.openai.com/v1 \
-  --bge_model BAAI/bge-large-en-v1.5 \
+  --embedding_model BAAI/bge-large-en-v1.5 \
   --data_file ./results/lightrag.json \
-  --output_file ./results/evaluation_results.json
+  --output_file ./results/evaluation_results.json \
+  # if needed
+  --detailed_output
 ```
 
 #### b. Retrieval
 
 ```shell
-cd Evaluation
-export OPENAI_API_KEY=your_actual_api_key_here
+export LLM_API_KEY=your_actual_api_key_here
 
 python -m Evaluation.retrieval_eval \
   --mode API \
@@ -350,6 +350,8 @@ python -m Evaluation.retrieval_eval \
   --bge_model BAAI/bge-large-en-v1.5 \
   --data_file ./results/lightrag.json \
   --output_file ./results/evaluation_results.json
+    # if needed
+  --detailed_output
 ```
 
 <h2 id="contribution--contact">📬 Contribution & Contact</h2>

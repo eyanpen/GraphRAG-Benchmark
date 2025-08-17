@@ -3,7 +3,7 @@ import argparse
 import json
 import numpy as np
 import os
-from typing import Dict, List
+from typing import Dict, List, Tuple, Any
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.embeddings import Embeddings
 from datasets import Dataset
@@ -18,11 +18,14 @@ async def evaluate_dataset(
     metrics: List[str],
     llm: BaseLanguageModel,
     embeddings: Embeddings,
-    max_concurrent: int = 3  # Limit concurrent evaluations
-) -> Dict[str, float]:
+    max_concurrent: int = 3,  # Limit concurrent evaluations
+    detailed_output: bool = False
+) -> Dict[str, Any]:
     """Evaluate the metric scores on the entire dataset."""
     results = {metric: [] for metric in metrics}
+    detailed_results = [] if detailed_output else None
     
+    ids = dataset["id"]
     questions = dataset["question"]
     answers = dataset["answer"]
     contexts_list = dataset["contexts"]
@@ -31,12 +34,11 @@ async def evaluate_dataset(
     total_samples = len(questions)
     print(f"\nStarting evaluation of {total_samples} samples...")
     
-    # Use a semaphore to limit concurrent evaluations
     semaphore = asyncio.Semaphore(max_concurrent)
     
     async def evaluate_with_semaphore(i):
         async with semaphore:
-            return await evaluate_sample(
+            sample_metrics = await evaluate_sample(
                 question=questions[i],
                 answer=answers[i],
                 contexts=contexts_list[i],
@@ -45,31 +47,51 @@ async def evaluate_dataset(
                 llm=llm,
                 embeddings=embeddings
             )
+            if detailed_output:
+                return {
+                    "id": ids[i],
+                    "question": questions[i],
+                    "ground_truth": ground_truths[i],
+                    "generated_answer": answers[i],
+                    "contexts": contexts_list[i],
+                    "metrics": sample_metrics
+                }
+            return sample_metrics
 
-    # Create a list of tasks
     tasks = [evaluate_with_semaphore(i) for i in range(total_samples)]
     
-    # Collect results and display progress
     sample_results = []
     completed = 0
 
     for future in asyncio.as_completed(tasks):
         try:
             result = await future
-            sample_results.append(result)
+            if detailed_output:
+                detailed_results.append(result)
+                # metrics aggregation
+                for metric, score in result["metrics"].items():
+                    if isinstance(score, (int, float)) and not np.isnan(score):
+                        results[metric].append(score)
+            else:
+                sample_results.append(result)
+                for metric, score in result.items():
+                    if isinstance(score, (int, float)) and not np.isnan(score):
+                        results[metric].append(score)
             completed += 1
             print(f"✅ Completed sample {completed}/{total_samples} - {(completed/total_samples)*100:.1f}%")
         except Exception as e:
             print(f"❌ Sample failed: {e}")
             completed += 1
     
-    # Aggregate results
-    for sample in sample_results:
-        for metric, score in sample.items():
-            if isinstance(score, (int, float)) and not np.isnan(score):
-                results[metric].append(score)
+    avg_results = {metric: np.nanmean(scores) for metric, scores in results.items()}
     
-    return {metric: np.nanmean(scores) for metric, scores in results.items()}
+    if detailed_output:
+        return {
+            "average_scores": avg_results,
+            "detailed": detailed_results
+        }
+    else:
+        return avg_results
 
 async def evaluate_sample(
     question: str,
@@ -128,7 +150,7 @@ async def main(args: argparse.Namespace):
         )
         
         # Initialize the embedding model
-        embedding = HuggingFaceBgeEmbeddings(model_name=args.bge_model)
+        embedding = HuggingFaceBgeEmbeddings(model_name=args.embedding_model)
     
     elif args.mode == "ollama":
         ollama_client = OllamaClient(base_url=args.base_url)
@@ -174,46 +196,50 @@ async def main(args: argparse.Namespace):
         
         # Prepare data from grouped items
         group_items = grouped_data[question_type]
+        ids = [item['id'] for item in group_items]
         questions = [item['question'] for item in group_items]
-        ground_truths = [item['gold_answer'] for item in group_items]
+        ground_truths = [item['ground_truth'] for item in group_items]
         answers = [item['generated_answer'] for item in group_items]
         contexts = [item['context'] for item in group_items]
         
         # Create dataset
         data = {
+            "id": ids,
             "question": questions,
             "answer": answers,
             "contexts": contexts,
             "ground_truth": ground_truths
         }
         dataset = Dataset.from_dict(data)
-        
+
+        # If sample
+        if args.num_samples:
+            dataset = dataset.select([i for i in list(range(args.num_samples))])
+
         # Perform evaluation
         results = await evaluate_dataset(
             dataset=dataset,
             metrics=metric_config[question_type],
             llm=llm, 
-            embeddings=embedding  
+            embeddings=embedding,
+            detailed_output=args.detailed_output
         )
         
         all_results[question_type] = results
         print(f"\nResults for {question_type}:")
-        for metric, score in results.items():
-            print(f"  {metric}: {score:.4f}")
+        if args.detailed_output:
+            for metric, score in results["average_scores"].items():
+                print(f"  {metric}: {score:.4f}")
+        else:
+            for metric, score in results.items():
+                print(f"  {metric}: {score:.4f}")
     
     # Save final results
     if args.output_file:
         print(f"\nSaving results to {args.output_file}...")
+        os.makedirs(os.path.dirname(args.output_file), exist_ok=True)
         with open(args.output_file, 'w') as f:
             json.dump(all_results, f, indent=2)
-    
-    # Print final summary
-    print("\nFinal Evaluation Summary:")
-    print("=" * 50)
-    for q_type, metrics in all_results.items():
-        print(f"\nQuestion Type: {q_type}")
-        for metric, score in metrics.items():
-            print(f"  {metric}: {score:.4f}")
     
     print('\nEvaluation complete.')
 
@@ -247,10 +273,10 @@ if __name__ == "__main__":
     )
     
     parser.add_argument(
-        "--bge_model", 
+        "--embedding_model", 
         type=str,
         default="BAAI/bge-large-en-v1.5",
-        help="HuggingFace model for BGE embeddings"
+        help="HuggingFace model for embeddings"
     )
     
     parser.add_argument(
@@ -265,6 +291,19 @@ if __name__ == "__main__":
         type=str,
         default="evaluation_results.json",
         help="Path to save evaluation results"
+    )
+    
+    parser.add_argument(
+        "--num_samples",
+        type=int,
+        default=None,
+        help="Number of samples to use for evaluation"
+    )
+
+    parser.add_argument(
+        "--detailed_output",
+        action="store_true",
+        help="Whether to include detailed output"
     )
     
     args = parser.parse_args()

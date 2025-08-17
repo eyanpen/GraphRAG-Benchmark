@@ -1,8 +1,9 @@
-from typing import List, Callable, Awaitable
+from typing import List, Callable, Awaitable, Optional, Union
 import numpy as np
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.callbacks import Callbacks
 import re
+from Evaluation.metrics.utils import JSONHandler
 
 CONTEXT_RELEVANCE_PROMPT = """
 ### Instructions
@@ -10,59 +11,34 @@ You are a world class expert designed to evaluate the relevance score of a Conte
 Your task is to determine if the Context contains proper information to answer the Question.
 Do not rely on your previous knowledge about the Question.
 Use only what is written in the Context and in the Question.
-Follow the instructions below:
-0. If the context does not contains any relevant information to answer the question, say 0.
-1. If the context partially contains relevant information to answer the question, say 1.
-2. If the context contains any relevant information to answer the question, say 2.
-You must provide the relevance score of 0, 1, or 2, nothing else.
-Do not explain.
-Question: {query}
-Context: {context}
-Do not try to explain.
-Analyzing Context and Question, the Relevance score is
-"""
 
-CONTEXT_RELEVANCE_JUDGE_BY_EVIDENCE_PROMPT = """
-### Task
-You are given a Context, a Question, and a list of Evidence. Your task is to evaluate how relevant the Context is to the Question and Evidence.
+Scoring rules:
+0. If the context does not contain any relevant information to answer the question, score 0.
+1. If the context partially contains relevant information to answer the question, score 1.
+2. If the context fully contains relevant information to answer the question, score 2.
 
-Score based on the following criteria:
-- **2 (Highly Relevant)**: The Context directly answers the Question or is essential for understanding the Evidence.
-- **1 (Partially Relevant)**: The Context provides related background information but does not directly answer the Question, or is only tangentially related.
-- **0 (Not Relevant)**: The Context is about a completely different topic.
+Output format:
+You must output strictly in JSON format with a single key "score".
+No explanation, no additional text.
 
-Respond ONLY with a JSON object containing:
-- "reason": A brief explanation (1 sentence) for your score.
-- "relevance_score": Your relevance score (0, 1, or 2).
-
-### Example
-Input:
-Context: "The capital of Australia is Canberra, a planned city located between Sydney and Melbourne."
-Evidence: ["Canberra is the capital of Australia"]
-Question: "What is the capital of Australia?"
-
+Example:
+Question: What is the capital of France?
+Context: Paris is the capital of France.
 Output:
-{{
-  "reason": "The context directly confirms that Canberra is the capital of Australia, which is the core of the question and evidence.",
-  "score": 2
-}}
+{{ "score": 2 }}
 
-### Actual Input
-Context: "{context}"
-
-Evidence: {evidence}
-
-Question: "{question}"
-
-### Your Response:
+Now evaluate the following:
+Question: {question}
+Context: {context}
 """
+
  
 async def compute_context_relevance(
     question: str,
     contexts: List[str],
     llm: BaseLanguageModel,
     callbacks: Callbacks = None,
-    max_retries: int = 3
+    max_retries: int = 2
 ) -> float:
     """
     Evaluate the relevance of retrieved contexts for answering a question.
@@ -90,29 +66,88 @@ async def compute_context_relevance(
         return np.nan
     return sum(scores) / len(scores)  # Average of valid scores
 
+
 async def _get_llm_rating(
     question: str,
     context: str,
     llm: BaseLanguageModel,
     callbacks: Callbacks,
-    max_retries: int
-) -> float:
-    """Get a single relevance rating from LLM with retries"""
-    prompt = CONTEXT_RELEVANCE_PROMPT.format(query=question, context=context)
-    
+    max_retries: int,
+    self_healing: bool = False
+) -> Optional[float]:
+    """
+    Get a single relevance rating from LLM with retries.
+    """
+    parser = JSONHandler(max_retries=max_retries, self_healing=self_healing)
+
+    prompt = CONTEXT_RELEVANCE_PROMPT.format(question=question, context=context)
+
     for _ in range(max_retries):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            content = re.sub(r"```json|```", "", response.content).strip()
-            return _parse_rating(content)
+            parsed = await parser.parse_with_fallbacks(
+                response.content,
+                llm=llm if self_healing else None,
+                callbacks=callbacks
+            )
+            return _normalize_rating(parsed)
         except Exception:
             continue
-    return None  # Return None after max retries
 
-def _parse_rating(text: str) -> float:
-    """Extract rating from LLM response"""
-    # Look for first number 0-2 in the response
-    for token in text.split()[:8]:  # Check first 8 tokens
-        if token.isdigit() and 0 <= int(token) <= 2:
-            return float(token)
-    return None  # No valid rating found
+    return None
+
+
+def _normalize_rating(parsed: Union[dict, list, str, None]) -> Optional[float]:
+    """
+    Normalize parsed content to extract a valid rating (0-2).
+    """
+    # Case 1: JSON dict with "rating" or "score"
+    if isinstance(parsed, dict):
+        score = parsed.get("rating", parsed.get("score"))
+        if _is_valid_rating(score):
+            return float(score)
+
+    # Case 2: JSON list with a single number
+    if isinstance(parsed, list) and len(parsed) == 1:
+        if _is_valid_rating(parsed[0]):
+            return float(parsed[0])
+
+    # Case 3: Raw string - try parse as JSON first
+    if isinstance(parsed, str):
+        stripped = parsed.strip()
+        try:
+            import json
+            data = json.loads(stripped)
+            if isinstance(data, dict):
+                score = data.get("rating", data.get("score"))
+                if _is_valid_rating(score):
+                    return float(score)
+        except Exception:
+            pass
+
+        # Case 4: fallback to direct float
+        try:
+            value = float(stripped)
+            if _is_valid_rating(value):
+                return value
+        except ValueError:
+            pass
+
+        # Case 5: fallback token scan
+        for token in stripped.split()[:8]:
+            try:
+                value = float(token)
+                if _is_valid_rating(value):
+                    return value
+            except ValueError:
+                continue
+
+    return None
+
+def _is_valid_rating(value) -> bool:
+    """Check if value is an integer between 0 and 2."""
+    try:
+        ivalue = float(value)
+        return 0 <= ivalue <= 2
+    except (TypeError, ValueError):
+        return False

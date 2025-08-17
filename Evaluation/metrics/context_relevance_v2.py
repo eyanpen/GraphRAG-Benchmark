@@ -6,6 +6,7 @@ from langchain_core.language_models import BaseLanguageModel
 from langchain_core.callbacks import Callbacks
 import json
 import re
+from Evaluation.metrics.utils import JSONHandler
 
 CONTEXT_RELEVANCE_JUDGE_BY_EVIDENCE_PROMPT = """
 ### Task
@@ -116,54 +117,63 @@ async def _evaluate_single_context(
     context: str,
     llm: BaseLanguageModel,
     callbacks: Callbacks,
-    max_retries: int
+    max_retries: int,
+    self_healing: bool = False
 ) -> Dict[str, Union[int, str]]:
-    """Evaluate a single context chunk and return relevance score with reason"""
-    # Format evidence list as JSON string
+    """
+    Evaluate a single context chunk and return relevance score with reason.
+    Uses RobustJSONHandler for resilient JSON parsing.
+    """
+    parser = JSONHandler(max_retries=max_retries, self_healing=self_healing)
+
     evidence_str = json.dumps(evidence)
-    
-    # Prepare prompt with truncated context
     truncated_context = context[:20000]
+
     prompt = CONTEXT_RELEVANCE_JUDGE_BY_EVIDENCE_PROMPT.format(
         context=truncated_context,
         evidence=evidence_str,
         question=question
     )
-    
-    # Retry mechanism for reliability
+
     for _ in range(max_retries):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            return _parse_relevance_response(response.content)
+            parsed = await parser.parse_with_fallbacks(
+                response.content,
+                llm=llm if self_healing else None,
+                callbacks=callbacks
+            )
+
+            return _normalize_relevance_response(parsed)
         except Exception:
             continue
-    
-    # Fallback if all retries fail
+
     return {"reason": "Evaluation failed after retries", "relevance_score": 0}
 
-def _parse_relevance_response(raw_response: str) -> Dict[str, Union[int, str]]:
-    """Parse LLM response to extract relevance score and reason"""
-    # Clean response content
-    cleaned = re.sub(r"```json|```", "", raw_response).strip()
-    
-    try:
-        data = json.loads(cleaned)
-        # Handle different key names
-        score = data.get("relevance_score", data.get("score"))
-        if score is None:
-            raise KeyError("Missing score key")
-        
-        return {
-            "reason": data.get("reason", ""),
-            "relevance_score": int(score)
-        }
-    except (json.JSONDecodeError, KeyError, TypeError, ValueError):
-        # Fallback parsing: search for 0-2 digit
-        match = re.search(r"\b[0-2]\b", cleaned)
+
+def _normalize_relevance_response(parsed: Union[Dict, List, None]) -> Dict[str, Union[int, str]]:
+    """
+    Normalize parsed JSON (or text) to ensure relevance_score and reason are returned.
+    """
+    if isinstance(parsed, dict):
+        score = parsed.get("relevance_score", parsed.get("score"))
+        reason = parsed.get("reason", "")
+        if score is not None:
+            try:
+                return {
+                    "reason": str(reason),
+                    "relevance_score": int(score)
+                }
+            except (TypeError, ValueError):
+                pass
+
+    # Fallback: try to extract a 0-2 score from text
+    if isinstance(parsed, str):
+        match = re.search(r"\b[0-2]\b", parsed)
         if match:
             return {
                 "reason": "Score extracted from text",
                 "relevance_score": int(match.group())
             }
-        # If no score found, return minimum
-        return {"reason": "Failed to parse response", "relevance_score": 0}
+
+    return {"reason": "Failed to parse response", "relevance_score": 0}

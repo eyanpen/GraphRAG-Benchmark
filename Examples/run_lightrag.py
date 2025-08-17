@@ -226,7 +226,7 @@ async def process_corpus(
             "evidence": q["evidence"],
             "question_type": q["question_type"],
             "generated_answer": predicted_answer,
-            "gold_answer": q.get("answer"),
+            "ground_truth": q.get("answer"),
 
         })
     

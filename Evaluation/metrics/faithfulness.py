@@ -1,9 +1,10 @@
 import json
 import numpy as np
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Union
 import re
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.callbacks import Callbacks
+from Evaluation.metrics.utils import JSONHandler
 
 STATEMENT_GENERATOR_PROMPT = """
 Given a question and an answer, analyze the complexity of each sentence in the answer. Break down each sentence into one or more fully understandable statements. Ensure that no pronouns are used in any statement. Format the outputs in JSON.
@@ -105,31 +106,48 @@ async def _generate_statements(
     answer: str,
     llm: BaseLanguageModel,
     callbacks: Callbacks,
-    max_retries: int
+    max_retries: int,
+    self_healing: bool = False
 ) -> List[str]:
-    """Break down answer into atomic statements"""
+    """
+    Break down the answer into atomic statements using LLM.
+    """
+    parser = JSONHandler(max_retries=max_retries, self_healing=self_healing)
+
     prompt = STATEMENT_GENERATOR_PROMPT.format(
-        question=question[:500],  # Truncate long questions
-        answer=answer[:3000]      # Truncate long answers
+        question=question[:500],
+        answer=answer[:3000]
     )
-    
+
     for _ in range(max_retries + 1):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            content = re.sub(r"```json|```", "", response.content).strip()
-            return json.loads(content)
-        except json.JSONDecodeError:
+            parsed = await parser.parse_with_fallbacks(
+                response.content,
+                llm=llm if self_healing else None,
+                callbacks=callbacks
+            )
+            if isinstance(parsed, list):
+                return [str(s).strip() for s in parsed if str(s).strip()]
+            return []
+        except Exception:
             continue
-    return []  # Return empty list after max retries
+
+    return []
+
 
 async def _evaluate_statements(
     statements: List[str],
     context: str,
     llm: BaseLanguageModel,
     callbacks: Callbacks,
-    max_retries: int
+    max_retries: int,
+    self_healing: bool = False
 ) -> List[Dict]:
-    """Evaluate which statements are supported by context"""
+    """
+    Evaluate which statements are supported by the context using LLM.
+    """
+    parser = JSONHandler(max_retries=max_retries, self_healing=self_healing)
 
     # Prepare examples for prompt
     examples = "\n".join(
@@ -139,28 +157,47 @@ async def _evaluate_statements(
 
     prompt = FAITHFULNESS_EVALUATION_PROMPT.format(
         examples=examples,
-        context=context[:10000],  # Truncate long contexts
-        statements=json.dumps(statements)[:5000]  # Truncate statement list
+        context=context[:10000],
+        statements=json.dumps(statements)[:5000]
     )
-    
+
     for _ in range(max_retries + 1):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            content = re.sub(r"```json|```", "", response.content).strip()
-            return _validate_verdicts(json.loads(content))
-        except (json.JSONDecodeError, TypeError):
+            parsed = await parser.parse_with_fallbacks(
+                response.content,
+                llm=llm if self_healing else None,
+                callbacks=callbacks
+            )
+            return _validate_verdicts(
+                parsed if isinstance(parsed, list) else [parsed]
+            )        
+        except Exception:
             continue
-    return []  # Return empty list after max retries
 
-def _validate_verdicts(verdicts: List) -> List[Dict]:
-    """Ensure verdicts have required fields and proper types"""
+    return []
+
+
+def _validate_verdicts(verdicts: Union[List, Dict]) -> List[Dict]:
+    """
+    Ensure verdicts have required fields and correct types.
+    Accepts either a list of dicts or a single dict.
+    """
+    if isinstance(verdicts, dict):
+        verdicts = [verdicts]
+    elif not isinstance(verdicts, list):
+        return []
+
     valid = []
     for item in verdicts:
+        if not isinstance(item, dict):
+            continue
         try:
-            # Validate required fields and types
-            if ("statement" in item and 
-                "verdict" in item and item["verdict"] in {0, 1} and
-                "reason" in item):
+            if (
+                "statement" in item
+                and "verdict" in item and item["verdict"] in {0, 1}
+                and "reason" in item
+            ):
                 valid.append({
                     "statement": str(item["statement"]),
                     "verdict": int(item["verdict"]),

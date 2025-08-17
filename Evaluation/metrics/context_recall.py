@@ -4,6 +4,7 @@ from typing import List, Dict, Optional
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.callbacks import Callbacks
 import re
+from Evaluation.metrics.utils import JSONHandler
 
 CONTEXT_RECALL_PROMPT = """
 ### Task
@@ -85,27 +86,43 @@ async def _get_classifications(
     prompt: str,
     llm: BaseLanguageModel,
     callbacks: Callbacks,
-    max_retries: int
+    max_retries: int,
+    self_healing: bool = False
 ) -> List[Dict]:
-    """Get valid classifications from LLM with retries"""
+    """
+    Get valid classifications from LLM with retries using RobustJSONHandler.
+    """
+    parser = JSONHandler(max_retries=max_retries, self_healing=self_healing)
+
     for _ in range(max_retries + 1):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            content = re.sub(r"```json|```", "", response.content).strip()
-            data = json.loads(content)
-            return _validate_classifications(data.get("classifications", []))
-        except (json.JSONDecodeError, KeyError, TypeError):
+
+            classifications = await parser.parse_with_fallbacks(
+                response.content,
+                key="classifications",
+                llm=llm if self_healing else None,
+                callbacks=callbacks
+            )
+            return _validate_classifications(classifications)
+        except Exception:
             continue
-    return []  # Return empty list after max retries
+    return []
 
 def _validate_classifications(classifications: List) -> List[Dict]:
-    """Ensure classifications have required fields and proper types"""
+    """
+    Ensure classifications have required fields and proper types.
+    """
     valid = []
     for item in classifications:
         try:
-            # Validate required fields and types
-            if ("statement" in item and "reason" in item and 
-                "attributed" in item and item["attributed"] in {0, 1}):
+            if (
+                isinstance(item, dict)
+                and "statement" in item
+                and "reason" in item
+                and "attributed" in item
+                and item["attributed"] in {0, 1}
+            ):
                 valid.append({
                     "statement": str(item["statement"]),
                     "reason": str(item["reason"]),

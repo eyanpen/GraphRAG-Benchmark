@@ -4,6 +4,7 @@ import numpy as np
 from typing import List, Dict, Optional
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.callbacks import Callbacks
+from Evaluation.metrics.utils import JSONHandler
 
 FACT_EXTRACTION_PROMPT = """
 You are given a question and a reference answer. Break down the reference answer into a list of distinct factual statements (facts) that could be independently verified. 
@@ -99,61 +100,90 @@ async def _extract_facts(
     reference: str,
     llm: BaseLanguageModel,
     callbacks: Callbacks,
-    max_retries: int
+    max_retries: int,
+    self_healing: bool = False
 ) -> List[str]:
-    """Extract factual statements from reference answer"""
+    """
+    Extract factual statements from the reference answer using an LLM.
+    """
+    parser = JSONHandler(max_retries=max_retries, self_healing=self_healing)
+
     prompt = FACT_EXTRACTION_PROMPT.format(
         question=question,
-        reference=reference[:3000]  # Truncate long references
+        reference=reference[:3000]  # Avoid overly long prompts
     )
-    
+
     for _ in range(max_retries + 1):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            content = re.sub(r"```json|```", "", response.content).strip()
-            data = json.loads(content)
-            return _validate_facts(data.get("facts", []))
-        except (json.JSONDecodeError, KeyError, TypeError):
+            parsed = await parser.parse_with_fallbacks(
+                response.content,
+                llm=llm if self_healing else None,
+                callbacks=callbacks
+            )
+            return _validate_facts(
+                parsed.get("facts", []) if isinstance(parsed, dict) else parsed
+            )
+        except Exception:
             continue
-    return []  # Return empty list after max retries
+
+    return []
+
 
 def _validate_facts(facts: List) -> List[str]:
-    """Ensure facts are valid strings"""
-    return [str(f) for f in facts if f and str(f).strip()]
+    """Ensure extracted facts are valid non-empty strings."""
+    if not isinstance(facts, list):
+        return []
+    return [str(f).strip() for f in facts if isinstance(f, (str, int, float)) and str(f).strip()]
+
 
 async def _check_fact_coverage(
     question: str,
     facts: List[str],
-    response: str,
+    response_text: str,
     llm: BaseLanguageModel,
     callbacks: Callbacks,
-    max_retries: int
+    max_retries: int,
+    self_healing: bool = False
 ) -> List[Dict]:
-    """Check which facts are covered in the response"""
+    """
+    Check which facts are covered in the given response using an LLM.
+    """
+    parser = JSONHandler(max_retries=max_retries, self_healing=self_healing)
+
     prompt = FACT_COVERAGE_PROMPT.format(
         question=question,
-        response=response[:3000],  # Truncate long responses
+        response=response_text[:3000],
         facts=json.dumps(facts)
     )
-    
+
     for _ in range(max_retries + 1):
         try:
             response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-            content = re.sub(r"```json|```", "", response.content).strip()
-            data = json.loads(content)
-            return _validate_classifications(data.get("classifications", []))
-        except (json.JSONDecodeError, KeyError, TypeError):
+            parsed = await parser.parse_with_fallbacks(
+                response.content,
+                llm=llm if self_healing else None,
+                callbacks=callbacks
+            )
+            return _validate_classifications(
+                parsed.get("classifications", []) if isinstance(parsed, dict) else parsed
+            )
+        except Exception:
             continue
-    return []  # Return empty list after max retries
+
+    return []
+
 
 def _validate_classifications(classifications: List) -> List[Dict]:
-    """Ensure classifications have required fields and proper types"""
+    """Ensure each classification entry contains required fields with proper types."""
+    if not isinstance(classifications, list):
+        return []
     valid = []
     for item in classifications:
+        if not isinstance(item, dict):
+            continue
         try:
-            # Validate required fields and types
-            if ("statement" in item and 
-                "attributed" in item and item["attributed"] in {0, 1}):
+            if "statement" in item and "attributed" in item and item["attributed"] in {0, 1}:
                 valid.append({
                     "statement": str(item["statement"]),
                     "attributed": int(item["attributed"])

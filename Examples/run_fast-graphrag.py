@@ -118,7 +118,7 @@ def process_corpus(
                 "evidence": q.get("evidence", ""),
                 "question_type": q.get("question_type", ""),
                 "generated_answer": predicted_answer,
-                "gold_answer": q.get("answer", "")
+                "ground_truth": q.get("answer", "")
             })
         except Exception as e:
             logging.error(f"❌ Error processing question {q.get('id')}: {e}")

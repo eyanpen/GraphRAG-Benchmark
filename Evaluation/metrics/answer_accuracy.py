@@ -7,6 +7,7 @@ from langchain_core.language_models import BaseLanguageModel
 import re
 from langchain_core.embeddings import Embeddings
 from langchain_core.callbacks import Callbacks
+from Evaluation.metrics.utils import JSONHandler
 
 # Define necessary Pydantic models
 class StatementsWithReason(BaseModel):
@@ -174,13 +175,10 @@ async def generate_statements(
     llm: BaseLanguageModel, question: str, answer:str, callbacks: Callbacks
 ) -> List[str]:
     """Generate concise factual statements from text"""
+    handler = JSONHandler()
     prompt = STATEMENT_GENERATOR_PROMPT.format(question=question, answer=answer)
     response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-    content = re.sub(r"```json|```", "", response.content).strip()
-    try:
-        return json.loads(content)
-    except json.JSONDecodeError:
-        return []
+    return await handler.parse_with_fallbacks(response.content)
 
 async def calculate_factuality(
     llm: BaseLanguageModel,

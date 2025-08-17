@@ -158,7 +158,7 @@ def process_corpus(
                 "evidence": question.get("evidence", ""),
                 "question_type": question.get("question_type", ""),
                 "generated_answer": solution.get("answer", ""),
-                "gold_answer": question.get("answer", "")
+                "ground_truth": question.get("answer", "")
             })
     
     # Save results
