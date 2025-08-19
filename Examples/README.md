@@ -210,7 +210,6 @@ We will continue updating other GraphRAG frameworks as much as possible. If you 
 ### 2. Evaluation
 #### a. Generation
 ```shell
-cd Evaluation
 export OPENAI_API_KEY=your_actual_api_key_here
 
 python -m Evaluation.generation_eval \

@@ -162,7 +162,7 @@ python run_lightrag.py \
 
 #### b. fast-graphrag
 
-Since the original fast-LightRAG does not support HuggingFace Embedding, we need to adapt the library accordingly. The detailed adaptation process is as follows:
+Since the original fast-graphrag does not support HuggingFace Embedding, we need to adapt the library accordingly. The detailed adaptation process is as follows:
 
 1. Go to the `fast_graphrag/_llm` directory and create a new file named _hf.py.
    The content of this file is as follows. This code mainly adds support for HuggingFace Embedding:
@@ -301,6 +301,20 @@ python run_hipporag2.py \
   --llm_base_url https://api.openai.com/v1
 ```
 
+#### d. DIGIMON
+DIGIMON is a unified framework that integrates multiple GraphRAG frameworks: [DIGIMON: Deep Analysis of Graph-Based Retrieval-Augmented Generation (RAG) Systems](https://github.com/JayLZhou/GraphRAG)
+1. Move `run_digimon.py` into the corresponding DIGIMON project.  
+2. Modify the related config files according to the DIGIMON instructions.  
+3. Run the following command:
+
+```bash
+python run_digimon.py 
+--subset novel 
+--option ./Option/Method/HippoRAG.yaml 
+--output_dir ./results/test 
+# --sample 100
+```
+
 We will continue updating other GraphRAG frameworks as much as possible. If you wish to integrate a different framework, you can refer to the structure of our result format. As long as your returned output matches the following fields, the evaluation code will run successfully:
 
 ```json
@@ -316,6 +330,8 @@ We will continue updating other GraphRAG frameworks as much as possible. If you 
 }
 
 ```
+
+
 
 ### 2. Evaluation
 
