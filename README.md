@@ -24,7 +24,7 @@ This repository is for the GraphRAG-Bench project, a comprehensive benchmark for
 
 <h2 id="news">🎉 News</h2>
 
-- **[2025-08-24]** We add support for [DIGIMON](https://github.com/JayLZhou/GraphRAG) to adapt our benchmark across different GraphRAG models.
+- **[2025-08-24]** We support [DIGIMON](https://github.com/JayLZhou/GraphRAG) for flexible benchmarking across RAG models.
 - **[2025-05-25]** We release [GraphRAG-Bench](https://graphrag-bench.github.io), the benchmark for evaluating GraphRAG models.
 - **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://huggingface.co/datasets/GraphRAG-Bench/GraphRAG-Bench).
 - **[2025-01-21]** We release the [GraphRAG survey](https://github.com/DEEP-PolyU/Awesome-GraphRAG).
