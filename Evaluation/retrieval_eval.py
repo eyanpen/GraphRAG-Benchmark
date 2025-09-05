@@ -14,10 +14,13 @@ from Evaluation.metrics import compute_context_relevance, compute_context_recall
 from langchain_ollama import OllamaEmbeddings
 from Evaluation.llm import OllamaClient,OllamaWrapper
 
+# 预定义随机种子以确保结果可复现
+SEED = 42
+
     
 async def evaluate_dataset(
     dataset: Dataset,
-    llm: BaseLanguageModel,
+    llm: Any,
     embeddings: Embeddings,
     max_concurrent: int = 1,
     detailed_output: bool = False
@@ -65,17 +68,21 @@ async def evaluate_dataset(
     for future in asyncio.as_completed(tasks):
         try:
             result = await future
-            if detailed_output:
+            if detailed_output and detailed_results is not None:
                 detailed_results.append(result)
-                # metrics aggregation
-                for metric, score in result["metrics"].items():
-                    if isinstance(score, (int, float)) and not np.isnan(score):
-                        results[metric].append(score)
+                # metrics aggregation (guard types for linters)
+                if isinstance(result, dict):
+                    metrics_dict = result.get("metrics")
+                    if isinstance(metrics_dict, dict):
+                        for metric, score in metrics_dict.items():
+                            if isinstance(score, (int, float)) and not np.isnan(score):
+                                results[metric].append(score)
             else:
                 sample_results.append(result)
-                for metric, score in result.items():
-                    if isinstance(score, (int, float)) and not np.isnan(score):
-                        results[metric].append(score)
+                if isinstance(result, dict):
+                    for metric, score in result.items():
+                        if isinstance(score, (int, float)) and not np.isnan(score):
+                            results[metric].append(score)
             completed += 1
             print(f"✅ Completed sample {completed}/{total_samples} - {(completed/total_samples)*100:.1f}%")
         except Exception as e:
@@ -99,8 +106,8 @@ async def evaluate_dataset(
 async def evaluate_sample(
     question: str,
     contexts: List[str],
-    evidences: str,
-    llm: BaseLanguageModel,
+    evidences: List[str],
+    llm: Any,
     embeddings: Embeddings
 ) -> Dict[str, float]:
     """Evaluate retrieval metrics for a single sample"""
@@ -126,13 +133,24 @@ async def main(args: argparse.Namespace):
             raise ValueError("LLM_API_KEY environment variable is not set")
         
         # Initialize models
+        # Wrap API key in SecretStr to satisfy type hints
+        from pydantic import SecretStr
+        api_key = os.getenv("LLM_API_KEY")
+        if not api_key:
+            raise ValueError("LLM_API_KEY environment variable is not set")
         llm = ChatOpenAI(
             model=args.model,
             base_url=args.base_url,
-            api_key=os.getenv("LLM_API_KEY"),
+            api_key=SecretStr(api_key),
             temperature=0.0,
             max_retries=3,
-            timeout=30
+            timeout=30,
+            model_kwargs={
+                "top_p": 1,
+                "seed": SEED,
+                "presence_penalty": 0,
+                "frequency_penalty": 0
+            }
         )
         
         # Initialize the embedding model
@@ -140,12 +158,24 @@ async def main(args: argparse.Namespace):
 
     elif args.mode == "ollama":
         ollama_client = OllamaClient(base_url=args.base_url)
-        llm = OllamaWrapper(ollama_client, args.model)
+        llm = OllamaWrapper(
+            ollama_client,
+            args.model,
+            default_options={
+                "temperature": 0.0,
+                "top_p": 1,
+                "num_ctx": 32768,
+                "seed": SEED
+            }
+        )
         ollama_embeddings = OllamaEmbeddings(
             model=args.embedding_model,
             base_url=args.base_url
         )
         embedding = LangchainEmbeddingsWrapper(embeddings=ollama_embeddings)
+        
+    else:
+        raise ValueError(f"Invalid mode: {args.mode}")
 
     # Load evaluation data
     print(f"Loading evaluation data from {args.data_file}...")

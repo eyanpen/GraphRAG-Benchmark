@@ -13,10 +13,13 @@ from Evaluation.metrics import compute_answer_correctness, compute_coverage_scor
 from langchain_ollama import OllamaEmbeddings
 from Evaluation.llm import OllamaClient, OllamaWrapper
 
+# 预定义随机种子以确保结果可复现
+SEED = 42
+
 async def evaluate_dataset(
     dataset: Dataset,
     metrics: List[str],
-    llm: BaseLanguageModel,
+    llm: Any,
     embeddings: Embeddings,
     max_concurrent: int = 3,  # Limit concurrent evaluations
     detailed_output: bool = False
@@ -66,17 +69,21 @@ async def evaluate_dataset(
     for future in asyncio.as_completed(tasks):
         try:
             result = await future
-            if detailed_output:
+            if detailed_output and detailed_results is not None:
                 detailed_results.append(result)
-                # metrics aggregation
-                for metric, score in result["metrics"].items():
-                    if isinstance(score, (int, float)) and not np.isnan(score):
-                        results[metric].append(score)
+                # metrics aggregation (guard types for linters)
+                if isinstance(result, dict):
+                    metrics_dict = result.get("metrics")
+                    if isinstance(metrics_dict, dict):
+                        for metric, score in metrics_dict.items():
+                            if isinstance(score, (int, float)) and not np.isnan(score):
+                                results[metric].append(score)
             else:
                 sample_results.append(result)
-                for metric, score in result.items():
-                    if isinstance(score, (int, float)) and not np.isnan(score):
-                        results[metric].append(score)
+                if isinstance(result, dict):
+                    for metric, score in result.items():
+                        if isinstance(score, (int, float)) and not np.isnan(score):
+                            results[metric].append(score)
             completed += 1
             print(f"✅ Completed sample {completed}/{total_samples} - {(completed/total_samples)*100:.1f}%")
         except Exception as e:
@@ -99,7 +106,7 @@ async def evaluate_sample(
     contexts: List[str],
     ground_truth: str,
     metrics: List[str],
-    llm: BaseLanguageModel,
+    llm: Any,
     embeddings: Embeddings
 ) -> Dict[str, float]:
     """Evaluate the metric scores for a single sample."""
@@ -140,13 +147,24 @@ async def main(args: argparse.Namespace):
             raise ValueError("LLM_API_KEY environment variable is not set")
     
         # Initialize the model
+        # Wrap API key in SecretStr to satisfy type hints
+        from pydantic import SecretStr
+        api_key = os.getenv("LLM_API_KEY")
+        if not api_key:
+            raise ValueError("LLM_API_KEY environment variable is not set")
         llm = ChatOpenAI(
             model=args.model,
             base_url=args.base_url,
-            api_key=os.getenv("LLM_API_KEY"),
+            api_key=SecretStr(api_key),
             temperature=0.0,
             max_retries=3,
-            timeout=30
+            timeout=30,
+            model_kwargs={
+                "top_p": 1,
+                "seed": SEED,
+                "presence_penalty": 0,
+                "frequency_penalty": 0
+            }
         )
         
         # Initialize the embedding model
@@ -154,11 +172,23 @@ async def main(args: argparse.Namespace):
     
     elif args.mode == "ollama":
         ollama_client = OllamaClient(base_url=args.base_url)
-        llm = OllamaWrapper(ollama_client, args.model)
+        llm = OllamaWrapper(
+            ollama_client,
+            args.model,
+            default_options={
+                "temperature": 0.0,
+                "top_p": 1,
+                "num_ctx": 32768,
+                "seed": SEED
+            }
+        )
         embedding = OllamaEmbeddings(
             model=args.embedding_model,
             base_url=args.base_url
         )
+    
+    else:
+        raise ValueError(f"Invalid mode: {args.mode}")
 
     # Load evaluation data
     print(f"Loading evaluation data from {args.data_file}...")

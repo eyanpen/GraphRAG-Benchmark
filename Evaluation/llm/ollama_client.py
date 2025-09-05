@@ -33,14 +33,21 @@ class OllamaClient:
         """Asynchronously invoke Ollama API with improved retry and backoff mechanism"""
         url = f"{self.base_url}/api/chat"
         
+        # Merge generation options (allow seed/top_p/etc.)
+        options = {
+            "temperature": kwargs.get("temperature", 0.0),
+            "num_ctx": kwargs.get("num_ctx", 32768),
+            "top_p": kwargs.get("top_p", 1),
+            "seed": kwargs.get("seed", None)
+        }
+        # Remove None to avoid sending unsupported fields when not set
+        options = {k: v for k, v in options.items() if v is not None}
+
         payload = {
             "model": model,
             "messages": [{"role": "user", "content": prompt}],
             "stream": False,
-            "options": {
-                "temperature": kwargs.get("temperature", 0.0),
-                "num_ctx": kwargs.get("num_ctx", 32768)
-            }
+            "options": options
         }
         
         # Improved retry logic
@@ -90,9 +97,10 @@ class OllamaResponse:
         self.content = content
 
 class OllamaWrapper:
-    def __init__(self, client, model_name):
+    def __init__(self, client, model_name, default_options: dict | None = None):
         self.client = client
         self.model_name = model_name
+        self.default_options = default_options or {}
         
     async def ainvoke(self, prompt, config=None):
         return await self.client.ainvoke(prompt, model=self.model_name)

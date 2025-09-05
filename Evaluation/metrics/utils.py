@@ -58,7 +58,7 @@ class JSONHandler:
         for i in items:
             if isinstance(i, str) and i.strip():
                 cleaned.append(i.strip())
-            elif isinstance(i, dict):  # 保留 dict，不要丢掉
+            elif isinstance(i, dict):  
                 cleaned.append(i)
         return cleaned
 

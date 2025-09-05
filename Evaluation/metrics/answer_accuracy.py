@@ -178,7 +178,20 @@ async def generate_statements(
     handler = JSONHandler()
     prompt = STATEMENT_GENERATOR_PROMPT.format(question=question, answer=answer)
     response = await llm.ainvoke(prompt, config={"callbacks": callbacks})
-    return await handler.parse_with_fallbacks(response.content)
+    parsed = await handler.parse_with_fallbacks(response.content)
+    # Ensure we always return List[str]
+    if isinstance(parsed, list):
+        return [str(x) for x in parsed]
+    if isinstance(parsed, dict):
+        # Prefer common keys if present
+        for key in ["statements", "answers", "items", "list", "output", "result"]:
+            value = parsed.get(key)
+            if isinstance(value, list):
+                return [str(x) for x in value]
+        # Fallback: flatten dict values
+        return [str(v) for v in parsed.values()]
+    # Fallback to single string wrapped in list
+    return [str(parsed)]
 
 async def calculate_factuality(
     llm: BaseLanguageModel,
