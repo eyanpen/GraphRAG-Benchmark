@@ -19,6 +19,17 @@
   </p>
 </div>
 
+If you find this benchmark helpful, please cite our paper:
+
+```
+@article{xiang2025use,
+  title={When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation},
+  author={Xiang, Zhishang and Wu, Chuanjie and Zhang, Qinggang and Chen, Shengyuan and Hong, Zijin and Huang, Xiao and Su, Jinsong},
+  journal={arXiv preprint arXiv:2506.05690},
+  year={2025}
+}
+```
+
 This repository is for the GraphRAG-Bench project, a comprehensive benchmark for evaluating Graph Retrieval-Augmented Generation models.
 ![pipeline](./pipeline.jpg)
 
