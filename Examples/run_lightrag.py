@@ -276,7 +276,7 @@ def main():
         logging.error(f"Invalid subset: {args.subset}. Valid options: {list(SUBSET_PATHS.keys())}")
         return
     if args.mode not in ["API", "ollama"]:
-        logging.error(f"Invalid mode: {args.subset}. Valid options: {["API", "ollama"]}")
+        logging.error(f'Invalid mode: {args.subset}. Valid options: {["API", "ollama"]}')
         return
     
     # Get file paths for this subset
