@@ -96,3 +96,6 @@ class OllamaWrapper:
         
     async def ainvoke(self, prompt, config=None):
         return await self.client.ainvoke(prompt, model=self.model_name)
+
+    async def close(self):
+        await self.client.close()
