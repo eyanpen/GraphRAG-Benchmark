@@ -8,7 +8,7 @@ from langchain_core.language_models import BaseLanguageModel
 from langchain_core.embeddings import Embeddings
 from datasets import Dataset
 from langchain_openai import ChatOpenAI
-from langchain.embeddings import HuggingFaceBgeEmbeddings
+from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from Evaluation.metrics import compute_answer_correctness, compute_coverage_score, compute_faithfulness_score, compute_rouge_score
 from langchain_community.embeddings import OllamaEmbeddings
 from Evaluation.llm import OllamaClient,OllamaWrapper
@@ -156,7 +156,7 @@ async def main(args: argparse.Namespace):
         ollama_client = OllamaClient(base_url=args.base_url)
         llm = OllamaWrapper(ollama_client, args.model)
         embedding = OllamaEmbeddings(
-            model=args.bge_model,
+            model=args.embedding_model,
             base_url=args.base_url
         )
 
