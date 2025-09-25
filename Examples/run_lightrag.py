@@ -118,7 +118,7 @@ async def initialize_rag(
         )
 
         llm_kwargs = {
-            "host": "http://localhost:11434",
+            "host": llm_base_url,
             "options": {"num_ctx": 32768},
         }
 
