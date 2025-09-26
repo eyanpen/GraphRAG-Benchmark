@@ -8,10 +8,10 @@ from langchain_core.language_models import BaseLanguageModel
 from langchain_core.embeddings import Embeddings
 from datasets import Dataset
 from langchain_openai import ChatOpenAI
-from langchain.embeddings import HuggingFaceBgeEmbeddings
+from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from ragas.embeddings import LangchainEmbeddingsWrapper
 from Evaluation.metrics import compute_context_relevance, compute_context_recall
-from langchain_community.embeddings import OllamaEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from Evaluation.llm import OllamaClient,OllamaWrapper
 
     
@@ -142,7 +142,7 @@ async def main(args: argparse.Namespace):
         ollama_client = OllamaClient(base_url=args.base_url)
         llm = OllamaWrapper(ollama_client, args.model)
         ollama_embeddings = OllamaEmbeddings(
-            model=args.bge_model,
+            model=args.embedding_model,
             base_url=args.base_url
         )
         embedding = LangchainEmbeddingsWrapper(embeddings=ollama_embeddings)
@@ -212,7 +212,8 @@ async def main(args: argparse.Namespace):
         os.makedirs(os.path.dirname(args.output_file), exist_ok=True)
         with open(args.output_file, 'w') as f:
             json.dump(all_results, f, indent=2)
-    
+
+    await llm.close() if args.mode == "ollama" else None
     print('\nEvaluation complete.')
 
 if __name__ == "__main__":
