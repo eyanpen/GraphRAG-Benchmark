@@ -10,14 +10,12 @@ from datasets import Dataset
 from langchain_openai import ChatOpenAI
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from ragas.embeddings import LangchainEmbeddingsWrapper
-from Evaluation.metrics import compute_context_relevance, compute_context_recall
+from Evaluation.metrics import compute_context_relevance, compute_evidence_recall
 from langchain_ollama import OllamaEmbeddings
 from Evaluation.llm import OllamaClient,OllamaWrapper
 
-# 预定义随机种子以确保结果可复现
 SEED = 42
 
-    
 async def evaluate_dataset(
     dataset: Dataset,
     llm: Any,
@@ -28,7 +26,7 @@ async def evaluate_dataset(
     """Evaluate context relevance and recall for a dataset"""
     results = {
         "context_relevancy": [],
-        "context_recall": []
+        "evidence_recall": []
     }
     detailed_results = [] if detailed_output else None
     
@@ -91,7 +89,7 @@ async def evaluate_dataset(
     
     avg_results = {
         "context_relevancy": np.nanmean(results["context_relevancy"]),
-        "context_recall": np.nanmean(results["context_recall"])
+        "evidence_recall": np.nanmean(results["evidence_recall"])
     }
     
     if detailed_output:
@@ -113,7 +111,7 @@ async def evaluate_sample(
     """Evaluate retrieval metrics for a single sample"""
     # Evaluate both metrics in parallel
     relevance_task = compute_context_relevance(question, contexts, llm)
-    recall_task = compute_context_recall(question, contexts, evidences, llm)
+    recall_task = compute_evidence_recall(question, contexts, evidences, llm)
     
     # Wait for both tasks to complete
     relevance_score, recall_score = await asyncio.gather(relevance_task, recall_task)
@@ -122,7 +120,7 @@ async def evaluate_sample(
 
     return {
         "context_relevancy": relevance_score,
-        "context_recall": recall_score
+        "evidence_recall": recall_score
     }
 
 async def main(args: argparse.Namespace):

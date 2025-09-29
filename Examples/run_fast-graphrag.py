@@ -9,6 +9,7 @@ from fast_graphrag import GraphRAG
 from fast_graphrag._llm import OpenAILLMService, HuggingFaceEmbeddingService
 from transformers import AutoTokenizer, AutoModel
 from tqdm import tqdm
+from Evaluation.llm.ollama_client import OllamaClient, OllamaWrapper
 
 # Load environment variables
 load_dotenv()
@@ -38,11 +39,12 @@ def process_corpus(
     corpus_name: str,
     context: str,
     base_dir: str,
+    mode: str,
     model_name: str,
     embed_model_path: str,
     llm_base_url: str,
     llm_api_key: str,
-    questions: List[dict],
+    questions: Dict[str, List[dict]],
     sample: int
 ):
     """Process a single corpus: index it and answer its questions"""
@@ -62,6 +64,21 @@ def process_corpus(
         logging.error(f"❌ Failed to load embedding model: {e}")
         return
     
+    # Initialize LLM service based on mode
+    if mode == "ollama":
+        # Create Ollama client
+        ollama_client = OllamaClient(base_url=llm_base_url)
+        llm_service = OllamaWrapper(ollama_client, model_name)
+        logging.info(f"✅ Using Ollama LLM service: {model_name} at {llm_base_url}")
+    else:
+        # Use OpenAI-compatible service
+        llm_service = OpenAILLMService(
+            model=model_name,
+            base_url=llm_base_url,
+            api_key=llm_api_key,
+        )
+        logging.info(f"✅ Using OpenAI-compatible LLM service: {model_name} at {llm_base_url}")
+
     # Initialize GraphRAG
     grag = GraphRAG(
         working_dir=os.path.join(base_dir, corpus_name),
@@ -69,11 +86,7 @@ def process_corpus(
         example_queries="\n".join(EXAMPLE_QUERIES),
         entity_types=ENTITY_TYPES,
         config=GraphRAG.Config(
-            llm_service=OpenAILLMService(
-                model=model_name,
-                base_url=llm_base_url,
-                api_key=llm_api_key,
-            ),
+            llm_service=llm_service,
             embedding_service=HuggingFaceEmbeddingService(
                 model=embedding_model,
                 tokenizer=embedding_tokenizer,
@@ -155,6 +168,8 @@ def main():
                         help="Base working directory for GraphRAG")
     
     # Model configuration
+    parser.add_argument("--mode", choices=["API", "ollama"], default="API",
+                        help="Use API or ollama for LLM")
     parser.add_argument("--model_name", default="qwen2.5-14b-instruct", 
                         help="LLM model identifier")
     parser.add_argument("--embed_model_path", default="/home/xzs/data/model/bge-large-en-v1.5", 
@@ -230,6 +245,7 @@ def main():
             corpus_name=corpus_name,
             context=context,
             base_dir=args.base_dir,
+            mode=args.mode,
             model_name=args.model_name,
             embed_model_path=args.embed_model_path,
             llm_base_url=args.llm_base_url,

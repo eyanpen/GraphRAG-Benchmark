@@ -155,7 +155,7 @@ async def aquery(...):
 
 Then you can run the following command to indexing and inference
 
-**Note**: Mode can choose:"API" or "ollama". When you choose "ollama" the "llm_base_url" is where your ollama running (default:http://localhost:11434):
+**Note**: Mode can choose:"API" or "ollama". When you choose "ollama" the "llm_base_url" is where your ollama running (default:http://localhost:11434)
 
 ```shell
 export LLM_API_KEY=your_actual_api_key_here
@@ -167,7 +167,7 @@ python run_lightrag.py \
   --model_name bge-large-en-v1.5 \
   --embed_model bge-base-en \
   --retrieve_topk 5 \
-#   --sample 100 \
+  # --sample 100 \
   --llm_base_url https://api.openai.com/v1
 
 ```
@@ -292,7 +292,7 @@ python run_fast-graphrag.py \
   --base_dir ./Examples/fast-graphrag_workspace \
   --model_name gpt-4o-mini \
   --embed_model_path bge-large-en-v1.5 \
-#   --sample 100 \
+  # --sample 100 \
   --llm_base_url https://api.openai.com/v1
 
 ```
@@ -309,7 +309,7 @@ python run_hipporag2.py \
   --base_dir ./Examples/hipporag2_workspace \
   --model_name gpt-4o-mini \
   --embed_model_path contriever \
-#   --sample 100 \
+  # --sample 100 \
   --llm_base_url https://api.openai.com/v1
 ```
 
@@ -320,11 +320,11 @@ DIGIMON is a unified framework that integrates multiple GraphRAG frameworks: [DI
 3. Run the following command:
 
 ```bash
-python run_digimon.py 
---subset novel 
---option ./Option/Method/HippoRAG.yaml 
---output_dir ./results/test 
-# --sample 100
+python run_digimon.py \
+  --subset novel \
+  --option ./Option/Method/HippoRAG.yaml \
+  --output_dir ./results/test \
+  # --sample 100
 ```
 
 We will continue updating other GraphRAG frameworks as much as possible. If you wish to integrate a different framework, you can refer to the structure of our result format. As long as your returned output matches the following fields, the evaluation code will run successfully:
@@ -347,40 +347,70 @@ We will continue updating other GraphRAG frameworks as much as possible. If you 
 
 ### 2. Evaluation
 
-**
-    Note**: Mode can choose:"API" or "ollama". When you choose "ollama" the "llm_base_url" is where your 	ollama running (default:http://localhost:11434):s
+**Note**: Mode can choose:"API" or "ollama". When you choose "ollama" the "llm_base_url" is where your ollama running (default:http://localhost:11434)
 
 #### a. Generation
+
+Evaluate the quality of generated answers from GraphRAG frameworks using multiple metrics tailored for different question types.
+
+**Metrics per Question Type:**
+- **Fact Retrieval**: ROUGE-L score, Answer Correctness
+- **Complex Reasoning**: ROUGE-L score, Answer Correctness  
+- **Contextual Summarize**: Answer Correctness, Coverage Score
+- **Creative Generation**: Answer Correctness, Coverage Score, Faithfulness
 
 ```shell
 export LLM_API_KEY=your_actual_api_key_here
 
 python -m Evaluation.generation_eval \
   --mode API \
-  --model gpt-4-turbo \
+  --model gpt-4o-mini \
   --base_url https://api.openai.com/v1 \
   --embedding_model BAAI/bge-large-en-v1.5 \
   --data_file ./results/lightrag.json \
   --output_file ./results/evaluation_results.json \
-  # if needed
-  --detailed_output
+  # --detailed_output
 ```
 
 #### b. Retrieval
+
+Evaluate the quality of retrieved contexts from GraphRAG frameworks using context relevance and recall metrics.
+
+**Metrics:**
+- **Context Relevancy**: Measures how relevant the retrieved contexts are to the question
+- **Evidence Recall**: Measures how well the retrieved contexts cover the ground truth evidence
 
 ```shell
 export LLM_API_KEY=your_actual_api_key_here
 
 python -m Evaluation.retrieval_eval \
   --mode API \
-  --model gpt-4-turbo \
+  --model gpt-4o-mini \
   --base_url https://api.openai.com/v1 \
-  --bge_model BAAI/bge-large-en-v1.5 \
+  --embedding_model BAAI/bge-large-en-v1.5 \
   --data_file ./results/lightrag.json \
-  --output_file ./results/evaluation_results.json
-    # if needed
-  --detailed_output
+  --output_file ./results/evaluation_results.json \
+  # --detailed_output
 ```
+
+#### c. Indexing
+
+Evaluate the indexing quality of knowledge graphs constructed by different GraphRAG frameworks. This tool analyzes graph structure metrics including density, connectivity, clustering coefficients, and entity/relationship distributions.
+
+```shell
+python -m Evaluation.indexing_eval \
+  --framework lightrag \
+  --base_path ./Examples/lightrag_workspace \
+  --folder_name graph_store \
+  --output ./results/indexing_metrics.txt
+```
+
+**Supported frameworks:**
+- `microsoft_graphrag`: Microsoft GraphRAG (uses entities.parquet and relationships.parquet)
+- `lightrag`: LightRAG (uses graph_chunk_entity_relation.graphml)
+- `fast_graphrag`: Fast-GraphRAG (uses graph_igraph_data.pklz)
+- `hipporag2`: HippoRAG2 (uses graph.pickle)
+- `graphml`: Generic GraphML format graph files
 
 <h2 id="contribution--contact">📬 Contribution & Contact</h2>
 

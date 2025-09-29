@@ -18,6 +18,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 from src.hipporag.HippoRAG import HippoRAG
 from src.hipporag.utils.misc_utils import string_to_bool
 from src.hipporag.utils.config_utils import BaseConfig
+from Evaluation.llm.ollama_client import OllamaClient, OllamaWrapper
 
 # Configure logging
 logging.basicConfig(
@@ -68,11 +69,12 @@ def process_corpus(
     corpus_name: str,
     context: str,
     base_dir: str,
+    mode: str,
     model_name: str,
     embed_model_path: str,
     llm_base_url: str,
     llm_api_key: str,
-    questions: List[dict],
+    questions: Dict[str, List[dict]],
     sample: int
 ):
     """Process a single corpus: index it and answer its questions"""
@@ -134,6 +136,14 @@ def process_corpus(
         openie_mode="online"
     )
     
+    # Override LLM configuration for Ollama mode
+    if mode == "ollama":
+        config.llm_mode = "ollama"
+        logging.info(f"✅ Using Ollama mode: {model_name} at {llm_base_url}")
+    else:
+        config.llm_mode = "openai"
+        logging.info(f"✅ Using OpenAI mode: {model_name} at {llm_base_url}")
+    
     # Initialize HippoRAG
     hipporag = HippoRAG(global_config=config)
     
@@ -189,6 +199,8 @@ def main():
                         help="Base working directory for HippoRAG")
     
     # Model configuration
+    parser.add_argument("--mode", choices=["API", "ollama"], default="API",
+                        help="Use API or ollama for LLM")
     parser.add_argument("--model_name", default="gpt-4o-mini", 
                         help="LLM model identifier")
     parser.add_argument("--embed_model_path", default="/home/xzs/data/model/contriever", 
@@ -254,6 +266,7 @@ def main():
             corpus_name=corpus_name,
             context=context,
             base_dir=args.base_dir,
+            mode=args.mode,
             model_name=args.model_name,
             embed_model_path=args.embed_model_path,
             llm_base_url=args.llm_base_url,

@@ -12,6 +12,7 @@ from Core.GraphRAG import GraphRAG
 from Option.Config2 import Config
 from Data.QueryDataset import RAGQueryDataset
 from Core.Utils.Evaluation import Evaluator
+from Evaluation.llm.ollama_client import OllamaClient, OllamaWrapper
 
 # Configure logging
 logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
@@ -30,13 +31,32 @@ def group_questions_by_source(question_list: List[dict]) -> Dict[str, List[dict]
 async def initialize_rag(
     config_path: Path,
     source: str,
+    mode: str = "config",
+    model_name: str = None,
+    llm_base_url: str = None,
+    llm_api_key: str = None
 ) -> GraphRAG:
     """Initialize GraphRAG instance for a specific source"""
     logger.info(f"🛠️ Initializing GraphRAG for source: {source}")
     
-    # Parse configuration
-    opt = Config.parse(config_path, dataset_name=source)
-    logger.info(f"Configuration parsed: {opt}")
+    # TODO: Add support for ollama
+    if mode == "ollama":
+        # For Ollama mode, we need to create a custom config
+        # This is a simplified approach - you may need to adjust based on your Config class
+        opt = Config.parse(config_path, dataset_name=source)
+        
+        # Override LLM settings for Ollama
+        if hasattr(opt, 'llm_config'):
+            opt.llm_config.model_name = model_name
+            opt.llm_config.base_url = llm_base_url
+            opt.llm_config.api_key = llm_api_key
+            opt.llm_config.mode = "ollama"
+        
+        logger.info(f"Ollama configuration: model={model_name}, base_url={llm_base_url}")
+    else:
+        # Parse configuration normally
+        opt = Config.parse(config_path, dataset_name=source)
+        logger.info(f"Configuration parsed: {opt}")
     
     # Create RAG instance
     rag = GraphRAG(config=opt)
@@ -132,6 +152,16 @@ def main():
     parser.add_argument("--output_dir", default="./results/GraphRAG", 
                         help="Output directory for results")
     
+    # Model configuration
+    parser.add_argument("--mode", choices=["config", "ollama"], default="config",
+                        help="Use config file or ollama for LLM")
+    parser.add_argument("--model_name", default="qwen2.5-14b-instruct", 
+                        help="LLM model identifier (for ollama mode)")
+    parser.add_argument("--llm_base_url", default="http://localhost:11434", 
+                        help="Base URL for LLM API (for ollama mode)")
+    parser.add_argument("--llm_api_key", default="", 
+                        help="API key for LLM service (not needed for ollama)")
+    
     # Sampling and debugging
     parser.add_argument("--sample", type=int, default=None, 
                         help="Number of questions to sample per corpus")
@@ -175,7 +205,11 @@ def main():
     rag = asyncio.run(
         initialize_rag(
             config_path=Path(args.config),
-            source=args.subset
+            source=args.subset,
+            mode=args.mode,
+            model_name=args.model_name,
+            llm_base_url=args.llm_base_url,
+            llm_api_key=args.llm_api_key
         )
     )
     
