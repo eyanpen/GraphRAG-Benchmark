@@ -13,7 +13,6 @@ from Evaluation.metrics import compute_answer_correctness, compute_coverage_scor
 from langchain_ollama import OllamaEmbeddings
 from Evaluation.llm import OllamaClient, OllamaWrapper
 
-# 预定义随机种子以确保结果可复现
 SEED = 42
 
 async def evaluate_dataset(

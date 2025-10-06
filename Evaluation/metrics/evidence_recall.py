@@ -6,7 +6,7 @@ from langchain_core.callbacks import Callbacks
 import re
 from Evaluation.metrics.utils import JSONHandler
 
-CONTEXT_RECALL_PROMPT = """
+EVIDENCE_RECALL_PROMPT = """
 ### Task
 You are given a list of evidences and a Context. For each evidence, determine whether it can be attributed to the Context.
 
@@ -46,7 +46,7 @@ Question: "{question}" (for reference only)
 ### Your Response:
 """
 
-async def compute_context_recall(
+async def compute_evidence_recall(
     question: str,
     contexts: List[str],
     reference_evidence: List[str],
@@ -65,7 +65,7 @@ async def compute_context_recall(
         return 0.0  # No context means no attribution
     
     # Format prompt with actual data
-    prompt = CONTEXT_RECALL_PROMPT.format(
+    prompt = EVIDENCE_RECALL_PROMPT.format(
         question=question,
         context=context_str[:20000],  # Truncate long contexts
         evidence=reference_evidence  # Truncate long answers

@@ -5,6 +5,7 @@ import argparse
 import json
 from typing import Dict, List
 from dotenv import load_dotenv
+from datasets import load_dataset
 from fast_graphrag import GraphRAG
 from fast_graphrag._llm import OpenAILLMService, HuggingFaceEmbeddingService
 from transformers import AutoTokenizer, AutoModel
@@ -216,8 +217,13 @@ def main():
     
     # Load corpus data
     try:
-        with open(corpus_path, "r", encoding="utf-8") as f:
-            corpus_data = json.load(f)
+        corpus_dataset = load_dataset("parquet", data_files=corpus_path, split="train")
+        corpus_data = []
+        for item in corpus_dataset:
+            corpus_data.append({
+                "corpus_name": item["corpus_name"],
+                "context": item["context"]
+            })
         logging.info(f"📖 Loaded corpus with {len(corpus_data)} documents from {corpus_path}")
     except Exception as e:
         logging.error(f"❌ Failed to load corpus: {e}")
@@ -229,8 +235,17 @@ def main():
     
     # Load question data
     try:
-        with open(questions_path, "r", encoding="utf-8") as f:
-            question_data = json.load(f)
+        questions_dataset = load_dataset("parquet", data_files=questions_path, split="train")
+        question_data = []
+        for item in questions_dataset:
+            question_data.append({
+                "id": item["id"],
+                "source": item["source"],
+                "question": item["question"],
+                "answer": item["answer"],
+                "question_type": item["question_type"],
+                "evidence": item["evidence"]
+            })
         grouped_questions = group_questions_by_source(question_data)
         logging.info(f"❓ Loaded questions with {len(question_data)} entries from {questions_path}")
     except Exception as e:

@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from tqdm import tqdm
 from typing import Dict, List
+from datasets import load_dataset
 
 from Core.GraphRAG import GraphRAG
 from Option.Config2 import Config
@@ -133,12 +134,12 @@ def main():
     # Define default paths
     DEFAULT_PATHS = {
         "medical": {
-            "corpus_path": "./Corpus/medical",
-            "questions_path": "./Questions/medical_questions.json"
+            "corpus_path": "./Datasets/Corpus/medical.parquet",
+            "questions_path": "./Datasets/Questions/medical_questions.parquet"
         },
         "novel": {
-            "corpus_path": "./Corpus/novel",
-            "questions_path": "./Questions/novel_questions.json"
+            "corpus_path": "./Datasets/Corpus/novel.parquet",
+            "questions_path": "./Datasets/Questions/novel_questions.parquet"
         }
     }
     
@@ -173,14 +174,16 @@ def main():
         corpus_path = DEFAULT_PATHS[args.subset]["corpus_path"]
         questions_path = DEFAULT_PATHS[args.subset]["questions_path"]
     else:
-        corpus_path = f"./Corpus/{args.subset}.json"
-        questions_path = f"./Questions/{args.subset}_questions.json"
+        corpus_path = f"./Datasets/Corpus/{args.subset}.parquet"
+        questions_path = f"./Datasets/Questions/{args.subset}_questions.parquet"
         logger.warning(f"Using inferred paths for unknown subset: {args.subset}")
     
     # Load corpus data
     try:
-        with open(corpus_path, "r", encoding="utf-8") as f:
-            corpus_data: Dict[str, str] = json.load(f)
+        corpus_dataset = load_dataset("parquet", data_files=corpus_path, split="train")
+        corpus_data = {}
+        for item in corpus_dataset:
+            corpus_data[item["corpus_name"]] = item["context"]
         logger.info(f"📖 Loaded corpus with {len(corpus_data)} documents from {corpus_path}")
     except Exception as e:
         logger.error(f"❌ Failed to load corpus: {e}")
@@ -193,8 +196,17 @@ def main():
     
     # Load question data
     try:
-        with open(questions_path, "r", encoding="utf-8") as f:
-            question_data = json.load(f)
+        questions_dataset = load_dataset("parquet", data_files=questions_path, split="train")
+        question_data = []
+        for item in questions_dataset:
+            question_data.append({
+                "id": item["id"],
+                "source": item["source"],
+                "question": item["question"],
+                "answer": item["answer"],
+                "question_type": item["question_type"],
+                "evidence": item["evidence"]
+            })
         grouped_questions = group_questions_by_source(question_data)
         logger.info(f"❓ Loaded questions with {len(question_data)} entries from {questions_path}")
     except Exception as e:
