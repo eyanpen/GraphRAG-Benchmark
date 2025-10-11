@@ -13,7 +13,7 @@ from tqdm import tqdm
 load_dotenv()
 
 # Set CUDA device
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "5"
 
 # Import HippoRAG components after setting environment
 from hipporag.HippoRAG import HippoRAG
@@ -122,7 +122,7 @@ def process_corpus(
         save_dir=os.path.join(base_dir, corpus_name),
         llm_base_url=llm_base_url,
         llm_name=model_name,
-        embedding_model_name=embed_model_path.split('/')[-1],
+        embedding_model_name=embed_model_path,
         force_index_from_scratch=True,
         force_openie_from_scratch=True,
         rerank_dspy_file_path="hipporag/prompts/dspy_prompts/filter_llama3.3-70B-Instruct.json",
