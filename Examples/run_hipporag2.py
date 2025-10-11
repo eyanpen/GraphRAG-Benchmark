@@ -16,9 +16,9 @@ load_dotenv()
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # Import HippoRAG components after setting environment
-from src.hipporag.HippoRAG import HippoRAG
-from src.hipporag.utils.misc_utils import string_to_bool
-from src.hipporag.utils.config_utils import BaseConfig
+from hipporag.HippoRAG import HippoRAG
+from hipporag.utils.misc_utils import string_to_bool
+from hipporag.utils.config_utils import BaseConfig
 from Evaluation.llm.ollama_client import OllamaClient, OllamaWrapper
 
 # Configure logging
@@ -125,7 +125,7 @@ def process_corpus(
         embedding_model_name=embed_model_path.split('/')[-1],
         force_index_from_scratch=True,
         force_openie_from_scratch=True,
-        rerank_dspy_file_path="src/hipporag/prompts/dspy_prompts/filter_llama3.3-70B-Instruct.json",
+        rerank_dspy_file_path="hipporag/prompts/dspy_prompts/filter_llama3.3-70B-Instruct.json",
         retrieval_top_k=5,
         linking_top_k=5,
         max_qa_steps=3,
