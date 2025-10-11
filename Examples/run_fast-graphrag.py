@@ -151,12 +151,12 @@ def main():
     # Define subset paths
     SUBSET_PATHS = {
         "medical": {
-            "corpus": "./Datasets/Corpus/medical.json",
-            "questions": "./Datasets/Questions/medical_questions.json"
+            "corpus": "./Datasets/Corpus/medical.parquet",
+            "questions": "./Datasets/Questions/medical_questions.parquet"
         },
         "novel": {
-            "corpus": "./Datasets/Corpus/novel.json",
-            "questions": "./Datasets/Questions/novel_questions.json"
+            "corpus": "./Datasets/Corpus/novel.parquet",
+            "questions": "./Datasets/Questions/novel_questions.parquet"
         }
     }
     
