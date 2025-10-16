@@ -1,4 +1,5 @@
 import os
+import asyncio
 import argparse
 import json
 import logging
@@ -273,22 +274,29 @@ def main():
         logging.error(f"❌ Failed to load questions: {e}")
         return
     
-    # Process each corpus in the subset
-    for item in corpus_data:
-        corpus_name = item["corpus_name"]
-        context = item["context"]
-        process_corpus(
-            corpus_name=corpus_name,
-            context=context,
-            base_dir=args.base_dir,
-            mode=args.mode,
-            model_name=args.model_name,
-            embed_model_path=args.embed_model_path,
-            llm_base_url=args.llm_base_url,
-            llm_api_key=api_key,
-            questions=grouped_questions,
-            sample=args.sample
-        )
+    # Process each corpus concurrently using asyncio + threads
+    async def _run_all():
+        tasks = []
+        for item in corpus_data:
+            tasks.append(asyncio.to_thread(
+                process_corpus,
+                item["corpus_name"],
+                item["context"],
+                args.base_dir,
+                args.mode,
+                args.model_name,
+                args.embed_model_path,
+                args.llm_base_url,
+                api_key,
+                grouped_questions,
+                args.sample,
+            ))
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+        for r in results:
+            if isinstance(r, Exception):
+                logging.exception(f"❌ Task failed: {r}")
+
+    asyncio.run(_run_all())
 
 if __name__ == "__main__":
     main()

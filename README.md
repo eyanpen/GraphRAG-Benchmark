@@ -456,6 +456,7 @@ export OPENAI_API_KEY=your_actual_api_key_here
 
 python run_hipporag2.py \
   --subset medical \
+  --mode API\
   --base_dir ./Examples/hipporag2_workspace \
   --model_name gpt-4o-mini \
   --embed_model_path /path/to/your/local/bge-large-en-v1.5 \

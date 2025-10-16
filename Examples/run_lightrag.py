@@ -329,25 +329,31 @@ def main():
         logging.error(f"Failed to load questions: {e}")
         return
     
-    # Process each corpus in the subset
-    for item in corpus_data:
-        corpus_name = item["corpus_name"]
-        context = item["context"]
-        asyncio.run(
-            process_corpus(
-                corpus_name=corpus_name,
-                context=context,
-                base_dir=args.base_dir,
-                mode=args.mode,
-                model_name=args.model_name,
-                embed_model_name=args.embed_model,
-                llm_base_url=args.llm_base_url,
-                llm_api_key=api_key,
-                questions=grouped_questions,
-                sample=args.sample,
-                retrieve_topk=args.retrieve_topk
+    # Process each corpus concurrently in a single event loop
+    async def _run_all():
+        tasks = []
+        for item in corpus_data:
+            tasks.append(
+                process_corpus(
+                    corpus_name=item["corpus_name"],
+                    context=item["context"],
+                    base_dir=args.base_dir,
+                    mode=args.mode,
+                    model_name=args.model_name,
+                    embed_model_name=args.embed_model,
+                    llm_base_url=args.llm_base_url,
+                    llm_api_key=api_key,
+                    questions=grouped_questions,
+                    sample=args.sample,
+                    retrieve_topk=args.retrieve_topk
+                )
             )
-        )
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+        for r in results:
+            if isinstance(r, Exception):
+                logging.exception(f"Task failed: {r}")
+
+    asyncio.run(_run_all())
 
 if __name__ == "__main__":
     main()
