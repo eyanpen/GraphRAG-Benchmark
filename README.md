@@ -34,7 +34,7 @@ This repository is for the GraphRAG-Bench project, a comprehensive benchmark for
 ![pipeline](./pipeline.jpg)
 
 <h2 id="news">🎉 News</h2>
-
+- **[2025-10-27]** We release **[LinearRAG](https://github.com/DEEP-PolyU/LinearRAG)**, a relation-free method for efficient GraphRAG.
 - **[2025-08-24]** We support [DIGIMON](https://github.com/JayLZhou/GraphRAG) for flexible benchmarking across GraphRAG models.
 - **[2025-05-25]** We release [GraphRAG-Bench](https://graphrag-bench.github.io), the benchmark for evaluating GraphRAG models.
 - **[2025-05-14]** We release the [GraphRAG-Bench dataset](https://huggingface.co/datasets/GraphRAG-Bench/GraphRAG-Bench).
