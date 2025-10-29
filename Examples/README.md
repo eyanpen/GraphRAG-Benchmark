@@ -2,30 +2,6 @@
 
 This directory contains example implementations for running inference on the GraphRAG-Bench dataset using various RAG frameworks. Each framework has a dedicated implementation file that generates prediction outputs compatible with our unified evaluation pipeline.
 
-## 🛠 Installation Guide
-
-First, install the necessary dependencies for GraphRAG-Bench.
-
-```bash
-pip install -r requirements.txt
-```
-
-**To prevent dependency conflicts, we strongly recommend using separate Conda environments for each framework:**
-
-We use the installation of LightRAG as an example. For other frameworks, please refer to their respective installation instructions.
-
-```bash
-# Create and activate environment (example for LightRAG)
-conda create -n lightrag python=3.10 -y
-conda activate lightrag
-
-# Install LightRAG
-git clone https://github.com/HKUDS/LightRAG.git
-cd LightRAG
-pip install -e .
-
-```
-
 ## 🚀 Running Example
 
 Next, we provide detailed instructions on how to use GraphRAG-Bench to evaluate each framework. Specifically, we introduce how to perform index construction and batch inference for each framework. Note that the evaluation code is standardized across all frameworks to ensure fair comparison.
