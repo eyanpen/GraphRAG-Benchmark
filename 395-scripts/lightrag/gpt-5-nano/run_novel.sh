@@ -7,4 +7,4 @@ python 395-scripts/lightrag/lightrag_test.py \
     --mode API \
     --llm_base_url https://api.openai.com/v1 \
     --embed_model BAAI/bge-large-en-v1.5 \
-    --base_dir 395-scripts/lightrag/gpt-4o-mini
+    --base_dir 395-scripts/lightrag/gpt-5-nano
