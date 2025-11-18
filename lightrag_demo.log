@@ -1,0 +1,1621 @@
+2025-11-17 17:11:02,177 - lightrag - INFO - [_] Created new empty graph file: 395-scripts/lightrag/gpt-4o-mini\medical\graph_chunk_entity_relation.graphml
+2025-11-17 17:11:02,178 - lightrag - INFO - [_] Process 28632 KV load full_docs with 0 records
+2025-11-17 17:11:02,178 - lightrag - INFO - [_] Process 28632 KV load text_chunks with 0 records
+2025-11-17 17:11:02,178 - lightrag - INFO - [_] Process 28632 KV load full_entities with 0 records
+2025-11-17 17:11:02,179 - lightrag - INFO - [_] Process 28632 KV load full_relations with 0 records
+2025-11-17 17:11:02,179 - lightrag - INFO - [_] Process 28632 KV load entity_chunks with 0 records
+2025-11-17 17:11:02,179 - lightrag - INFO - [_] Process 28632 KV load relation_chunks with 0 records
+2025-11-17 17:11:02,179 - lightrag - INFO - [_] Process 28632 KV load llm_response_cache with 0 records
+2025-11-17 17:11:02,179 - lightrag - INFO - [_] Process 28632 doc status load doc_status with 0 records
+2025-11-17 17:11:02,180 - lightrag - INFO - Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
+2025-11-17 17:11:02,784 - lightrag - INFO - Successfully finalized 12 storages
+2025-11-17 17:14:13,089 - lightrag - INFO - [_] Created new empty graph file: 395-scripts/lightrag/gpt-4o-mini\medical\graph_chunk_entity_relation.graphml
+2025-11-17 17:14:13,090 - lightrag - INFO - [_] Process 28084 KV load full_docs with 0 records
+2025-11-17 17:14:13,090 - lightrag - INFO - [_] Process 28084 KV load text_chunks with 0 records
+2025-11-17 17:14:13,090 - lightrag - INFO - [_] Process 28084 KV load full_entities with 0 records
+2025-11-17 17:14:13,090 - lightrag - INFO - [_] Process 28084 KV load full_relations with 0 records
+2025-11-17 17:14:13,090 - lightrag - INFO - [_] Process 28084 KV load entity_chunks with 0 records
+2025-11-17 17:14:13,091 - lightrag - INFO - [_] Process 28084 KV load relation_chunks with 0 records
+2025-11-17 17:14:13,091 - lightrag - INFO - [_] Process 28084 KV load llm_response_cache with 0 records
+2025-11-17 17:14:13,091 - lightrag - INFO - [_] Process 28084 doc status load doc_status with 0 records
+2025-11-17 17:14:13,091 - lightrag - INFO - Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
+2025-11-17 17:14:13,504 - lightrag - INFO - Processing 1 document(s)
+2025-11-17 17:14:13,505 - lightrag - INFO - Extracting stage 1/1: unknown_source
+2025-11-17 17:14:13,505 - lightrag - INFO - Processing d-id: doc-3d7a4f05339f0e3f3870b407d21d9c8a
+2025-11-17 17:16:29,706 - lightrag - INFO - LLM func: 4 new workers initialized (Timeouts: Func: 180s, Worker: 360s, Health Check: 375s)
+2025-11-17 17:16:29,720 - lightrag - ERROR - LLM func: Error in decorated function for task 2513425903792_19871.421: 'OPENAI_API_KEY'
+2025-11-17 17:16:29,721 - lightrag - ERROR - LLM func: Error in decorated function for task 2513425903648_19871.437: 'OPENAI_API_KEY'
+2025-11-17 17:16:29,722 - lightrag - ERROR - LLM func: Error in decorated function for task 2513425904128_19871.437: 'OPENAI_API_KEY'
+2025-11-17 17:16:29,722 - lightrag - ERROR - LLM func: Error in decorated function for task 2513425904176_19871.437: 'OPENAI_API_KEY'
+2025-11-17 17:16:29,740 - lightrag - ERROR - LLM func: Error in decorated function for task 2513425904272_19871.453: 'OPENAI_API_KEY'
+2025-11-17 17:16:29,740 - lightrag - ERROR - LLM func: Error in decorated function for task 2513425904080_19871.453: 'OPENAI_API_KEY'
+2025-11-17 17:16:29,740 - lightrag - ERROR - LLM func: Error in decorated function for task 2513425904320_19871.453: 'OPENAI_API_KEY'
+2025-11-17 17:16:29,740 - lightrag - ERROR - LLM func: Error in decorated function for task 2513425904752_19871.468: 'OPENAI_API_KEY'
+2025-11-17 17:16:29,744 - lightrag - ERROR - Failed to extract entities and relationships: 'C[1/199]: chunk-7102a43dfb62e649d725bc95ba292688: OPENAI_API_KEY'
+2025-11-17 17:16:29,783 - lightrag - ERROR - Traceback (most recent call last):
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\operate.py", line 2946, in _process_with_semaphore
+    return await _process_single_content(chunk)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\operate.py", line 2831, in _process_single_content
+    final_result, timestamp = await use_llm_func_with_cache(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\utils.py", line 1872, in use_llm_func_with_cache
+    res: str = await use_llm_func(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\utils.py", line 907, in wait_func
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 385, in __wakeup
+    future.result()
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\utils.py", line 611, in worker
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\rjiso\Downloads\395bench\GraphRAG-Benchmark\395-scripts\lightrag\lightrag_test.py", line 103, in gpt_complete
+    return await openai_complete_if_cache(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\asyncio\__init__.py", line 189, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\asyncio\__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py", line 400, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\asyncio\__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\llm\openai.py", line 207, in openai_complete_if_cache
+    openai_async_client = create_openai_async_client(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\llm\openai.py", line 95, in create_openai_async_client
+    api_key = os.environ["OPENAI_API_KEY"]
+              ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 714, in __getitem__
+KeyError: 'OPENAI_API_KEY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 316, in __step_run_and_handle_result
+    result = coro.throw(exc)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\operate.py", line 2950, in _process_with_semaphore
+    raise prefixed_exception from e
+KeyError: 'chunk-7102a43dfb62e649d725bc95ba292688: OPENAI_API_KEY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\lightrag.py", line 1871, in process_document
+    chunk_results = await entity_relation_task
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\asyncio\futures.py", line 287, in __await__
+    yield self  # This tells Task to wait for completion.
+    ^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 385, in __wakeup
+    future.result()
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\asyncio\futures.py", line 203, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 314, in __step_run_and_handle_result
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\lightrag.py", line 2155, in _process_extract_entities
+    raise e
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\lightrag.py", line 2140, in _process_extract_entities
+    chunk_results = await extract_entities(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rjiso\AppData\Local\Programs\Python\Python312\Lib\site-packages\lightrag\operate.py", line 2992, in extract_entities
+    raise prefixed_exception from first_exception
+KeyError: 'C[1/199]: chunk-7102a43dfb62e649d725bc95ba292688: OPENAI_API_KEY'
+
+2025-11-17 17:16:29,784 - lightrag - ERROR - Failed to extract document 1/1: unknown_source
+2025-11-17 17:16:29,787 - lightrag - INFO - Enqueued document processing pipeline stopped
+2025-11-17 17:16:29,807 - lightrag - INFO - Successfully finalized 12 storages
+2025-11-17 17:20:52,178 - lightrag - INFO - [_] Created new empty graph file: 395-scripts/lightrag/gpt-4o-mini\medical\graph_chunk_entity_relation.graphml
+2025-11-17 17:20:52,180 - lightrag - INFO - [_] Process 18588 KV load full_docs with 0 records
+2025-11-17 17:20:52,180 - lightrag - INFO - [_] Process 18588 KV load text_chunks with 0 records
+2025-11-17 17:20:52,180 - lightrag - INFO - [_] Process 18588 KV load full_entities with 0 records
+2025-11-17 17:20:52,180 - lightrag - INFO - [_] Process 18588 KV load full_relations with 0 records
+2025-11-17 17:20:52,180 - lightrag - INFO - [_] Process 18588 KV load entity_chunks with 0 records
+2025-11-17 17:20:52,180 - lightrag - INFO - [_] Process 18588 KV load relation_chunks with 0 records
+2025-11-17 17:20:52,181 - lightrag - INFO - [_] Process 18588 KV load llm_response_cache with 0 records
+2025-11-17 17:20:52,181 - lightrag - INFO - [_] Process 18588 doc status load doc_status with 0 records
+2025-11-17 17:20:52,181 - lightrag - INFO - Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
+2025-11-17 17:20:52,556 - lightrag - INFO - Processing 1 document(s)
+2025-11-17 17:20:52,556 - lightrag - INFO - Extracting stage 1/1: unknown_source
+2025-11-17 17:20:52,556 - lightrag - INFO - Processing d-id: doc-3d7a4f05339f0e3f3870b407d21d9c8a
+2025-11-17 17:23:08,490 - lightrag - INFO - LLM func: 4 new workers initialized (Timeouts: Func: 180s, Worker: 360s, Health Check: 375s)
+2025-11-17 17:23:21,666 - lightrag - INFO -  == LLM cache == saving: default:extract:8c7c3f7da148bf7fc198864a5240645f
+2025-11-17 17:23:23,647 - lightrag - INFO -  == LLM cache == saving: default:extract:3f0c5284d546c6e8876f3e9708b04f45
+2025-11-17 17:23:25,532 - lightrag - INFO -  == LLM cache == saving: default:extract:86c679055eb728c0c2ad08a8bbcb7aff
+2025-11-17 17:23:26,381 - lightrag - INFO -  == LLM cache == saving: default:extract:1f403fbf3d55aa7857aa713e92f06175
+2025-11-17 17:23:26,382 - lightrag - INFO - Chunk 1 of 199 extracted 10 Ent + 7 Rel chunk-aa14ecd19e2d721cb99ea9590f0ede3a
+2025-11-17 17:23:35,077 - lightrag - INFO -  == LLM cache == saving: default:extract:c65a8db5afa2aa12d67305b414685b9a
+2025-11-17 17:23:38,735 - lightrag - INFO -  == LLM cache == saving: default:extract:1cd99acabde340340dffd9859c2e8427
+2025-11-17 17:23:38,735 - lightrag - INFO - Chunk 2 of 199 extracted 12 Ent + 9 Rel chunk-7102a43dfb62e649d725bc95ba292688
+2025-11-17 17:23:39,505 - lightrag - INFO -  == LLM cache == saving: default:extract:8649d2b09472928b42c43139212ae6cd
+2025-11-17 17:23:39,506 - lightrag - INFO - Chunk 3 of 199 extracted 12 Ent + 6 Rel chunk-66dd071b6c2be50e36cee1a1c1bd3b33
+2025-11-17 17:23:39,824 - lightrag - INFO -  == LLM cache == saving: default:extract:198ef8f88437194f72948b79b3dcf7a8
+2025-11-17 17:23:39,825 - lightrag - INFO - Chunk 4 of 199 extracted 10 Ent + 7 Rel chunk-f8eae4d6dadf6a6fbd339efa4dec2172
+2025-11-17 17:23:51,663 - lightrag - INFO -  == LLM cache == saving: default:extract:9a7588816002c7f859b53f06a8ac7359
+2025-11-17 17:23:56,652 - lightrag - INFO -  == LLM cache == saving: default:extract:59baebc6c382c70aa12683cbdddd018c
+2025-11-17 17:23:58,914 - lightrag - INFO -  == LLM cache == saving: default:extract:9fa48d0b3fdd37ba6832baccc6b5e07f
+2025-11-17 17:23:58,914 - lightrag - INFO - Chunk 5 of 199 extracted 17 Ent + 12 Rel chunk-f1379433bc205cdec8af2edc77613acb
+2025-11-17 17:24:07,533 - lightrag - INFO -  == LLM cache == saving: default:extract:33dfb505f2b32ab1cd5a00885e6891c2
+2025-11-17 17:24:07,533 - lightrag - INFO - Chunk 6 of 199 extracted 13 Ent + 8 Rel chunk-6eafb110f88c7af38808f77f59ed155d
+2025-11-17 17:24:09,121 - lightrag - INFO -  == LLM cache == saving: default:extract:08cf23f3a780a751199cff878c68d9b2
+2025-11-17 17:24:12,367 - lightrag - INFO -  == LLM cache == saving: default:extract:b0eb142d295d7bcde457d5c6a65e072e
+2025-11-17 17:24:12,368 - lightrag - INFO - Chunk 7 of 199 extracted 15 Ent + 12 Rel chunk-3821a6febf2d21784059ac62a6e659c1
+2025-11-17 17:24:24,414 - lightrag - INFO -  == LLM cache == saving: default:extract:1c6f6e096548e0374299d4a5e203c715
+2025-11-17 17:24:24,672 - lightrag - INFO -  == LLM cache == saving: default:extract:31a5717e59a85ba329343a49b0082c8b
+2025-11-17 17:24:28,354 - lightrag - INFO -  == LLM cache == saving: default:extract:313c1414f712edd328a1d99b3d59323b
+2025-11-17 17:24:28,355 - lightrag - INFO - Chunk 8 of 199 extracted 22 Ent + 19 Rel chunk-e8ac9bf8f198bc5ad54fd1a7b843e810
+2025-11-17 17:24:28,803 - lightrag - INFO -  == LLM cache == saving: default:extract:74612a833f550e79ebe94f27ea6a82f6
+2025-11-17 17:24:31,574 - lightrag - INFO -  == LLM cache == saving: default:extract:c53dc19fbee8a3bd5584e7f186deeafb
+2025-11-17 17:24:31,575 - lightrag - INFO - Chunk 9 of 199 extracted 15 Ent + 8 Rel chunk-7d994e430bb9890c905d7914fad9c118
+2025-11-17 17:24:36,082 - lightrag - INFO -  == LLM cache == saving: default:extract:966a91f3653fe3055929874e33b485d0
+2025-11-17 17:24:36,083 - lightrag - INFO - Chunk 10 of 199 extracted 17 Ent + 10 Rel chunk-e9cc65c1c26b9e24bfb2c8c966f734a0
+2025-11-17 17:24:40,310 - lightrag - INFO -  == LLM cache == saving: default:extract:c05fa6edeebe8cf2af16f7d305b211a8
+2025-11-17 17:24:41,992 - lightrag - INFO -  == LLM cache == saving: default:extract:5e49ddee294d8b2278c21d06b38bb779
+2025-11-17 17:24:45,378 - lightrag - INFO -  == LLM cache == saving: default:extract:53ef600eab6c1927c77bb3acbdfabbfe
+2025-11-17 17:24:45,379 - lightrag - INFO - Chunk 11 of 199 extracted 18 Ent + 12 Rel chunk-f6fd03791661f76f6c1a246b2074b2a0
+2025-11-17 17:24:49,705 - lightrag - INFO -  == LLM cache == saving: default:extract:238f9994fa1e614fcf27c7ade0470a86
+2025-11-17 17:24:50,978 - lightrag - INFO -  == LLM cache == saving: default:extract:b28fc7daf58c3e62ec138fbe7bbd5f8b
+2025-11-17 17:24:50,979 - lightrag - INFO - Chunk 12 of 199 extracted 13 Ent + 9 Rel chunk-60426652ddf8265bf75caba550026d38
+2025-11-17 17:24:54,798 - lightrag - INFO -  == LLM cache == saving: default:extract:c11c8bbc587241074e41de5f99a755a4
+2025-11-17 17:24:54,798 - lightrag - INFO - Chunk 13 of 199 extracted 14 Ent + 7 Rel chunk-a9d0006f1c78fe4fa7bb74b756033104
+2025-11-17 17:24:58,073 - lightrag - INFO -  == LLM cache == saving: default:extract:26cbfdb0e8a9425526b1be02b0c96908
+2025-11-17 17:25:00,850 - lightrag - INFO -  == LLM cache == saving: default:extract:8cc74cc035bb8f3ceffcd0d87dbc1f9a
+2025-11-17 17:25:05,769 - lightrag - INFO -  == LLM cache == saving: default:extract:05d77d961a3876e4c17e24e932852001
+2025-11-17 17:25:08,963 - lightrag - INFO -  == LLM cache == saving: default:extract:998ed7ba11d870114092bcaf3c24407d
+2025-11-17 17:25:08,964 - lightrag - INFO - Chunk 14 of 199 extracted 13 Ent + 8 Rel chunk-64895edc4d35c98b293c555e32022a37
+2025-11-17 17:25:09,329 - lightrag - INFO -  == LLM cache == saving: default:extract:c0bb101020502db06cdb2035827fffab
+2025-11-17 17:25:09,330 - lightrag - INFO - Chunk 15 of 199 extracted 16 Ent + 9 Rel chunk-50c5e5d6c7a62da56b73abb9a3384301
+2025-11-17 17:25:10,727 - lightrag - INFO -  == LLM cache == saving: default:extract:52a9b91e257c12dae16b5c9d19e1fac1
+2025-11-17 17:25:10,728 - lightrag - INFO - Chunk 16 of 199 extracted 10 Ent + 7 Rel chunk-8b66e38931f28ed6ac9b231faaf202fb
+2025-11-17 17:25:13,090 - lightrag - INFO -  == LLM cache == saving: default:extract:a140f27a89b83705c20f8a39c92ec9c8
+2025-11-17 17:25:23,015 - lightrag - INFO -  == LLM cache == saving: default:extract:157d9a20f7ea00e6101e605f99fcf406
+2025-11-17 17:25:23,016 - lightrag - INFO - Chunk 17 of 199 extracted 13 Ent + 8 Rel chunk-ef6586b896c47b361bf4f6aabb4c35d5
+2025-11-17 17:25:28,044 - lightrag - INFO -  == LLM cache == saving: default:extract:a16e3d9f843ca0dcafda9f3134243766
+2025-11-17 17:25:31,048 - lightrag - INFO -  == LLM cache == saving: default:extract:4a90bcb173aa61d8b1d19b8fa1c008dc
+2025-11-17 17:25:37,194 - lightrag - INFO -  == LLM cache == saving: default:extract:7a131b7476297f990fa0f21a4a297817
+2025-11-17 17:25:37,195 - lightrag - INFO - Chunk 18 of 199 extracted 12 Ent + 11 Rel chunk-08475506372bb4ce9ec1bd326caf0fe9
+2025-11-17 17:25:44,525 - lightrag - INFO -  == LLM cache == saving: default:extract:dc83c0f540cf50cb307eb30ecb6861ef
+2025-11-17 17:25:48,238 - lightrag - INFO -  == LLM cache == saving: default:extract:3d665af7e359ccd137ba5d139abe89d4
+2025-11-17 17:25:48,238 - lightrag - INFO - Chunk 19 of 199 extracted 18 Ent + 15 Rel chunk-bd06bc83e13e7562ce65d6eee1b6024f
+2025-11-17 17:25:49,439 - lightrag - INFO -  == LLM cache == saving: default:extract:5dbfac2bb7634513c6bc1935ad24a4f8
+2025-11-17 17:25:49,440 - lightrag - INFO - Chunk 20 of 199 extracted 19 Ent + 14 Rel chunk-7843955573cdc294b34e74019195fafb
+2025-11-17 17:25:52,684 - lightrag - INFO -  == LLM cache == saving: default:extract:d4d5641ae7a0de75adef00cc10f9f72c
+2025-11-17 17:26:01,475 - lightrag - INFO -  == LLM cache == saving: default:extract:e00cc37b75b1b84b7b63221ffd805e62
+2025-11-17 17:26:01,476 - lightrag - INFO - Chunk 21 of 199 extracted 21 Ent + 16 Rel chunk-ecc6c4bcd3cab65fa05ab5f3c55e528d
+2025-11-17 17:26:01,707 - lightrag - INFO -  == LLM cache == saving: default:extract:d651d607b554496f9bc8c6b81171e211
+2025-11-17 17:26:06,113 - lightrag - INFO -  == LLM cache == saving: default:extract:faf9fe0d22727e419c3797e6db235c66
+2025-11-17 17:26:07,305 - lightrag - INFO -  == LLM cache == saving: default:extract:24a803d91fff4322e16f5503fb536deb
+2025-11-17 17:26:07,306 - lightrag - INFO - Chunk 22 of 199 extracted 9 Ent + 7 Rel chunk-64f36a4a5be80c8fa51631db16e52b85
+2025-11-17 17:26:11,985 - lightrag - INFO -  == LLM cache == saving: default:extract:a9f09be5c65994e68cb2040e2ad267c0
+2025-11-17 17:26:11,985 - lightrag - INFO - Chunk 23 of 199 extracted 17 Ent + 15 Rel chunk-cb36cedd3f66584d65304e58b668eeab
+2025-11-17 17:26:17,244 - lightrag - INFO -  == LLM cache == saving: default:extract:7b8de99cbd00989b1b0bf700427cfea7
+2025-11-17 17:26:23,159 - lightrag - INFO -  == LLM cache == saving: default:extract:c6285935cdbf6079a710d2fe7f476172
+2025-11-17 17:26:24,348 - lightrag - INFO -  == LLM cache == saving: default:extract:5ccdc5db3ff181796e86ef552730e47f
+2025-11-17 17:26:28,262 - lightrag - INFO -  == LLM cache == saving: default:extract:c77bb7e5d41b34074eca0edb9804b05b
+2025-11-17 17:26:28,263 - lightrag - INFO - Chunk 24 of 199 extracted 24 Ent + 12 Rel chunk-d67bee20d5e5400994f8c8f03052dd06
+2025-11-17 17:26:30,743 - lightrag - INFO -  == LLM cache == saving: default:extract:700f1f8fb6570a30c034a81d3961881c
+2025-11-17 17:26:30,744 - lightrag - INFO - Chunk 25 of 199 extracted 20 Ent + 9 Rel chunk-b00f93aa3d24d0275d4290db3fb2cca3
+2025-11-17 17:26:31,988 - lightrag - INFO -  == LLM cache == saving: default:extract:f50848fb5ac150ad153298783b750cb9
+2025-11-17 17:26:33,371 - lightrag - INFO -  == LLM cache == saving: default:extract:1db8c1ccbfc11cc773dde6ab7b405ed8
+2025-11-17 17:26:33,372 - lightrag - INFO - Chunk 26 of 199 extracted 11 Ent + 8 Rel chunk-829d6b7840e9f2c8d97d22d2ce2c43c1
+2025-11-17 17:26:37,125 - lightrag - INFO -  == LLM cache == saving: default:extract:a1e918fc6a4fc280023188adccd53ba2
+2025-11-17 17:26:37,126 - lightrag - INFO - Chunk 27 of 199 extracted 12 Ent + 7 Rel chunk-f43f96815f23658d5b24fe95ed4bd5ed
+2025-11-17 17:26:47,579 - lightrag - INFO -  == LLM cache == saving: default:extract:7f872c4b08d08f94d6620a666c4e3213
+2025-11-17 17:26:49,937 - lightrag - INFO -  == LLM cache == saving: default:extract:4dad2c67c70df5b56ed9cb4422cc5647
+2025-11-17 17:26:54,914 - lightrag - INFO -  == LLM cache == saving: default:extract:dbfa930317e4a29fac89d3fcf239113c
+2025-11-17 17:26:54,915 - lightrag - INFO - Chunk 28 of 199 extracted 16 Ent + 12 Rel chunk-d47a420aa2acde1175ad95bf6dc2e664
+2025-11-17 17:26:56,634 - lightrag - INFO -  == LLM cache == saving: default:extract:bb2e0f3236d9a0fe4db1542d8f39b000
+2025-11-17 17:26:57,131 - lightrag - INFO -  == LLM cache == saving: default:extract:1f430306190ae29d3d993c47a2baf880
+2025-11-17 17:26:57,131 - lightrag - INFO - Chunk 29 of 199 extracted 13 Ent + 8 Rel chunk-7bdde77ad1be3ee9308db3c7703674b0
+2025-11-17 17:26:59,305 - lightrag - INFO -  == LLM cache == saving: default:extract:c3c09390d5af4a4b83fba45e667468ed
+2025-11-17 17:27:00,657 - lightrag - INFO -  == LLM cache == saving: default:extract:b6d79b9833fe42d4a3830ed59fd4633e
+2025-11-17 17:27:00,658 - lightrag - INFO - Chunk 30 of 199 extracted 15 Ent + 12 Rel chunk-705ff2bd04b2b58b98187f60f23a659e
+2025-11-17 17:27:09,421 - lightrag - INFO -  == LLM cache == saving: default:extract:b0be59d91fe33ab9dda6df1e3115d8cf
+2025-11-17 17:27:09,422 - lightrag - INFO - Chunk 31 of 199 extracted 17 Ent + 14 Rel chunk-3d609bd1a55d409470c55ad55e2d125d
+2025-11-17 17:27:21,277 - lightrag - INFO -  == LLM cache == saving: default:extract:6d505c21132839bd956c21fee614c36d
+2025-11-17 17:27:23,753 - lightrag - INFO -  == LLM cache == saving: default:extract:c285928f7169113d4b4a31074889c6d8
+2025-11-17 17:27:25,200 - lightrag - INFO -  == LLM cache == saving: default:extract:ecec774c40cc8d523468b4286782d361
+2025-11-17 17:27:27,244 - lightrag - INFO -  == LLM cache == saving: default:extract:2276903088ab44540fe0b390242cbdf9
+2025-11-17 17:27:27,244 - lightrag - INFO - Chunk 32 of 199 extracted 12 Ent + 7 Rel chunk-69e63736c94b8b08a565c3d8679d3b57
+2025-11-17 17:27:29,189 - lightrag - INFO -  == LLM cache == saving: default:extract:04ee039ebf44960667f2f96208651b48
+2025-11-17 17:27:29,190 - lightrag - INFO - Chunk 33 of 199 extracted 17 Ent + 7 Rel chunk-d9882c04dd7676c6433074e5e393c72e
+2025-11-17 17:27:31,603 - lightrag - INFO -  == LLM cache == saving: default:extract:c863200902e9459340d80f7b42ff7a44
+2025-11-17 17:27:33,064 - lightrag - INFO -  == LLM cache == saving: default:extract:1d037a38c12354d61c7b1651e4738916
+2025-11-17 17:27:33,065 - lightrag - INFO - Chunk 34 of 199 extracted 18 Ent + 13 Rel chunk-28e4e845dfd1390f7f94cfb11bee1526
+2025-11-17 17:27:40,134 - lightrag - INFO -  == LLM cache == saving: default:extract:9ee6b3ddffcfe30b53206cfe6ad59092
+2025-11-17 17:27:40,134 - lightrag - INFO - Chunk 35 of 199 extracted 23 Ent + 11 Rel chunk-bd7ea43a74059d6781866faec437f19a
+2025-11-17 17:27:45,042 - lightrag - INFO -  == LLM cache == saving: default:extract:1b4950088e4d48532d6aa00d5079825d
+2025-11-17 17:27:46,261 - lightrag - INFO -  == LLM cache == saving: default:extract:d9d5e04ab9c5939ea749a6d56fcc1dde
+2025-11-17 17:27:47,727 - lightrag - INFO -  == LLM cache == saving: default:extract:6a2d44a66be5935487b82f435a92c843
+2025-11-17 17:27:53,146 - lightrag - INFO -  == LLM cache == saving: default:extract:16dd657df82cb74079213bd58e1f4cd0
+2025-11-17 17:27:53,147 - lightrag - INFO - Chunk 36 of 199 extracted 15 Ent + 10 Rel chunk-4724f6acaaa7931560b29614efc2927f
+2025-11-17 17:27:54,650 - lightrag - INFO -  == LLM cache == saving: default:extract:aa4895b33548d4d596745e0714edb997
+2025-11-17 17:27:54,651 - lightrag - INFO - Chunk 37 of 199 extracted 16 Ent + 7 Rel chunk-d73843c009e523101e1464a2b28bc144
+2025-11-17 17:27:55,632 - lightrag - INFO -  == LLM cache == saving: default:extract:55fc73fb48cabddba89fb494177b5ec0
+2025-11-17 17:27:55,633 - lightrag - INFO - Chunk 38 of 199 extracted 21 Ent + 11 Rel chunk-b63f0a9aec8d42c8426ded05a9bf92b4
+2025-11-17 17:28:02,890 - lightrag - INFO -  == LLM cache == saving: default:extract:af7c06abc620b3abb76f540257a5b8e4
+2025-11-17 17:28:08,527 - lightrag - INFO -  == LLM cache == saving: default:extract:ee36bf1173fbc7fc02fa2fcf5bf84859
+2025-11-17 17:28:13,972 - lightrag - INFO -  == LLM cache == saving: default:extract:1693589fdf0c2cba412342d6f799c8df
+2025-11-17 17:28:13,973 - lightrag - INFO - Chunk 39 of 199 extracted 18 Ent + 12 Rel chunk-97836a515d346931beb424ae40a89877
+2025-11-17 17:28:14,336 - lightrag - INFO -  == LLM cache == saving: default:extract:fd93834c16c26b5fc80b0ecf034c3944
+2025-11-17 17:28:14,656 - lightrag - INFO -  == LLM cache == saving: default:extract:712cda029f7c858efe757f24dfc3a47a
+2025-11-17 17:28:21,247 - lightrag - INFO -  == LLM cache == saving: default:extract:f96b8ddd0985257419c589fc64ae9b27
+2025-11-17 17:28:21,248 - lightrag - INFO - Chunk 40 of 199 extracted 18 Ent + 12 Rel chunk-b4da30dee72e228147daa825e4f5be72
+2025-11-17 17:28:22,898 - lightrag - INFO -  == LLM cache == saving: default:extract:0fca499613fb721c2203390c16fb604d
+2025-11-17 17:28:22,899 - lightrag - INFO - Chunk 41 of 199 extracted 13 Ent + 13 Rel chunk-e5406c28b41e499fad4ae44f2c44fdd7
+2025-11-17 17:28:22,899 - lightrag - INFO -  == LLM cache == saving: default:extract:36afb82110e6368260825d295470af17
+2025-11-17 17:28:22,901 - lightrag - INFO - Chunk 42 of 199 extracted 17 Ent + 13 Rel chunk-53afdc6713818c4177b64a712ecce11b
+2025-11-17 17:28:37,620 - lightrag - INFO -  == LLM cache == saving: default:extract:1e0798c7459fc11beae3099bfd188bb0
+2025-11-17 17:28:45,956 - lightrag - INFO -  == LLM cache == saving: default:extract:ca18db934add1fa97ae122a4ae3f1932
+2025-11-17 17:28:45,957 - lightrag - INFO - Chunk 43 of 199 extracted 18 Ent + 13 Rel chunk-ae40f53e9d867c255e1e6901f5cfb058
+2025-11-17 17:28:47,454 - lightrag - INFO -  == LLM cache == saving: default:extract:ec7d51bd7b15c6199700fb2149b348c0
+2025-11-17 17:28:47,682 - lightrag - INFO -  == LLM cache == saving: default:extract:efec98ab5be19dee89d5c108b45161e2
+2025-11-17 17:28:52,994 - lightrag - INFO -  == LLM cache == saving: default:extract:7469bbde640927f360212ef9dae988d1
+2025-11-17 17:28:56,364 - lightrag - INFO -  == LLM cache == saving: default:extract:e4ece1e254191d1cb5e502e8b9e7e0d4
+2025-11-17 17:28:56,364 - lightrag - INFO - Chunk 44 of 199 extracted 18 Ent + 11 Rel chunk-96238b4b361e393ff452a09d1ce26154
+2025-11-17 17:28:59,817 - lightrag - INFO -  == LLM cache == saving: default:extract:6a11c627f59dbb5f3b6f7ab7c7d28649
+2025-11-17 17:28:59,818 - lightrag - INFO - Chunk 45 of 199 extracted 17 Ent + 10 Rel chunk-cf2d987135a5936876bc819136e3a5b5
+2025-11-17 17:29:06,188 - lightrag - INFO -  == LLM cache == saving: default:extract:d266ef63d06cf73ffd4ea6c4ddb49d08
+2025-11-17 17:29:06,189 - lightrag - INFO - Chunk 46 of 199 extracted 21 Ent + 19 Rel chunk-77ac570b4029abb181150e0d0975aefb
+2025-11-17 17:29:20,283 - lightrag - INFO -  == LLM cache == saving: default:extract:f149b078dbb8b03c4b0af52bf8a98493
+2025-11-17 17:29:24,059 - lightrag - INFO -  == LLM cache == saving: default:extract:2c41aa6d401239c347598bb736e40bda
+2025-11-17 17:29:26,574 - lightrag - INFO -  == LLM cache == saving: default:extract:cf75015c491ae79d140df9a9ad76c04c
+2025-11-17 17:29:27,121 - lightrag - INFO -  == LLM cache == saving: default:extract:9ad519ba71d4f13e83b861ebcc2fee57
+2025-11-17 17:29:27,122 - lightrag - INFO - Chunk 47 of 199 extracted 12 Ent + 8 Rel chunk-5a84075aaac61b0ad85e5f811fc4f24b
+2025-11-17 17:29:28,725 - lightrag - INFO -  == LLM cache == saving: default:extract:5647f5a1d096f47e1aab7686d19d2725
+2025-11-17 17:29:28,726 - lightrag - INFO - Chunk 48 of 199 extracted 16 Ent + 14 Rel chunk-8b44f0b4da13a804cd1dfb917ac7e981
+2025-11-17 17:29:30,222 - lightrag - INFO -  == LLM cache == saving: default:extract:6a51c8c518570d18a41dab6164e79f33
+2025-11-17 17:29:30,223 - lightrag - INFO - Chunk 49 of 199 extracted 15 Ent + 11 Rel chunk-c622c677deca24391324ecd5f16ce4a3
+2025-11-17 17:29:30,566 - lightrag - INFO -  == LLM cache == saving: default:extract:be29d1a799607f9293ac60e1451d3c2b
+2025-11-17 17:29:36,329 - lightrag - INFO -  == LLM cache == saving: default:extract:b3e16af397b02a863c9934cc62a3f627
+2025-11-17 17:29:36,330 - lightrag - INFO - Chunk 50 of 199 extracted 22 Ent + 21 Rel chunk-b69d38fafe014cece3427bd0459ae42b
+2025-11-17 17:29:39,320 - lightrag - INFO -  == LLM cache == saving: default:extract:69ef67d45755352faf067d9080cd05cc
+2025-11-17 17:29:42,422 - lightrag - INFO -  == LLM cache == saving: default:extract:b02ecbb2f6933b8bfbd7917afe7a3ebf
+2025-11-17 17:29:42,422 - lightrag - INFO - Chunk 51 of 199 extracted 11 Ent + 7 Rel chunk-38185832d6395b9952def9a72ecc339d
+2025-11-17 17:29:43,641 - lightrag - INFO -  == LLM cache == saving: default:extract:e4281fb9aaa3df83f33fcb91670b6bbf
+2025-11-17 17:29:47,025 - lightrag - INFO -  == LLM cache == saving: default:extract:db81356f22564faadd4b7488bfad281e
+2025-11-17 17:29:47,026 - lightrag - INFO - Chunk 52 of 199 extracted 12 Ent + 8 Rel chunk-5fa7c7369d88ae71c842152510867223
+2025-11-17 17:29:57,518 - lightrag - INFO -  == LLM cache == saving: default:extract:cfc2e81731e6ffa52a0fe69fa0c3c5fd
+2025-11-17 17:29:59,313 - lightrag - INFO -  == LLM cache == saving: default:extract:afb6a0af7b8aeb816da1bf23baee6a45
+2025-11-17 17:29:59,313 - lightrag - INFO - Chunk 53 of 199 extracted 20 Ent + 11 Rel chunk-33608457001e818e2b300adae9c6c0d9
+2025-11-17 17:30:00,029 - lightrag - INFO -  == LLM cache == saving: default:extract:1472eb0a714a72e75c886fc567fafa65
+2025-11-17 17:30:02,380 - lightrag - INFO -  == LLM cache == saving: default:extract:f731394cbbd19c258be7fcf22238a78d
+2025-11-17 17:30:02,669 - lightrag - INFO -  == LLM cache == saving: default:extract:bcd27d812235c0cf056ba819e4ed5a04
+2025-11-17 17:30:02,669 - lightrag - INFO - Chunk 54 of 199 extracted 15 Ent + 12 Rel chunk-50531346164ea7c08dd087a868b3cc2a
+2025-11-17 17:30:12,427 - lightrag - INFO -  == LLM cache == saving: default:extract:0f461526306f0b4388c4e02dc88498bb
+2025-11-17 17:30:13,856 - lightrag - INFO -  == LLM cache == saving: default:extract:3eea6ca1be5dda0311d188791aec31e9
+2025-11-17 17:30:13,857 - lightrag - INFO - Chunk 55 of 199 extracted 17 Ent + 11 Rel chunk-0739b33959299ea67072f390ce38bffd
+2025-11-17 17:30:15,595 - lightrag - INFO -  == LLM cache == saving: default:extract:3bf799bed5351f5c5d55dfec99fa619e
+2025-11-17 17:30:18,170 - lightrag - INFO -  == LLM cache == saving: default:extract:25abcebebd74414b7cabbe6dc833854d
+2025-11-17 17:30:18,170 - lightrag - WARNING - chunk-81c87ec3c2682da4d531da53f6e5e18c: LLM output format error; find LLM use <|#|> as record seperators instead new-line
+2025-11-17 17:30:18,171 - lightrag - WARNING - chunk-81c87ec3c2682da4d531da53f6e5e18c: LLM output format error; found 3/5 fields on REALTION `Burkitt Leukemia`~`B-ALL`
+2025-11-17 17:30:18,171 - lightrag - WARNING - chunk-81c87ec3c2682da4d531da53f6e5e18c: LLM output format error; found 2/5 fields on REALTION `Burkitt leukemia is a rare subtype of mature B-cell ALL, though treated differently from standard B-ALL.`~`N/A`
+2025-11-17 17:30:23,588 - lightrag - INFO -  == LLM cache == saving: default:extract:3c78ed03d6b24ed5e6e40d60d29e9602
+2025-11-17 17:30:23,588 - lightrag - INFO - Chunk 56 of 199 extracted 12 Ent + 7 Rel chunk-81c87ec3c2682da4d531da53f6e5e18c
+2025-11-17 17:30:24,766 - lightrag - INFO -  == LLM cache == saving: default:extract:dc7173d3eed82087ca08eeac7c57a56b
+2025-11-17 17:30:24,767 - lightrag - INFO - Chunk 57 of 199 extracted 20 Ent + 15 Rel chunk-f8639a06098656be20a04fe129660616
+2025-11-17 17:30:25,839 - lightrag - INFO -  == LLM cache == saving: default:extract:6c7bfd90c62080d6be59d740361db1fb
+2025-11-17 17:30:25,840 - lightrag - INFO - Chunk 58 of 199 extracted 15 Ent + 14 Rel chunk-5d8e20e6004dd43ae0f68185383b594d
+2025-11-17 17:30:32,402 - lightrag - INFO -  == LLM cache == saving: default:extract:fc98d5843c423b6cdad966c766d31535
+2025-11-17 17:30:44,411 - lightrag - INFO -  == LLM cache == saving: default:extract:9eca2c38b715966c0900c4c7ac2705be
+2025-11-17 17:30:46,388 - lightrag - INFO -  == LLM cache == saving: default:extract:4abc9585321f6b2b75d88e1ddeb397dc
+2025-11-17 17:30:47,271 - lightrag - INFO -  == LLM cache == saving: default:extract:2ea7f387bf8582fd2e20920d04731f9f
+2025-11-17 17:30:47,272 - lightrag - INFO - Chunk 59 of 199 extracted 17 Ent + 11 Rel chunk-c5bc83f5f4f3e29b7f0a6f4787c3ad83
+2025-11-17 17:30:49,752 - lightrag - INFO -  == LLM cache == saving: default:extract:0310676b33dd14863542a598fd7e0494
+2025-11-17 17:30:52,265 - lightrag - INFO -  == LLM cache == saving: default:extract:ffb7ca193a0b4c3a3cc899a80cd3181a
+2025-11-17 17:30:52,266 - lightrag - INFO - Chunk 60 of 199 extracted 12 Ent + 9 Rel chunk-f2c9770fd98dbbe3c7947601fb3e654c
+2025-11-17 17:30:52,718 - lightrag - INFO -  == LLM cache == saving: default:extract:f14b778dc763dd2073d2088cbd3cd2f9
+2025-11-17 17:30:52,719 - lightrag - INFO - Chunk 61 of 199 extracted 14 Ent + 11 Rel chunk-594536d6aaa61f8f1699ba50bf218a33
+2025-11-17 17:30:56,158 - lightrag - INFO -  == LLM cache == saving: default:extract:7cdfee4658c44774e901bd698b28d16b
+2025-11-17 17:30:56,159 - lightrag - INFO - Chunk 62 of 199 extracted 18 Ent + 10 Rel chunk-925a474b4538dda470bfd817f9d9a17d
+2025-11-17 17:31:10,979 - lightrag - INFO -  == LLM cache == saving: default:extract:ebf35ab8ec75d3be8bf35967e5338d94
+2025-11-17 17:31:11,891 - lightrag - INFO -  == LLM cache == saving: default:extract:088b7115e8d2e0b5b0e56a19dcfaf8fa
+2025-11-17 17:31:14,134 - lightrag - INFO -  == LLM cache == saving: default:extract:c1ae848ed997a8c2198a71aa8e27d375
+2025-11-17 17:31:14,134 - lightrag - INFO - Chunk 63 of 199 extracted 10 Ent + 7 Rel chunk-48e138ec8da954a5667dc785e919c86b
+2025-11-17 17:31:15,090 - lightrag - INFO -  == LLM cache == saving: default:extract:4bd8f53c8aec22b994f43f404c1ea2e8
+2025-11-17 17:31:16,129 - lightrag - INFO -  == LLM cache == saving: default:extract:3e8f5113199199e39d4eeb08aeb27dc2
+2025-11-17 17:31:16,129 - lightrag - INFO - Chunk 64 of 199 extracted 10 Ent + 6 Rel chunk-a99a89bec88823cedf4c1f0cd1a78e81
+2025-11-17 17:31:20,665 - lightrag - INFO -  == LLM cache == saving: default:extract:af9c75825bc3e3f9ca8c7a20ac8b0cd1
+2025-11-17 17:31:20,666 - lightrag - INFO - Chunk 65 of 199 extracted 15 Ent + 12 Rel chunk-37bca9f4d2ebaeed359c9b4eb7a0c1de
+2025-11-17 17:31:22,470 - lightrag - INFO -  == LLM cache == saving: default:extract:e895ff9d89e454d4c84e60b9d623939f
+2025-11-17 17:31:27,112 - lightrag - INFO -  == LLM cache == saving: default:extract:3edc7479d2319972efba2540bc354f2a
+2025-11-17 17:31:27,113 - lightrag - INFO - Chunk 66 of 199 extracted 18 Ent + 12 Rel chunk-a08bd0a819ea613e781d07188a350438
+2025-11-17 17:31:32,477 - lightrag - INFO -  == LLM cache == saving: default:extract:c4365b0a12ef03bcd5a4bfd8d6eb4e02
+2025-11-17 17:31:36,254 - lightrag - INFO -  == LLM cache == saving: default:extract:9dfbd802c40656e3890d4449873d35e2
+2025-11-17 17:31:36,582 - lightrag - INFO -  == LLM cache == saving: default:extract:9d99d0827cc3692a96615d2bdde72152
+2025-11-17 17:31:37,511 - lightrag - INFO -  == LLM cache == saving: default:extract:156cd1f74e773be8eaa2d4d17a72046a
+2025-11-17 17:31:37,512 - lightrag - INFO - Chunk 67 of 199 extracted 11 Ent + 8 Rel chunk-2dc31077c053f79ff82959575d335956
+2025-11-17 17:31:39,885 - lightrag - INFO -  == LLM cache == saving: default:extract:2c1ddc7f5fe7e9ecfeee22fe8886242a
+2025-11-17 17:31:39,885 - lightrag - INFO - Chunk 68 of 199 extracted 12 Ent + 9 Rel chunk-82c7205fc2067a4d00e43fd22276db22
+2025-11-17 17:31:43,360 - lightrag - INFO -  == LLM cache == saving: default:extract:cf5aaa5a0582acd3d7df8a2c42626edc
+2025-11-17 17:31:43,361 - lightrag - INFO - Chunk 69 of 199 extracted 11 Ent + 7 Rel chunk-ae28e3852f4a9f229250fc19eb39036b
+2025-11-17 17:31:56,268 - lightrag - INFO -  == LLM cache == saving: default:extract:105f7013f157ac14fc85f2d05ebd5c78
+2025-11-17 17:31:58,590 - lightrag - INFO -  == LLM cache == saving: default:extract:256d00e6b35cd8616396f3d83710aa56
+2025-11-17 17:32:00,810 - lightrag - INFO -  == LLM cache == saving: default:extract:684a389beedb7676d01b836ffa903376
+2025-11-17 17:32:01,447 - lightrag - INFO -  == LLM cache == saving: default:extract:98d9657696ad78b2a3dc0154c554cc92
+2025-11-17 17:32:04,460 - lightrag - INFO -  == LLM cache == saving: default:extract:8b86c389d75f0b66202c46bd74b38bc4
+2025-11-17 17:32:04,460 - lightrag - INFO - Chunk 70 of 199 extracted 13 Ent + 9 Rel chunk-0786666c65b5bf00705439d5cb60d5a0
+2025-11-17 17:32:06,082 - lightrag - INFO -  == LLM cache == saving: default:extract:9def03792d9af93af8d11aa10f207a10
+2025-11-17 17:32:06,083 - lightrag - INFO - Chunk 71 of 199 extracted 25 Ent + 9 Rel chunk-9fa573748870dc50a98a935843997c68
+2025-11-17 17:32:10,514 - lightrag - INFO -  == LLM cache == saving: default:extract:c061470411b16db5dc81132317573a96
+2025-11-17 17:32:10,514 - lightrag - INFO - Chunk 72 of 199 extracted 13 Ent + 8 Rel chunk-29c9b8b5fd2cd967c48522af79a9598f
+2025-11-17 17:32:10,975 - lightrag - INFO -  == LLM cache == saving: default:extract:4747c9125e3c55698c6a2add3e7155db
+2025-11-17 17:32:10,976 - lightrag - INFO - Chunk 73 of 199 extracted 15 Ent + 11 Rel chunk-db4e8318949a3fda5683c53985c6af05
+2025-11-17 17:32:22,182 - lightrag - INFO -  == LLM cache == saving: default:extract:70c5e94dd468cedb593c586812e4490c
+2025-11-17 17:32:25,241 - lightrag - INFO -  == LLM cache == saving: default:extract:89950d7be1b77a6a22243091b8345559
+2025-11-17 17:32:25,978 - lightrag - INFO -  == LLM cache == saving: default:extract:225935353b491f5f0e081d33982f5f57
+2025-11-17 17:32:32,208 - lightrag - INFO -  == LLM cache == saving: default:extract:317b10e224d3d23112d15984ca944cd4
+2025-11-17 17:32:32,209 - lightrag - INFO - Chunk 74 of 199 extracted 12 Ent + 9 Rel chunk-7606b44d6a30ad0519bc4c10785de79a
+2025-11-17 17:32:33,080 - lightrag - INFO -  == LLM cache == saving: default:extract:b0fede81926d33c46d5e75677b43e003
+2025-11-17 17:32:34,967 - lightrag - INFO -  == LLM cache == saving: default:extract:3044bd8c0367dbe2c010ed7a1822102d
+2025-11-17 17:32:34,968 - lightrag - INFO - Chunk 75 of 199 extracted 15 Ent + 14 Rel chunk-8333423c91919d7adde114b8286cca7e
+2025-11-17 17:32:35,328 - lightrag - INFO -  == LLM cache == saving: default:extract:836f7bb199d5f23eb1a3fd04b5810047
+2025-11-17 17:32:35,329 - lightrag - INFO - Chunk 76 of 199 extracted 13 Ent + 11 Rel chunk-06f823f3a91fcbc32c62fac3c6347715
+2025-11-17 17:32:41,018 - lightrag - INFO -  == LLM cache == saving: default:extract:b6669ebfe8d99fcd06e583803c95811f
+2025-11-17 17:32:41,019 - lightrag - INFO - Chunk 77 of 199 extracted 21 Ent + 11 Rel chunk-53e3a9418b1d7916e3c8717a397bbb58
+2025-11-17 17:32:55,973 - lightrag - INFO -  == LLM cache == saving: default:extract:c432dc54e7aafadb182d561ea2dd263b
+2025-11-17 17:32:57,621 - lightrag - INFO -  == LLM cache == saving: default:extract:4bb1794e5d35cc0f2bc2ae6212789c93
+2025-11-17 17:32:59,370 - lightrag - INFO -  == LLM cache == saving: default:extract:a0335b6784f824f18e2395f1632711ac
+2025-11-17 17:33:02,025 - lightrag - INFO -  == LLM cache == saving: default:extract:2fb0722b9be8878a08ab0146d1ceb829
+2025-11-17 17:33:02,025 - lightrag - INFO - Chunk 78 of 199 extracted 24 Ent + 9 Rel chunk-0fb70c1c798caae12ac2d64e61bcbad4
+2025-11-17 17:33:02,768 - lightrag - INFO -  == LLM cache == saving: default:extract:431e2361b8a688dae5ac4cb36e6cbd99
+2025-11-17 17:33:02,769 - lightrag - INFO - Chunk 79 of 199 extracted 13 Ent + 8 Rel chunk-c6d28b36fe82792dfb86e98ef76b3b04
+2025-11-17 17:33:06,885 - lightrag - INFO -  == LLM cache == saving: default:extract:294527f989c01872034f91613ed85823
+2025-11-17 17:33:06,886 - lightrag - INFO - Chunk 80 of 199 extracted 17 Ent + 6 Rel chunk-6268b6efa690f6e094e443dca6b4cb52
+2025-11-17 17:33:08,294 - lightrag - INFO -  == LLM cache == saving: default:extract:63d1b21ee8db3601c925e32dc8825765
+2025-11-17 17:33:12,806 - lightrag - INFO -  == LLM cache == saving: default:extract:3c617dadd0fcb9beb9e745276fae105f
+2025-11-17 17:33:12,806 - lightrag - INFO - Chunk 81 of 199 extracted 17 Ent + 14 Rel chunk-b11b0c66441242d2f687a0c55adee585
+2025-11-17 17:33:13,611 - lightrag - INFO -  == LLM cache == saving: default:extract:efd333a790426055f26b549b0a5c5d90
+2025-11-17 17:33:15,928 - lightrag - INFO -  == LLM cache == saving: default:extract:2a15449d1774b2561bfb890a825e278a
+2025-11-17 17:33:20,321 - lightrag - INFO -  == LLM cache == saving: default:extract:6188abc8c1cca74ecfd8470f2b6e05df
+2025-11-17 17:33:20,322 - lightrag - INFO - Chunk 82 of 199 extracted 11 Ent + 7 Rel chunk-6232dd9ed168a1113955e7300645338b
+2025-11-17 17:33:26,443 - lightrag - INFO -  == LLM cache == saving: default:extract:ebd244853350ed5619802dcab34a8bcd
+2025-11-17 17:33:29,649 - lightrag - INFO -  == LLM cache == saving: default:extract:94cd53d0680aa841fc85cf5b58e22200
+2025-11-17 17:33:29,650 - lightrag - INFO - Chunk 83 of 199 extracted 13 Ent + 8 Rel chunk-aeafa486bfd320cdaa7811ad75777912
+2025-11-17 17:33:30,903 - lightrag - INFO -  == LLM cache == saving: default:extract:00f0f9ce848528690fd58c1c4460b190
+2025-11-17 17:33:30,904 - lightrag - INFO - Chunk 84 of 199 extracted 18 Ent + 13 Rel chunk-9dc281a303d0d4c5300c0c1c45b739ed
+2025-11-17 17:33:38,249 - lightrag - INFO -  == LLM cache == saving: default:extract:075e89d854a441766c416b194fc0d561
+2025-11-17 17:33:41,896 - lightrag - INFO -  == LLM cache == saving: default:extract:5b87ff21414498c6d555d7089742a103
+2025-11-17 17:33:41,896 - lightrag - INFO - Chunk 85 of 199 extracted 12 Ent + 8 Rel chunk-b3c0f6d26f2f58ca13201c1a90b0a180
+2025-11-17 17:33:42,906 - lightrag - INFO -  == LLM cache == saving: default:extract:0481941dcc68ee4fc4a87d8dce66db20
+2025-11-17 17:33:44,292 - lightrag - INFO -  == LLM cache == saving: default:extract:95489ddb841c834335427df9ff04c167
+2025-11-17 17:33:44,520 - lightrag - INFO -  == LLM cache == saving: default:extract:660ecd62f4ce9e53f9e02dd1b32a49a2
+2025-11-17 17:33:46,256 - lightrag - INFO -  == LLM cache == saving: default:extract:95c5a53f56f0447997164627fd5e1f57
+2025-11-17 17:33:46,257 - lightrag - INFO - Chunk 86 of 199 extracted 10 Ent + 6 Rel chunk-1d61a5e7031ea811cc4dcc55a0a0e8fa
+2025-11-17 17:33:47,641 - lightrag - INFO -  == LLM cache == saving: default:extract:ab9cb8a60bd629f1283ca3133a18eb86
+2025-11-17 17:33:47,642 - lightrag - INFO - Chunk 87 of 199 extracted 10 Ent + 8 Rel chunk-1c7418fb993bb3daa95d8563909da1de
+2025-11-17 17:33:51,577 - lightrag - INFO -  == LLM cache == saving: default:extract:2e729e40049772df32ee39e287478faf
+2025-11-17 17:33:51,578 - lightrag - INFO - Chunk 88 of 199 extracted 23 Ent + 12 Rel chunk-789ec6c06f8c999ac21c89b085b3fdb7
+2025-11-17 17:33:59,934 - lightrag - INFO -  == LLM cache == saving: default:extract:d2d49834b422992d635b0d9642ef9898
+2025-11-17 17:34:03,059 - lightrag - INFO -  == LLM cache == saving: default:extract:c104e8e1cd87f012d00a2196acb3aaa7
+2025-11-17 17:34:06,894 - lightrag - INFO -  == LLM cache == saving: default:extract:c12b39a4a53269a4185a84889144af06
+2025-11-17 17:34:07,119 - lightrag - INFO -  == LLM cache == saving: default:extract:0acd9a1b8a72e869d0b38a2c3cae44c3
+2025-11-17 17:34:07,120 - lightrag - INFO - Chunk 89 of 199 extracted 17 Ent + 9 Rel chunk-aa251c48fc1fccfe45605a384f743662
+2025-11-17 17:34:07,912 - lightrag - INFO -  == LLM cache == saving: default:extract:2a14a972bba7028d50010ef998ac5864
+2025-11-17 17:34:08,140 - lightrag - INFO -  == LLM cache == saving: default:extract:e450f7f673abd632ea49f146518991fb
+2025-11-17 17:34:08,140 - lightrag - INFO - Chunk 90 of 199 extracted 13 Ent + 9 Rel chunk-697db1653f51e966e79b92eefeb01ec6
+2025-11-17 17:34:11,016 - lightrag - INFO -  == LLM cache == saving: default:extract:3db41da73d73d74904b3557e0dea42b2
+2025-11-17 17:34:11,017 - lightrag - INFO - Chunk 91 of 199 extracted 11 Ent + 8 Rel chunk-975e540ddee1810d43caf8df4adcf205
+2025-11-17 17:34:11,948 - lightrag - INFO -  == LLM cache == saving: default:extract:334fa4b5f646600b77d05e2422c1c034
+2025-11-17 17:34:11,948 - lightrag - INFO - Chunk 92 of 199 extracted 15 Ent + 12 Rel chunk-67e9c4dc95841db7d0af39e1267ae71b
+2025-11-17 17:34:22,378 - lightrag - INFO -  == LLM cache == saving: default:extract:10059576491bd9d46ab931faf8551ba5
+2025-11-17 17:34:24,326 - lightrag - INFO -  == LLM cache == saving: default:extract:e20949715b710704e9ee60c0519d1dfe
+2025-11-17 17:34:29,772 - lightrag - INFO -  == LLM cache == saving: default:extract:7d9be1e4eb14e2d42694ebad124d0f36
+2025-11-17 17:34:29,773 - lightrag - INFO - Chunk 93 of 199 extracted 15 Ent + 9 Rel chunk-b3958b5f7df8a8fc2661705e37dc1e06
+2025-11-17 17:34:30,764 - lightrag - INFO -  == LLM cache == saving: default:extract:4c4d99387931e8d14a6e279e8873a882
+2025-11-17 17:34:33,680 - lightrag - INFO -  == LLM cache == saving: default:extract:55a5074cb3da1b78f433cd985d88ce12
+2025-11-17 17:34:33,681 - lightrag - INFO - Chunk 94 of 199 extracted 14 Ent + 10 Rel chunk-a06038ec84f20e873b9e275a23aea8d9
+2025-11-17 17:34:35,901 - lightrag - INFO -  == LLM cache == saving: default:extract:7207a0acfbc105d7dc903dad9499dcad
+2025-11-17 17:34:40,210 - lightrag - INFO -  == LLM cache == saving: default:extract:ff042b2e63862b1ba25cb16b63911665
+2025-11-17 17:34:40,211 - lightrag - INFO - Chunk 95 of 199 extracted 16 Ent + 12 Rel chunk-53c0ac935ec10ce8a0839db4ad053ad1
+2025-11-17 17:34:43,293 - lightrag - INFO -  == LLM cache == saving: default:extract:0f9a40308e0c8f9baa855096cc723aab
+2025-11-17 17:34:43,294 - lightrag - INFO - Chunk 96 of 199 extracted 23 Ent + 18 Rel chunk-965e5a6bad03f2129a98be4373f99176
+2025-11-17 17:34:48,826 - lightrag - INFO -  == LLM cache == saving: default:extract:48fd99b9f8955ce1d4a19b879c5a4b7e
+2025-11-17 17:34:50,407 - lightrag - INFO -  == LLM cache == saving: default:extract:c754171669d0f8321ffc175fbbca7483
+2025-11-17 17:34:51,250 - lightrag - INFO -  == LLM cache == saving: default:extract:599f2bdbd7967ce79a3e1f0c3df77fc8
+2025-11-17 17:34:54,024 - lightrag - INFO -  == LLM cache == saving: default:extract:76bf6ae32937dc174e8c3e04ef2497f9
+2025-11-17 17:34:54,024 - lightrag - INFO - Chunk 97 of 199 extracted 16 Ent + 12 Rel chunk-c37f547042fc10baabdbfaadf010bce5
+2025-11-17 17:34:56,899 - lightrag - INFO -  == LLM cache == saving: default:extract:096fd13a87e4ce21bc78b16e2bbe159c
+2025-11-17 17:34:56,899 - lightrag - INFO - Chunk 98 of 199 extracted 12 Ent + 10 Rel chunk-7390896141393e0b4d1c15df77b5c0a7
+2025-11-17 17:34:59,162 - lightrag - INFO -  == LLM cache == saving: default:extract:d46cb73dab957a2dc460980de8b34103
+2025-11-17 17:34:59,163 - lightrag - INFO - Chunk 99 of 199 extracted 12 Ent + 8 Rel chunk-1dc8d8e5ed4f165f3e56305a7644ba05
+2025-11-17 17:35:11,008 - lightrag - INFO -  == LLM cache == saving: default:extract:dd140199879504be938b169cdcf35e4b
+2025-11-17 17:35:11,451 - lightrag - INFO -  == LLM cache == saving: default:extract:4bac9dfe10b6a9d71383ee4971dce0f8
+2025-11-17 17:35:13,458 - lightrag - INFO -  == LLM cache == saving: default:extract:105380b31ef394ef52f3b7f207755ac1
+2025-11-17 17:35:18,374 - lightrag - INFO -  == LLM cache == saving: default:extract:52b54793a70b73b3809689c8632ef23b
+2025-11-17 17:35:18,375 - lightrag - INFO - Chunk 100 of 199 extracted 12 Ent + 11 Rel chunk-0bd86bf8fc82f14fa5f7f51d924514e7
+2025-11-17 17:35:19,014 - lightrag - INFO -  == LLM cache == saving: default:extract:dc02f87660fc7d6b654ea389ac515665
+2025-11-17 17:35:19,015 - lightrag - INFO - Chunk 101 of 199 extracted 13 Ent + 7 Rel chunk-a2778e34af702d49d5e70867726e14b2
+2025-11-17 17:35:20,614 - lightrag - INFO -  == LLM cache == saving: default:extract:0dbe78d0869c18d71d3390b36e6080ca
+2025-11-17 17:35:20,894 - lightrag - INFO -  == LLM cache == saving: default:extract:d67971a7407fd643689557c0083e42dc
+2025-11-17 17:35:20,895 - lightrag - INFO - Chunk 102 of 199 extracted 24 Ent + 8 Rel chunk-6a93aa507dd7d98a02e8ba92d39e3649
+2025-11-17 17:35:27,322 - lightrag - INFO -  == LLM cache == saving: default:extract:7fc7e6be6da3cff26aff29416ba09923
+2025-11-17 17:35:27,322 - lightrag - INFO - Chunk 103 of 199 extracted 19 Ent + 16 Rel chunk-5846f51c2ca4fae54459ce9c50e3e820
+2025-11-17 17:35:30,701 - lightrag - INFO -  == LLM cache == saving: default:extract:88e8117999320bea85666956beefbdcd
+2025-11-17 17:35:37,915 - lightrag - INFO -  == LLM cache == saving: default:extract:1e4914a08095c7987db7895c0893de56
+2025-11-17 17:35:37,916 - lightrag - INFO - Chunk 104 of 199 extracted 14 Ent + 8 Rel chunk-7f9fe20fe42489996573eb1b436128b6
+2025-11-17 17:35:40,427 - lightrag - INFO -  == LLM cache == saving: default:extract:e533840c74a341fd61641af63f866828
+2025-11-17 17:35:40,654 - lightrag - INFO -  == LLM cache == saving: default:extract:a5b00c96da4a5284f1bf0a98b6080053
+2025-11-17 17:35:40,881 - lightrag - INFO -  == LLM cache == saving: default:extract:28d78995d9d1f46e6586e6177ffe713c
+2025-11-17 17:35:46,784 - lightrag - INFO -  == LLM cache == saving: default:extract:26598dc4f3aebe02407acb7e4fd190fb
+2025-11-17 17:35:46,784 - lightrag - INFO - Chunk 105 of 199 extracted 17 Ent + 8 Rel chunk-650982a589c2d527bc13923ccd0569ef
+2025-11-17 17:35:48,272 - lightrag - INFO -  == LLM cache == saving: default:extract:dae2ec7067ede25ef34e3ac8a435d45c
+2025-11-17 17:35:48,273 - lightrag - INFO - Chunk 106 of 199 extracted 12 Ent + 7 Rel chunk-fc469adbdd7a41816d59f249439bc726
+2025-11-17 17:35:51,317 - lightrag - INFO -  == LLM cache == saving: default:extract:a49d69776249e4d0c6b5193f917ddc0c
+2025-11-17 17:35:51,318 - lightrag - INFO - Chunk 107 of 199 extracted 19 Ent + 10 Rel chunk-562e1870b5e20f8648a2e56d960a1148
+2025-11-17 17:35:56,102 - lightrag - INFO -  == LLM cache == saving: default:extract:aadd97ded40c5aacb3a1634d2a0c8b6d
+2025-11-17 17:35:59,292 - lightrag - INFO -  == LLM cache == saving: default:extract:0c107928f515f2ad79ca55d2681f800e
+2025-11-17 17:36:01,865 - lightrag - INFO -  == LLM cache == saving: default:extract:e4967e49c4dc2ce4051e68e65efebf36
+2025-11-17 17:36:01,865 - lightrag - INFO - Chunk 108 of 199 extracted 15 Ent + 11 Rel chunk-0d388da75afb5ea2d01c97e55cb2b872
+2025-11-17 17:36:05,854 - lightrag - INFO -  == LLM cache == saving: default:extract:7c949f4efefe50b95dd5158c2f9a00bb
+2025-11-17 17:36:05,855 - lightrag - INFO - Chunk 109 of 199 extracted 11 Ent + 8 Rel chunk-e90bcd28496f1f39a21973656e3e496f
+2025-11-17 17:36:08,705 - lightrag - INFO -  == LLM cache == saving: default:extract:a582888c59b68f234b9133b943b19913
+2025-11-17 17:36:13,760 - lightrag - INFO -  == LLM cache == saving: default:extract:d52a327911ad2b16bd91b60f76eb758a
+2025-11-17 17:36:13,760 - lightrag - INFO - Chunk 110 of 199 extracted 18 Ent + 7 Rel chunk-9040f5949ae0ff36ce88faa1f4b67ead
+2025-11-17 17:36:24,828 - lightrag - INFO -  == LLM cache == saving: default:extract:31b166754fa2e5f466c3d638757a9eb1
+2025-11-17 17:36:29,793 - lightrag - INFO -  == LLM cache == saving: default:extract:5bed08eccf5609982a591b0e85281003
+2025-11-17 17:36:30,281 - lightrag - INFO -  == LLM cache == saving: default:extract:9df912584ca726b380fbb93fd659619d
+2025-11-17 17:36:33,433 - lightrag - INFO -  == LLM cache == saving: default:extract:d3bfce57b75da40ec60e8e68805be484
+2025-11-17 17:36:33,434 - lightrag - INFO - Chunk 111 of 199 extracted 14 Ent + 12 Rel chunk-dd58424a14d9942181ba4ca3c1ec81c1
+2025-11-17 17:36:34,623 - lightrag - INFO -  == LLM cache == saving: default:extract:5ce3327b993fbb14e785ae41e369ac6b
+2025-11-17 17:36:34,624 - lightrag - INFO - Chunk 112 of 199 extracted 36 Ent + 23 Rel chunk-cb41559e96b71d2bb4ea207c806e8d5f
+2025-11-17 17:36:36,064 - lightrag - INFO -  == LLM cache == saving: default:extract:573d021f9db04b58116fa745a43daca2
+2025-11-17 17:36:43,057 - lightrag - INFO -  == LLM cache == saving: default:extract:3c2df96a0a5430ed73939db7e129ab8e
+2025-11-17 17:36:43,059 - lightrag - INFO - Chunk 113 of 199 extracted 17 Ent + 16 Rel chunk-4966a628b12ecec4187796598764cf23
+2025-11-17 17:36:43,928 - lightrag - INFO -  == LLM cache == saving: default:extract:e59fa6834b5cef4caadc7c6cccab3a64
+2025-11-17 17:36:43,928 - lightrag - INFO - Chunk 114 of 199 extracted 28 Ent + 16 Rel chunk-e45947107c74d8a06e350be57a94a408
+2025-11-17 17:36:48,499 - lightrag - INFO -  == LLM cache == saving: default:extract:d015faed600b88c67d40fbc98f563262
+2025-11-17 17:36:50,072 - lightrag - INFO -  == LLM cache == saving: default:extract:6f2cd41e395b5d012ca0449edb8029b5
+2025-11-17 17:36:52,496 - lightrag - INFO -  == LLM cache == saving: default:extract:e86e4f24f3b12b6ba1616fb587be9816
+2025-11-17 17:36:52,496 - lightrag - INFO - Chunk 115 of 199 extracted 11 Ent + 6 Rel chunk-fba176235a4410ba8723447134c92579
+2025-11-17 17:36:54,772 - lightrag - INFO -  == LLM cache == saving: default:extract:0bf978dfc2987acf0dabd256695ab24d
+2025-11-17 17:36:54,772 - lightrag - INFO - Chunk 116 of 199 extracted 12 Ent + 9 Rel chunk-a0d4d6b091e033fd01aa721422b68ef5
+2025-11-17 17:36:59,270 - lightrag - INFO -  == LLM cache == saving: default:extract:1a2939878ddcb9299a4ae5ec79c0a2db
+2025-11-17 17:37:02,297 - lightrag - INFO -  == LLM cache == saving: default:extract:8d1f1420aaf92db8cd07e11835b8af7c
+2025-11-17 17:37:02,298 - lightrag - INFO - Chunk 117 of 199 extracted 13 Ent + 6 Rel chunk-725b48dc82aad42ba3dc14f4b5207551
+2025-11-17 17:37:07,986 - lightrag - INFO -  == LLM cache == saving: default:extract:9f463812c29b574089150f352bac8061
+2025-11-17 17:37:09,439 - lightrag - INFO -  == LLM cache == saving: default:extract:e6fb9dafba03dad5eca4e1bbb116a040
+2025-11-17 17:37:11,963 - lightrag - INFO -  == LLM cache == saving: default:extract:194094e07b3c38801f1e333895d75881
+2025-11-17 17:37:14,329 - lightrag - INFO -  == LLM cache == saving: default:extract:15ff8e67a9efa530bdd7028303101b41
+2025-11-17 17:37:14,330 - lightrag - INFO - Chunk 118 of 199 extracted 10 Ent + 7 Rel chunk-a65ba958750476cc543741efe815c7c4
+2025-11-17 17:37:14,886 - lightrag - INFO -  == LLM cache == saving: default:extract:886e4c28311cf144c068ed9b65696647
+2025-11-17 17:37:14,887 - lightrag - INFO - Chunk 119 of 199 extracted 21 Ent + 12 Rel chunk-d0f15711706bc171fed17a7fab91b4b6
+2025-11-17 17:37:16,959 - lightrag - INFO -  == LLM cache == saving: default:extract:58cd4ce416db93079e90de9750e06a6d
+2025-11-17 17:37:16,960 - lightrag - INFO - Chunk 120 of 199 extracted 13 Ent + 9 Rel chunk-8fbedfa2d88a7b3852f4c2bd0bb64af0
+2025-11-17 17:37:18,365 - lightrag - INFO -  == LLM cache == saving: default:extract:07a074383bacf450e82084b6f1e27b5b
+2025-11-17 17:37:22,950 - lightrag - INFO -  == LLM cache == saving: default:extract:bdfa28459c00c5dd3ad62cb53a10d9cb
+2025-11-17 17:37:22,951 - lightrag - INFO - Chunk 121 of 199 extracted 10 Ent + 9 Rel chunk-9e8b25c2957355218780bdfd8b72df45
+2025-11-17 17:37:34,636 - lightrag - INFO -  == LLM cache == saving: default:extract:1fb40c2511e2350b390b9dfbe7ee37a8
+2025-11-17 17:37:38,769 - lightrag - INFO -  == LLM cache == saving: default:extract:8e7b6a186e12261c97ac87b75605f336
+2025-11-17 17:37:46,016 - lightrag - INFO -  == LLM cache == saving: default:extract:ed00011645df7478e915d49061e7ebc5
+2025-11-17 17:37:46,017 - lightrag - INFO - Chunk 122 of 199 extracted 13 Ent + 10 Rel chunk-bb68daec67dd8f436d82814b0e61ff21
+2025-11-17 17:37:46,565 - lightrag - INFO -  == LLM cache == saving: default:extract:872b7075e4918646b6d794d9bb74777b
+2025-11-17 17:37:46,566 - lightrag - INFO - Chunk 123 of 199 extracted 12 Ent + 11 Rel chunk-85e75e869fcfcb7c5431dbcdd532137f
+2025-11-17 17:37:47,705 - lightrag - INFO -  == LLM cache == saving: default:extract:17e2921803f9a5d044c8b35826966fd5
+2025-11-17 17:37:52,216 - lightrag - INFO -  == LLM cache == saving: default:extract:0430df3cef2ce71cc3f7fbbfafdc276a
+2025-11-17 17:37:52,217 - lightrag - INFO - Chunk 124 of 199 extracted 14 Ent + 13 Rel chunk-ee254e84e63bd35682ed56c41cef9247
+2025-11-17 17:37:59,621 - lightrag - INFO -  == LLM cache == saving: default:extract:493ad8092d4530deb6107e91750295d4
+2025-11-17 17:38:01,696 - lightrag - INFO -  == LLM cache == saving: default:extract:8cfd5132e9b8514de76c65ce0f44604a
+2025-11-17 17:38:05,745 - lightrag - INFO -  == LLM cache == saving: default:extract:00f4a8d307f3ff59b6291173a8a88073
+2025-11-17 17:38:05,746 - lightrag - INFO - Chunk 125 of 199 extracted 23 Ent + 15 Rel chunk-b5cfcc365cd093374564eb27dcbf5b82
+2025-11-17 17:38:08,497 - lightrag - INFO -  == LLM cache == saving: default:extract:4acc0b37b2a2bf7bda77540943d670dc
+2025-11-17 17:38:08,723 - lightrag - INFO -  == LLM cache == saving: default:extract:3895eeb7b1b59cd2aa5edfe9b3fecdeb
+2025-11-17 17:38:08,724 - lightrag - INFO - Chunk 126 of 199 extracted 10 Ent + 7 Rel chunk-c9383db20cd696688798a193862cb5cc
+2025-11-17 17:38:08,950 - lightrag - INFO -  == LLM cache == saving: default:extract:e62769d16327976ac0ca25912351772b
+2025-11-17 17:38:14,992 - lightrag - INFO -  == LLM cache == saving: default:extract:442a1c796113c60574e8a4d06ca842a3
+2025-11-17 17:38:14,993 - lightrag - INFO - Chunk 127 of 199 extracted 13 Ent + 7 Rel chunk-711bee9440e11d7c737bc4a49b880910
+2025-11-17 17:38:18,686 - lightrag - INFO -  == LLM cache == saving: default:extract:65ca8efd4887d1b1bc06c25cf0bd5b09
+2025-11-17 17:38:18,687 - lightrag - INFO - Chunk 128 of 199 extracted 20 Ent + 12 Rel chunk-c1c1687a8a20b9c451956cf8bba241cc
+2025-11-17 17:38:22,352 - lightrag - INFO -  == LLM cache == saving: default:extract:44f2de850d3f635e94e68193c58da742
+2025-11-17 17:38:29,849 - lightrag - INFO -  == LLM cache == saving: default:extract:b85b4936a35b30e018dc17662ce1a1e3
+2025-11-17 17:38:29,850 - lightrag - INFO - Chunk 129 of 199 extracted 12 Ent + 8 Rel chunk-9ad38c9dc069a8ff8df58c42f00eba23
+2025-11-17 17:38:31,766 - lightrag - INFO -  == LLM cache == saving: default:extract:ab5dad4525535748119a1b7646d452c2
+2025-11-17 17:38:35,275 - lightrag - INFO -  == LLM cache == saving: default:extract:a945dcabac4445821dfb9fe694db041a
+2025-11-17 17:38:39,541 - lightrag - INFO -  == LLM cache == saving: default:extract:b2cefcd21dc33fe12e9ccd41f2d7ebe5
+2025-11-17 17:38:39,542 - lightrag - INFO - Chunk 130 of 199 extracted 21 Ent + 10 Rel chunk-052101b592e186cce702983d2acc67e4
+2025-11-17 17:38:39,771 - lightrag - INFO -  == LLM cache == saving: default:extract:eb45bb5da932f69f6af37cc53c8f240c
+2025-11-17 17:38:44,585 - lightrag - INFO -  == LLM cache == saving: default:extract:e169a3714c42b9b52aa6f9518ef6b638
+2025-11-17 17:38:44,586 - lightrag - INFO - Chunk 131 of 199 extracted 17 Ent + 10 Rel chunk-ea7b3f83164304ee4a562046eb0f5033
+2025-11-17 17:38:45,696 - lightrag - INFO -  == LLM cache == saving: default:extract:437c5e6ce11455609f59b5fe29afc108
+2025-11-17 17:38:45,697 - lightrag - INFO - Chunk 132 of 199 extracted 15 Ent + 10 Rel chunk-3f05c8ea6f7c7b4ba1fb0ff1c1733980
+2025-11-17 17:38:58,277 - lightrag - INFO -  == LLM cache == saving: default:extract:918633cba6ba57a0ecc961a4a9fab8fe
+2025-11-17 17:39:02,232 - lightrag - INFO -  == LLM cache == saving: default:extract:a8cb10a5cd6811d61f9e1acd896a9fdf
+2025-11-17 17:39:03,652 - lightrag - INFO -  == LLM cache == saving: default:extract:802ee5e4bc98174f4aa6607955bdf566
+2025-11-17 17:39:06,172 - lightrag - INFO -  == LLM cache == saving: default:extract:7aa168ce9d4cb89d106c9d055e68c128
+2025-11-17 17:39:06,838 - lightrag - INFO -  == LLM cache == saving: default:extract:477f378c0b1b74d77369e0de6af27139
+2025-11-17 17:39:06,838 - lightrag - INFO - Chunk 133 of 199 extracted 13 Ent + 8 Rel chunk-27b3a0f53b4be1d525497f87555d7a06
+2025-11-17 17:39:09,324 - lightrag - INFO -  == LLM cache == saving: default:extract:7f49f47d8ac4947be21538bc422033eb
+2025-11-17 17:39:09,324 - lightrag - INFO - Chunk 134 of 199 extracted 19 Ent + 8 Rel chunk-d249262ff9e7e657de99a30199159cdf
+2025-11-17 17:39:09,804 - lightrag - INFO -  == LLM cache == saving: default:extract:d462e450658beb8ebc84a3db4069effb
+2025-11-17 17:39:09,805 - lightrag - INFO - Chunk 135 of 199 extracted 14 Ent + 10 Rel chunk-b4d036ee5fd77783b9e7ddef3a8477ae
+2025-11-17 17:39:13,649 - lightrag - INFO -  == LLM cache == saving: default:extract:0477547923769451145d5db802e0b48c
+2025-11-17 17:39:13,650 - lightrag - INFO - Chunk 136 of 199 extracted 15 Ent + 12 Rel chunk-be6e1cb2fe11f4d9962741c30d446a69
+2025-11-17 17:39:27,238 - lightrag - INFO -  == LLM cache == saving: default:extract:3cdb60fb68225575116e833e6ccf0e01
+2025-11-17 17:39:29,789 - lightrag - INFO -  == LLM cache == saving: default:extract:af1e5da2cfa1107d0f8e21245a1a1e89
+2025-11-17 17:39:38,219 - lightrag - INFO -  == LLM cache == saving: default:extract:402c03cde4050d9383097a17bbccbe0d
+2025-11-17 17:39:44,936 - lightrag - INFO -  == LLM cache == saving: default:extract:e25ef8c7d39cdbe8f8c58d18766df77d
+2025-11-17 17:39:44,937 - lightrag - INFO - Chunk 137 of 199 extracted 21 Ent + 14 Rel chunk-c9bfa651267335dd5e6ae5a24d85a072
+2025-11-17 17:39:45,163 - lightrag - INFO -  == LLM cache == saving: default:extract:2b1710a4a16514c575d66934a2190a2e
+2025-11-17 17:39:45,166 - lightrag - INFO - Chunk 138 of 199 extracted 22 Ent + 18 Rel chunk-db3a86fc5d439d9bfb3845e468a2a551
+2025-11-17 17:39:47,571 - lightrag - INFO -  == LLM cache == saving: default:extract:9aea7f638e9e1af522ec2e15680d3538
+2025-11-17 17:39:47,572 - lightrag - INFO - Chunk 139 of 199 extracted 22 Ent + 13 Rel chunk-d04ad65c55d0dbbee5061cf3b24030ef
+2025-11-17 17:40:03,485 - lightrag - INFO -  == LLM cache == saving: default:extract:f812934b9f1f6b2d97d290596c41d193
+2025-11-17 17:40:05,832 - lightrag - INFO -  == LLM cache == saving: default:extract:0d42a1211c23d5a9b5578b0c65a31cad
+2025-11-17 17:40:06,886 - lightrag - INFO -  == LLM cache == saving: default:extract:d556752c506a258848e1fefa86920325
+2025-11-17 17:40:06,886 - lightrag - INFO - Chunk 140 of 199 extracted 27 Ent + 25 Rel chunk-e9a7fe3b15f3289198c7114b44890dea
+2025-11-17 17:40:19,132 - lightrag - INFO -  == LLM cache == saving: default:extract:669af8a5da2f3c81fa9a2b9fab428ce8
+2025-11-17 17:40:21,300 - lightrag - INFO -  == LLM cache == saving: default:extract:b51501b43b3f5cfd02d2541d16b8a405
+2025-11-17 17:40:21,776 - lightrag - INFO -  == LLM cache == saving: default:extract:c041df0188c75e4f8f28b76b8807f0e2
+2025-11-17 17:40:21,777 - lightrag - INFO - Chunk 141 of 199 extracted 18 Ent + 11 Rel chunk-e247ae57c50c62bded7114986471226e
+2025-11-17 17:40:23,659 - lightrag - INFO -  == LLM cache == saving: default:extract:403e4bb1b722af8949516fe0fdfbfc2a
+2025-11-17 17:40:23,659 - lightrag - INFO - Chunk 142 of 199 extracted 22 Ent + 14 Rel chunk-95c76786e9d6dbf06ddf5d55af0cf658
+2025-11-17 17:40:25,002 - lightrag - INFO -  == LLM cache == saving: default:extract:345d331c222d219158d502072aa1b4f7
+2025-11-17 17:40:29,971 - lightrag - INFO -  == LLM cache == saving: default:extract:41a8372e8fb4aab6841b4045918af5be
+2025-11-17 17:40:29,971 - lightrag - INFO - Chunk 143 of 199 extracted 24 Ent + 15 Rel chunk-8ec4d44b145ca896ff1216caa90ce5dd
+2025-11-17 17:40:45,045 - lightrag - INFO -  == LLM cache == saving: default:extract:8c57710321e2b32e43f0bf6b59df28e1
+2025-11-17 17:40:47,267 - lightrag - INFO -  == LLM cache == saving: default:extract:0b2de5b1abffb0f068656930810b0ff8
+2025-11-17 17:40:47,269 - lightrag - INFO - Chunk 144 of 199 extracted 18 Ent + 15 Rel chunk-b3ba7430f3a31330247f52afe7e9c68a
+2025-11-17 17:40:51,861 - lightrag - INFO -  == LLM cache == saving: default:extract:11b579a7127d09f57a0f22f3fde5003f
+2025-11-17 17:40:57,733 - lightrag - INFO -  == LLM cache == saving: default:extract:6e2176db9af9f7e87e3c19677512abd8
+2025-11-17 17:40:57,734 - lightrag - INFO - Chunk 145 of 199 extracted 17 Ent + 8 Rel chunk-8ba71a5181f3814dffb21d3399441bea
+2025-11-17 17:40:59,401 - lightrag - INFO -  == LLM cache == saving: default:extract:31c7ec5953122b633cda2e1041327a6c
+2025-11-17 17:40:59,402 - lightrag - INFO - Chunk 146 of 199 extracted 15 Ent + 14 Rel chunk-9d0e32bdc49dbab9c2c953abf363e317
+2025-11-17 17:41:01,969 - lightrag - INFO -  == LLM cache == saving: default:extract:715f12f84fb542b3794da3a460e34ad2
+2025-11-17 17:41:06,554 - lightrag - INFO -  == LLM cache == saving: default:extract:b5904b3432efceafd4a64f94ff40b5c0
+2025-11-17 17:41:06,554 - lightrag - INFO - Chunk 147 of 199 extracted 20 Ent + 7 Rel chunk-18b5e32980f3efa0cd012e2abab9b9fc
+2025-11-17 17:41:11,050 - lightrag - INFO -  == LLM cache == saving: default:extract:1bffc07941cdab901f01e8fc7d31e4dd
+2025-11-17 17:41:13,172 - lightrag - INFO -  == LLM cache == saving: default:extract:1e3a98552ca5ba95eac196a1ee3c57b5
+2025-11-17 17:41:19,642 - lightrag - INFO -  == LLM cache == saving: default:extract:b388d10cebdb8c3e22c4a0c897ae4566
+2025-11-17 17:41:19,643 - lightrag - INFO - Chunk 148 of 199 extracted 18 Ent + 9 Rel chunk-8a1130b0f6bbe935ceddbafc6ce2740f
+2025-11-17 17:41:22,110 - lightrag - INFO -  == LLM cache == saving: default:extract:8077208b95a508e02b8958a6de81d92b
+2025-11-17 17:41:22,111 - lightrag - INFO - Chunk 149 of 199 extracted 12 Ent + 7 Rel chunk-1e017cd4fd8af1ebbcb582a93fbfe1ea
+2025-11-17 17:41:22,817 - lightrag - INFO -  == LLM cache == saving: default:extract:a74df23733c1e6ba138d1b93598ad226
+2025-11-17 17:41:28,606 - lightrag - INFO -  == LLM cache == saving: default:extract:ff4eb529dd4f2bde7ad12713cd81b6d5
+2025-11-17 17:41:28,607 - lightrag - INFO - Chunk 150 of 199 extracted 17 Ent + 7 Rel chunk-cd2be7a2ce722f07b19c80e6e1690a8e
+2025-11-17 17:41:36,982 - lightrag - INFO -  == LLM cache == saving: default:extract:46e4f6446a22d9053cb3ef5be9b51655
+2025-11-17 17:41:40,076 - lightrag - INFO -  == LLM cache == saving: default:extract:cbc03e0f45718d576ec052a286b4450c
+2025-11-17 17:41:40,076 - lightrag - INFO - Chunk 151 of 199 extracted 11 Ent + 6 Rel chunk-b8a273f96e02707e2e87fc43353ed57f
+2025-11-17 17:41:41,993 - lightrag - INFO -  == LLM cache == saving: default:extract:d71eef70f2478035aa9073e708bb6ae4
+2025-11-17 17:41:51,204 - lightrag - INFO -  == LLM cache == saving: default:extract:6e7ae06b2c1dade7581546f2f7a9f786
+2025-11-17 17:41:53,097 - lightrag - INFO -  == LLM cache == saving: default:extract:2bbb91c0a1da3b90659680d7499c5aa0
+2025-11-17 17:41:53,098 - lightrag - INFO - Chunk 152 of 199 extracted 19 Ent + 12 Rel chunk-e74c94f9f2ff33172671e8742338c6d1
+2025-11-17 17:41:53,354 - lightrag - INFO -  == LLM cache == saving: default:extract:a81a727fd2b7efb3207fb225715ef6f4
+2025-11-17 17:41:53,355 - lightrag - INFO - Chunk 153 of 199 extracted 16 Ent + 12 Rel chunk-121b68d5de585c87804c9bce3cdc71eb
+2025-11-17 17:41:55,537 - lightrag - INFO -  == LLM cache == saving: default:extract:78c8f82cd4421074130efbf89d7a2fe2
+2025-11-17 17:42:06,876 - lightrag - INFO -  == LLM cache == saving: default:extract:3d7087bb0fceea3d38ce543fe7fc2734
+2025-11-17 17:42:06,877 - lightrag - INFO - Chunk 154 of 199 extracted 18 Ent + 10 Rel chunk-9d383e4798456aa46e381fd2b02f6f96
+2025-11-17 17:42:08,799 - lightrag - INFO -  == LLM cache == saving: default:extract:9792c9155f228d263a5a340d50b38a8a
+2025-11-17 17:42:16,360 - lightrag - INFO -  == LLM cache == saving: default:extract:d72b455e9a6eae36cf1897854e87f1b8
+2025-11-17 17:42:18,293 - lightrag - INFO -  == LLM cache == saving: default:extract:c1c2d6ca685c97aa18d7f2d005a9720a
+2025-11-17 17:42:18,293 - lightrag - INFO - Chunk 155 of 199 extracted 14 Ent + 7 Rel chunk-30c0bb66b1a2f93e89f5342ab1077451
+2025-11-17 17:42:21,148 - lightrag - INFO -  == LLM cache == saving: default:extract:714566f4dbd28478af8f728a6ff1ba0e
+2025-11-17 17:42:21,149 - lightrag - INFO - Chunk 156 of 199 extracted 17 Ent + 14 Rel chunk-ba28a3ce3534c0655a0d08a953d7f038
+2025-11-17 17:42:30,885 - lightrag - INFO -  == LLM cache == saving: default:extract:7666db76de872a51a9b7414fd8659b4a
+2025-11-17 17:42:41,595 - lightrag - INFO -  == LLM cache == saving: default:extract:932669b8abfae81dddde587580f72f1c
+2025-11-17 17:42:44,872 - lightrag - INFO -  == LLM cache == saving: default:extract:d8f1d0d1076cadca584ddf65a451076d
+2025-11-17 17:42:44,872 - lightrag - INFO - Chunk 157 of 199 extracted 31 Ent + 6 Rel chunk-3fbf2f6a3c150687a59f814d94f1d150
+2025-11-17 17:42:50,320 - lightrag - INFO -  == LLM cache == saving: default:extract:d9483844e55be72c7bf6e1d300456098
+2025-11-17 17:42:50,321 - lightrag - INFO - Chunk 158 of 199 extracted 11 Ent + 9 Rel chunk-74f18dd51a0091fc888512458a85b0a1
+2025-11-17 17:42:56,837 - lightrag - INFO -  == LLM cache == saving: default:extract:d4c87e6734d00642307031354ab931ff
+2025-11-17 17:43:01,498 - lightrag - INFO -  == LLM cache == saving: default:extract:f9a22c8e43d52423a80e5259429c3e9a
+2025-11-17 17:43:01,498 - lightrag - INFO - Chunk 159 of 199 extracted 20 Ent + 11 Rel chunk-6b02315423350f3598288e189fbcb8ae
+2025-11-17 17:43:05,704 - lightrag - INFO -  == LLM cache == saving: default:extract:0e1ba79cc8801264b6fff5677ffc37c1
+2025-11-17 17:43:11,424 - lightrag - INFO -  == LLM cache == saving: default:extract:cd7cc350da6523ef54d246d7fd446b12
+2025-11-17 17:43:11,425 - lightrag - INFO - Chunk 160 of 199 extracted 25 Ent + 8 Rel chunk-84367cc8f7a94b97b4b66a1ca127c15f
+2025-11-17 17:43:13,555 - lightrag - INFO -  == LLM cache == saving: default:extract:9e6dd3d95a6f8409ece59a38f8e85fa4
+2025-11-17 17:43:19,713 - lightrag - INFO -  == LLM cache == saving: default:extract:c9bae4ab37d0a197384a59204513c73c
+2025-11-17 17:43:19,715 - lightrag - WARNING - chunk-d4bc8b1b941d18ac455e5f255e1df8c1: LLM output format error; found 4/5 fields on REALTION `Ultrasound (US)`~`Liver Cancer Screening`
+2025-11-17 17:43:19,942 - lightrag - INFO -  == LLM cache == saving: default:extract:565222a5de93e5bc5b3040a94c673723
+2025-11-17 17:43:19,943 - lightrag - INFO - Chunk 161 of 199 extracted 15 Ent + 8 Rel chunk-5fdcf47f3da06d3e0213112c96eb93d4
+2025-11-17 17:43:23,137 - lightrag - INFO -  == LLM cache == saving: default:extract:b0650c45aba5cfd83fba46fb6e13222d
+2025-11-17 17:43:23,137 - lightrag - INFO - Chunk 162 of 199 extracted 16 Ent + 8 Rel chunk-d4bc8b1b941d18ac455e5f255e1df8c1
+2025-11-17 17:43:27,260 - lightrag - INFO -  == LLM cache == saving: default:extract:d8851836014c126a74eefc1142bff084
+2025-11-17 17:43:30,602 - lightrag - INFO -  == LLM cache == saving: default:extract:f6d0a3d96cc70749c99d40daea8449e0
+2025-11-17 17:43:38,490 - lightrag - INFO -  == LLM cache == saving: default:extract:2b1f272c24a1bbfdc04d0557a6a73e5e
+2025-11-17 17:43:38,491 - lightrag - INFO - Chunk 163 of 199 extracted 20 Ent + 13 Rel chunk-01c80b2d18abb91c5be598d33cf7a33a
+2025-11-17 17:43:39,574 - lightrag - INFO -  == LLM cache == saving: default:extract:dd12904ed98e6abc0505d94df0dc77e6
+2025-11-17 17:43:41,932 - lightrag - INFO -  == LLM cache == saving: default:extract:5cea97f7c853723adf5eb3d7c6d21e51
+2025-11-17 17:43:41,933 - lightrag - INFO - Chunk 164 of 199 extracted 15 Ent + 10 Rel chunk-c77e0d4642a374a51f87e7e25b19281f
+2025-11-17 17:43:44,786 - lightrag - INFO -  == LLM cache == saving: default:extract:eb9d50da1987bfcf6c46a440383509be
+2025-11-17 17:43:48,203 - lightrag - INFO -  == LLM cache == saving: default:extract:9b9eaca156b60e400fe714475968d7c9
+2025-11-17 17:43:48,204 - lightrag - INFO - Chunk 165 of 199 extracted 15 Ent + 12 Rel chunk-da0bfe00946dcdff3a8a6fb3d73ce6e1
+2025-11-17 17:43:56,588 - lightrag - INFO -  == LLM cache == saving: default:extract:0dd3718a3815799977a97d7e28b50b26
+2025-11-17 17:43:56,589 - lightrag - INFO - Chunk 166 of 199 extracted 15 Ent + 14 Rel chunk-fa5247d6b8c17e58ab315a0d641c7ad3
+2025-11-17 17:44:02,688 - lightrag - INFO -  == LLM cache == saving: default:extract:c1fd4ebe387f1e13102498078237f915
+2025-11-17 17:44:07,702 - lightrag - INFO -  == LLM cache == saving: default:extract:22567cf05fd1b2b741f73cf9b6a3f0f9
+2025-11-17 17:44:11,198 - lightrag - INFO -  == LLM cache == saving: default:extract:62e4dd61849cba4da69665d52c8cef31
+2025-11-17 17:44:11,511 - lightrag - INFO -  == LLM cache == saving: default:extract:38f41fbd948a00c95588468ea97d4fd5
+2025-11-17 17:44:11,512 - lightrag - INFO - Chunk 167 of 199 extracted 15 Ent + 12 Rel chunk-ffc3446f8ec092af24a460bda94f772f
+2025-11-17 17:44:13,364 - lightrag - INFO -  == LLM cache == saving: default:extract:40d3f4b7285670147ab33ecc7625984f
+2025-11-17 17:44:13,364 - lightrag - INFO - Chunk 168 of 199 extracted 19 Ent + 14 Rel chunk-49c7ff3a71e74b3f0eb59258541e739e
+2025-11-17 17:44:14,289 - lightrag - INFO -  == LLM cache == saving: default:extract:8c0e196b8acfa17cc34b6780557dd7ad
+2025-11-17 17:44:16,150 - lightrag - INFO -  == LLM cache == saving: default:extract:30ab9d2014839d6c86925a79aa4dd032
+2025-11-17 17:44:16,151 - lightrag - INFO - Chunk 169 of 199 extracted 14 Ent + 13 Rel chunk-bc89a92e9a97781ebca0db50abc34939
+2025-11-17 17:44:26,764 - lightrag - INFO -  == LLM cache == saving: default:extract:4aace36581af174a14d92e4411eaa6c4
+2025-11-17 17:44:26,765 - lightrag - INFO - Chunk 170 of 199 extracted 14 Ent + 12 Rel chunk-098a64d7118fc8e1eb3e91ba0124258c
+2025-11-17 17:44:31,549 - lightrag - INFO -  == LLM cache == saving: default:extract:5af8ee98e01e454a6734bd5dfd27f5f5
+2025-11-17 17:44:31,990 - lightrag - INFO -  == LLM cache == saving: default:extract:3233364797aad52d2d346af001f4db0e
+2025-11-17 17:44:36,727 - lightrag - INFO -  == LLM cache == saving: default:extract:80be3f1ccb45a33a70c9ba268488d2f0
+2025-11-17 17:44:37,209 - lightrag - INFO -  == LLM cache == saving: default:extract:07f2e9d8e42fddd57eeb593f001263c0
+2025-11-17 17:44:37,210 - lightrag - INFO - Chunk 171 of 199 extracted 15 Ent + 7 Rel chunk-67015f3916810c4378b2ed269cc27f29
+2025-11-17 17:44:40,499 - lightrag - INFO -  == LLM cache == saving: default:extract:702d8a6ef1391a134a0eb4302735b7ca
+2025-11-17 17:44:40,499 - lightrag - INFO - Chunk 172 of 199 extracted 13 Ent + 9 Rel chunk-196a80cd0ae47fda3849b101cca91a15
+2025-11-17 17:44:43,835 - lightrag - INFO -  == LLM cache == saving: default:extract:24fcd994f08d8c33e85c74276fff0bbb
+2025-11-17 17:44:43,836 - lightrag - INFO - Chunk 173 of 199 extracted 21 Ent + 10 Rel chunk-717174ace5855cc823d51c46c9a70648
+2025-11-17 17:44:55,216 - lightrag - INFO -  == LLM cache == saving: default:extract:f1a6171f31d2a4a11f3941ded21cde2a
+2025-11-17 17:44:58,182 - lightrag - INFO -  == LLM cache == saving: default:extract:adfe26ed11d33d3533d76a2614d37f4b
+2025-11-17 17:44:59,047 - lightrag - INFO -  == LLM cache == saving: default:extract:2510a4427e8a22e736304fa6607dcb5f
+2025-11-17 17:45:00,853 - lightrag - INFO -  == LLM cache == saving: default:extract:f619eeb3e60c028a346ba463ab3555f6
+2025-11-17 17:45:00,853 - lightrag - INFO - Chunk 174 of 199 extracted 17 Ent + 12 Rel chunk-f9a9eb8b01f29fdf214c10bdffac3203
+2025-11-17 17:45:03,197 - lightrag - INFO -  == LLM cache == saving: default:extract:6c6536873d6b40ba4bb0da6224cce9bb
+2025-11-17 17:45:03,198 - lightrag - INFO - Chunk 175 of 199 extracted 11 Ent + 9 Rel chunk-68217ea9e5382d1756c99b5152ea98db
+2025-11-17 17:45:05,561 - lightrag - INFO -  == LLM cache == saving: default:extract:4f0095bb582eb61e241a2134d9099a1c
+2025-11-17 17:45:05,562 - lightrag - INFO - Chunk 176 of 199 extracted 18 Ent + 7 Rel chunk-8aa2c7020ce6e89888e81972588726e3
+2025-11-17 17:45:06,600 - lightrag - INFO -  == LLM cache == saving: default:extract:bb212f2ca2552806021b71f51595ab75
+2025-11-17 17:45:09,739 - lightrag - INFO -  == LLM cache == saving: default:extract:3df703376f28a4dc8aef48a19154faf0
+2025-11-17 17:45:09,740 - lightrag - INFO - Chunk 177 of 199 extracted 25 Ent + 9 Rel chunk-dea00cf063e8831db4919330d94b1f2a
+2025-11-17 17:45:19,447 - lightrag - INFO -  == LLM cache == saving: default:extract:3c2d173feb29f3ee5c7f68d294dff35d
+2025-11-17 17:45:20,818 - lightrag - INFO -  == LLM cache == saving: default:extract:a86509be3cf7acc2251658f695702d58
+2025-11-17 17:45:21,567 - lightrag - INFO -  == LLM cache == saving: default:extract:13bdab831705b2e671e497c89b8e8dee
+2025-11-17 17:45:25,936 - lightrag - INFO -  == LLM cache == saving: default:extract:2ed10c33a2e046de86738920d5883371
+2025-11-17 17:45:25,936 - lightrag - INFO - Chunk 178 of 199 extracted 15 Ent + 10 Rel chunk-7a890e27eba8c63d10f19b85a72fc14a
+2025-11-17 17:45:32,579 - lightrag - INFO -  == LLM cache == saving: default:extract:ee78d39a761e54aacda8fd32e9dbc5c1
+2025-11-17 17:45:32,580 - lightrag - INFO - Chunk 179 of 199 extracted 15 Ent + 13 Rel chunk-76a038845aaedb9ef7852018f26778b3
+2025-11-17 17:45:35,764 - lightrag - INFO -  == LLM cache == saving: default:extract:6c001c620792a8e8880b8c8e11053c79
+2025-11-17 17:45:35,766 - lightrag - INFO - Chunk 180 of 199 extracted 14 Ent + 13 Rel chunk-29d1ec9b874dd38ef0f3a4a2081f548e
+2025-11-17 17:45:40,379 - lightrag - INFO -  == LLM cache == saving: default:extract:6739dd32c356866d3b068979c0f4f2a2
+2025-11-17 17:45:44,209 - lightrag - INFO -  == LLM cache == saving: default:extract:67e77ff98dc5c3678a1b7ee618171a17
+2025-11-17 17:45:44,210 - lightrag - INFO - Chunk 181 of 199 extracted 13 Ent + 6 Rel chunk-13e723cb8b0af4bcf2f1b0fd37912cb2
+2025-11-17 17:45:47,925 - lightrag - INFO -  == LLM cache == saving: default:extract:0c856ff56143178cd2136c6fc28bb74c
+2025-11-17 17:45:51,052 - lightrag - INFO -  == LLM cache == saving: default:extract:1160a94da0b3003a6aaf1eca0aa902c6
+2025-11-17 17:45:51,052 - lightrag - INFO - Chunk 182 of 199 extracted 21 Ent + 18 Rel chunk-a158766f46bf752d6cdfe95c92f14547
+2025-11-17 17:45:53,475 - lightrag - INFO -  == LLM cache == saving: default:extract:3fc78d47de31ee19927323e36fef2f0b
+2025-11-17 17:45:56,643 - lightrag - INFO -  == LLM cache == saving: default:extract:6e42de20c4733593b34b13d0c5472b4d
+2025-11-17 17:45:58,298 - lightrag - INFO -  == LLM cache == saving: default:extract:4f0718295d1226a0e03d1a4f81a7a827
+2025-11-17 17:45:58,298 - lightrag - INFO - Chunk 183 of 199 extracted 12 Ent + 10 Rel chunk-b0a584e54ffa22e1c25f839302bcd727
+2025-11-17 17:46:00,286 - lightrag - INFO -  == LLM cache == saving: default:extract:6f56658f7dd4b109fb21521715932327
+2025-11-17 17:46:00,286 - lightrag - INFO - Chunk 184 of 199 extracted 11 Ent + 6 Rel chunk-541f1323a24c5990b4a6408e0c5442ab
+2025-11-17 17:46:07,125 - lightrag - INFO -  == LLM cache == saving: default:extract:87dde98dd35f8702dd6fe8a71c4a84ff
+2025-11-17 17:46:09,501 - lightrag - INFO -  == LLM cache == saving: default:extract:32c302012feb662376b4c93b108b5e67
+2025-11-17 17:46:13,358 - lightrag - INFO -  == LLM cache == saving: default:extract:28e0f56a7a9aa12a7ca88c4beae9e4d9
+2025-11-17 17:46:13,359 - lightrag - INFO - Chunk 185 of 199 extracted 15 Ent + 10 Rel chunk-f2a44e885faf856aa579d824b3cd85e7
+2025-11-17 17:46:18,873 - lightrag - INFO -  == LLM cache == saving: default:extract:06902b11774e0f7d2f165e25cce598c7
+2025-11-17 17:46:18,874 - lightrag - INFO - Chunk 186 of 199 extracted 11 Ent + 9 Rel chunk-9530f389987c13273449ab22a85170ae
+2025-11-17 17:46:19,225 - lightrag - INFO -  == LLM cache == saving: default:extract:7f882886773b74a25cb0494d2619e5de
+2025-11-17 17:46:23,937 - lightrag - INFO -  == LLM cache == saving: default:extract:b826d0204aa8bc79ada0991a76a390eb
+2025-11-17 17:46:23,938 - lightrag - INFO - Chunk 187 of 199 extracted 31 Ent + 16 Rel chunk-48b513355d29308e212a3074ba326b10
+2025-11-17 17:46:27,651 - lightrag - INFO -  == LLM cache == saving: default:extract:9cf256c0e8378c859867f83b451a990c
+2025-11-17 17:46:31,532 - lightrag - INFO -  == LLM cache == saving: default:extract:3e55e94dd73b862f0ef603862b5b1e14
+2025-11-17 17:46:32,199 - lightrag - INFO -  == LLM cache == saving: default:extract:09913a265e18ed03ac9c8402be99881e
+2025-11-17 17:46:32,200 - lightrag - INFO - Chunk 188 of 199 extracted 18 Ent + 15 Rel chunk-a18089523f6dcd63cfa5664dc1c01618
+2025-11-17 17:46:36,414 - lightrag - INFO -  == LLM cache == saving: default:extract:c9b3ca08e7e7b837f8f5bd985c8df8d5
+2025-11-17 17:46:39,952 - lightrag - INFO -  == LLM cache == saving: default:extract:cc58641c1bd4f7afd137c5a05cc887c8
+2025-11-17 17:46:39,952 - lightrag - INFO - Chunk 189 of 199 extracted 12 Ent + 6 Rel chunk-0fdcce851d69aa713ed64ba1895bd5d1
+2025-11-17 17:46:40,445 - lightrag - INFO -  == LLM cache == saving: default:extract:0f275b7ed96745a34479f48b8f43b315
+2025-11-17 17:46:40,446 - lightrag - INFO - Chunk 190 of 199 extracted 16 Ent + 11 Rel chunk-06384634b72466c480713ee8d57f25ed
+2025-11-17 17:46:41,142 - lightrag - INFO -  == LLM cache == saving: default:extract:e85ebdf67fe34c5220b9ca5263bfe50e
+2025-11-17 17:46:45,035 - lightrag - INFO -  == LLM cache == saving: default:extract:ebc69abba5538489932a3d98e1220222
+2025-11-17 17:46:45,036 - lightrag - INFO - Chunk 191 of 199 extracted 14 Ent + 8 Rel chunk-b0bad5ee25cb854c10bdbc9d33b54a1a
+2025-11-17 17:46:56,721 - lightrag - INFO -  == LLM cache == saving: default:extract:651d921fe8ce5f87a4441c5ff0b422a8
+2025-11-17 17:47:00,163 - lightrag - INFO -  == LLM cache == saving: default:extract:3130df4781d79fe28b0ff3a91abe22ed
+2025-11-17 17:47:00,164 - lightrag - INFO - Chunk 192 of 199 extracted 15 Ent + 11 Rel chunk-29b3a349650a8bb55b318dcc6ecb0519
+2025-11-17 17:47:04,597 - lightrag - INFO -  == LLM cache == saving: default:extract:7d6dfcf9a8811757cf470ea2334af2bf
+2025-11-17 17:47:05,126 - lightrag - INFO -  == LLM cache == saving: default:extract:52edff7e0622e4ad475520b7b6fe7c22
+2025-11-17 17:47:06,068 - lightrag - INFO -  == LLM cache == saving: default:extract:d36c2f03d776da838edaeaf7005dd3d0
+2025-11-17 17:47:10,627 - lightrag - INFO -  == LLM cache == saving: default:extract:6d6464701dfcc577c18a21bc9821d027
+2025-11-17 17:47:10,627 - lightrag - INFO - Chunk 193 of 199 extracted 15 Ent + 12 Rel chunk-6236b93e627d54f73f1c8fe341127e67
+2025-11-17 17:47:11,764 - lightrag - INFO -  == LLM cache == saving: default:extract:a6ec77b24e9c74b6407e726bb16f4248
+2025-11-17 17:47:11,764 - lightrag - INFO - Chunk 194 of 199 extracted 23 Ent + 17 Rel chunk-c35816f05289661283f683145d9f395f
+2025-11-17 17:47:17,465 - lightrag - INFO -  == LLM cache == saving: default:extract:8329eb782611881aca09f9237e8ed0ac
+2025-11-17 17:47:21,467 - lightrag - INFO -  == LLM cache == saving: default:extract:89568a8609d0eb7c08f456254b414b1e
+2025-11-17 17:47:21,468 - lightrag - INFO - Chunk 195 of 199 extracted 15 Ent + 9 Rel chunk-cf41d1c08e8df109ad214d831867a5d9
+2025-11-17 17:47:25,479 - lightrag - INFO -  == LLM cache == saving: default:extract:003b6b71b7af10248274ac747c6f1d21
+2025-11-17 17:47:27,509 - lightrag - INFO -  == LLM cache == saving: default:extract:4277edf50e5febab07027e536d8e2f0b
+2025-11-17 17:47:33,943 - lightrag - INFO -  == LLM cache == saving: default:extract:430210856d1a2f4227ac71280568160e
+2025-11-17 17:47:33,944 - lightrag - INFO - Chunk 196 of 199 extracted 13 Ent + 9 Rel chunk-44a870810cef881997b741c32ec368fe
+2025-11-17 17:47:34,766 - lightrag - INFO -  == LLM cache == saving: default:extract:f26afe1e8f1788e203351c5d7ea20255
+2025-11-17 17:47:34,766 - lightrag - INFO - Chunk 197 of 199 extracted 15 Ent + 12 Rel chunk-419f40f64b13b1b2d0fac3cfb9fde92a
+2025-11-17 17:47:54,310 - lightrag - INFO -  == LLM cache == saving: default:extract:117faa6f893a3195daa8c557ea2528b0
+2025-11-17 17:47:58,446 - lightrag - INFO -  == LLM cache == saving: default:extract:e5cc37f761a3fa8dbbbab0b59d3a4239
+2025-11-17 17:47:58,446 - lightrag - INFO - Chunk 198 of 199 extracted 32 Ent + 11 Rel chunk-0d4cea71149e0e4157126efdaa0ea3e3
+2025-11-17 17:47:58,828 - lightrag - INFO -  == LLM cache == saving: default:extract:877031b583962a89a7f58328bb13d329
+2025-11-17 17:47:58,829 - lightrag - INFO - Chunk 199 of 199 extracted 15 Ent + 11 Rel chunk-5349eed06f06d7c9bcb541ced69e4664
+2025-11-17 17:47:58,835 - lightrag - INFO - Merging stage 1/1: unknown_source
+2025-11-17 17:47:58,835 - lightrag - INFO - Phase 1: Processing 1692 entities from doc-3d7a4f05339f0e3f3870b407d21d9c8a (async: 8)
+2025-11-17 17:48:06,382 - lightrag - INFO -  == LLM cache == saving: default:summary:d49d5cd529cb44d6073a2b5f9cb499c6
+2025-11-17 17:48:06,382 - lightrag - INFO - LLMmrg: `Ovarian Cancer` | 0+9
+2025-11-17 17:48:06,904 - lightrag - INFO -  == LLM cache == saving: default:summary:e8aa86e91393854debbfd213d026cc25
+2025-11-17 17:48:06,905 - lightrag - INFO - LLMmrg: `Cisplatin` | 0+9
+2025-11-17 17:48:08,117 - lightrag - INFO -  == LLM cache == saving: default:summary:d58e42de10d9d23a476afe319b07ad04
+2025-11-17 17:48:08,119 - lightrag - INFO - LLMmrg: `NCCN.org` | 0+11
+2025-11-17 17:48:08,725 - lightrag - INFO -  == LLM cache == saving: default:summary:7e6a48d600034f38e2f02fb83a0057ce
+2025-11-17 17:48:08,725 - lightrag - INFO - LLMmrg: `Chemotherapy` | 0+33
+2025-11-17 17:48:11,994 - lightrag - INFO -  == LLM cache == saving: default:summary:0c7ef2fa11d8a69c2d71878417da1475
+2025-11-17 17:48:11,995 - lightrag - INFO - LLMmrg: `NCCN Patient Guides for Cancer` | 0+10
+2025-11-17 17:48:13,434 - lightrag - INFO -  == LLM cache == saving: default:summary:f72ce5b72692f6be7fb9d114136bf1e6
+2025-11-17 17:48:13,435 - lightrag - INFO - LLMmrg: `Clinical Trial` | 0+16
+2025-11-17 17:48:14,986 - lightrag - INFO -  == LLM cache == saving: default:summary:d66b1e270940a00441fee395881d4863
+2025-11-17 17:48:14,987 - lightrag - INFO - LLMmrg: `NCCN` | 0+13 (dd 2)
+2025-11-17 17:48:16,339 - lightrag - INFO -  == LLM cache == saving: default:summary:c980102c1aa617892905b4f5c3737ecd
+2025-11-17 17:48:16,339 - lightrag - INFO - LLMmrg: `Lymph Nodes` | 0+19
+2025-11-17 17:48:17,226 - lightrag - INFO -  == LLM cache == saving: default:summary:573de35d376ce64a17987a7cdbb2298b
+2025-11-17 17:48:17,227 - lightrag - INFO - LLMmrg: `Squamous Cell Carcinoma` | 0+15
+2025-11-17 17:48:20,234 - lightrag - INFO -  == LLM cache == saving: default:summary:72fe1f1abaf0edf467c153f46a6ae52e
+2025-11-17 17:48:20,235 - lightrag - INFO - LLMmrg: `Medical History` | 0+9
+2025-11-17 17:48:21,100 - lightrag - INFO -  == LLM cache == saving: default:summary:8c2a708df242c958ed02fdc31631b1ed
+2025-11-17 17:48:21,101 - lightrag - INFO - LLMmrg: `Cancer Cells` | 0+11
+2025-11-17 17:48:23,145 - lightrag - INFO -  == LLM cache == saving: default:summary:b2b66ed9da9f96cdd99303254b39b0ab
+2025-11-17 17:48:23,146 - lightrag - INFO - LLMmrg: `Family History` | 0+18
+2025-11-17 17:48:24,974 - lightrag - INFO -  == LLM cache == saving: default:summary:a545915dd49ff0253aee08625cd9463e
+2025-11-17 17:48:24,975 - lightrag - INFO - LLMmrg: `Biopsy` | 0+42
+2025-11-17 17:48:26,403 - lightrag - INFO -  == LLM cache == saving: default:summary:58a7c78f404c732d7058dbb5cb1fdadf
+2025-11-17 17:48:26,405 - lightrag - INFO - LLMmrg: `Physical Exam` | 0+9
+2025-11-17 17:48:26,946 - lightrag - INFO -  == LLM cache == saving: default:summary:5df7a2671d076c5bfc6638ea6603e898
+2025-11-17 17:48:26,946 - lightrag - INFO - LLMmrg: `Imaging Tests` | 0+21
+2025-11-17 17:48:29,903 - lightrag - INFO -  == LLM cache == saving: default:summary:724e0a9ca16ca1502f9740192cc23d4f
+2025-11-17 17:48:29,903 - lightrag - INFO - LLMmrg: `Care Team` | 0+12
+2025-11-17 17:48:30,484 - lightrag - INFO -  == LLM cache == saving: default:summary:a19131e6490c40102f8ad43edda014e4
+2025-11-17 17:48:30,484 - lightrag - INFO - LLMmrg: `Cancer` | 0+18 (dd 2)
+2025-11-17 17:48:33,371 - lightrag - INFO -  == LLM cache == saving: default:summary:845471ae2b63c3102eaf9a5b99810972
+2025-11-17 17:48:33,371 - lightrag - INFO - LLMmrg: `MRI Scan` | 0+10
+2025-11-17 17:48:34,344 - lightrag - INFO -  == LLM cache == saving: default:summary:c018e4be3641077d6c538473facc6bbe
+2025-11-17 17:48:34,344 - lightrag - INFO - LLMmrg: `Contrast Material` | 0+8
+2025-11-17 17:48:34,997 - lightrag - INFO -  == LLM cache == saving: default:summary:2e383635140c6738d6b406b3c7b5a5d8
+2025-11-17 17:48:34,998 - lightrag - INFO - LLMmrg: `CT Scan` | 0+24
+2025-11-17 17:48:36,911 - lightrag - INFO -  == LLM cache == saving: default:summary:e42e50dfc5e336ae54571e37afbf139f
+2025-11-17 17:48:36,911 - lightrag - INFO - LLMmrg: `MRI` | 0+13
+2025-11-17 17:48:39,719 - lightrag - INFO -  == LLM cache == saving: default:summary:2a65498246456373f07cfbbe3d45f259
+2025-11-17 17:48:39,719 - lightrag - INFO - LLMmrg: `PET Scan` | 0+13
+2025-11-17 17:48:41,874 - lightrag - INFO -  == LLM cache == saving: default:summary:72ee16ebd2b68fab4699ae94562ab8f7
+2025-11-17 17:48:41,874 - lightrag - INFO - LLMmrg: `Ultrasound` | 0+11
+2025-11-17 17:48:42,529 - lightrag - INFO -  == LLM cache == saving: default:summary:37a8ec00157cf5fb323b38729b7d0fdb
+2025-11-17 17:48:42,529 - lightrag - INFO - LLMmrg: `Pathologist` | 0+18
+2025-11-17 17:48:44,434 - lightrag - INFO -  == LLM cache == saving: default:summary:a2160ad368ae81ac6e9a314c8f8293ad
+2025-11-17 17:48:44,435 - lightrag - INFO - LLMmrg: `Lymphocytes` | 0+9
+2025-11-17 17:48:45,081 - lightrag - INFO -  == LLM cache == saving: default:summary:17280657c7ab2fd582a2ea50ccaf1640
+2025-11-17 17:48:45,081 - lightrag - INFO - LLMmrg: `Biomarker Testing` | 0+12
+2025-11-17 17:48:47,634 - lightrag - INFO -  == LLM cache == saving: default:summary:e68d3b7ec144afffee2acb1182ceaa27
+2025-11-17 17:48:47,635 - lightrag - INFO - LLMmrg: `Bone Marrow` | 0+14
+2025-11-17 17:48:50,163 - lightrag - INFO -  == LLM cache == saving: default:summary:f6cbff507f4b138e00cf1798e844d613
+2025-11-17 17:48:50,163 - lightrag - INFO - LLMmrg: `NCCN Guidelines for Patients` | 0+37
+2025-11-17 17:48:53,136 - lightrag - INFO -  == LLM cache == saving: default:summary:0380308f4cc8b735e15e2d15b6b8c8f2
+2025-11-17 17:48:53,137 - lightrag - INFO - LLMmrg: `Adenocarcinoma` | 0+13
+2025-11-17 17:48:54,617 - lightrag - INFO -  == LLM cache == saving: default:summary:e5525956eb848509e6a4a1c174dac69e
+2025-11-17 17:48:54,618 - lightrag - INFO - LLMmrg: `Blood Tests` | 0+24
+2025-11-17 17:48:55,943 - lightrag - INFO -  == LLM cache == saving: default:summary:89a9614c9511013087a05acd9a807156
+2025-11-17 17:48:55,944 - lightrag - INFO - LLMmrg: `Chemoradiation` | 0+13
+2025-11-17 17:48:59,334 - lightrag - INFO -  == LLM cache == saving: default:summary:8324b126866b219f03885c391ebebfe5
+2025-11-17 17:48:59,335 - lightrag - INFO - LLMmrg: `Blood` | 0+9
+2025-11-17 17:49:08,768 - lightrag - INFO -  == LLM cache == saving: default:summary:9fee676b741372c4d4931f10eb199c1c
+2025-11-17 17:49:08,768 - lightrag - INFO - LLMmrg: `Medical Oncologist` | 0+9
+2025-11-17 17:49:09,672 - lightrag - INFO -  == LLM cache == saving: default:summary:463e174198e2e7c9f4aa899de1f84373
+2025-11-17 17:49:09,673 - lightrag - INFO - LLMmrg: `Targeted Therapy` | 0+10
+2025-11-17 17:49:10,631 - lightrag - INFO -  == LLM cache == saving: default:summary:7ba014fddaa20906d42fa18845940bf5
+2025-11-17 17:49:10,632 - lightrag - INFO - LLMmrg: `Clinical Trials` | 0+21
+2025-11-17 17:49:11,633 - lightrag - INFO -  == LLM cache == saving: default:summary:1c70cd113b45396f8edd7efa86e5481f
+2025-11-17 17:49:11,634 - lightrag - INFO - LLMmrg: `Systemic Therapy` | 0+19
+2025-11-17 17:49:17,149 - lightrag - INFO -  == LLM cache == saving: default:summary:4b3c01f61ef8fa0b4ee1afcd78b969e9
+2025-11-17 17:49:17,149 - lightrag - INFO - LLMmrg: `Prostate Cancer` | 0+14
+2025-11-17 17:49:30,831 - lightrag - INFO -  == LLM cache == saving: default:summary:d956ce9f09b29893dab07a36f4d9c11c
+2025-11-17 17:49:30,832 - lightrag - INFO - LLMmrg: `Surgery` | 0+13
+2025-11-17 17:49:46,056 - lightrag - INFO -  == LLM cache == saving: default:summary:f2298ada050a21e9a04c2db6efe2947a
+2025-11-17 17:49:46,057 - lightrag - INFO - LLMmrg: `Immunotherapy` | 0+10 (dd 1)
+2025-11-17 17:49:48,650 - lightrag - INFO -  == LLM cache == saving: default:summary:c5e7ef100f6bfe7e2e0e0440c462d19e
+2025-11-17 17:49:48,650 - lightrag - INFO - LLMmrg: `Radiation Therapy` | 0+23
+2025-11-17 17:49:52,162 - lightrag - INFO -  == LLM cache == saving: default:summary:2a7d53b356b91b7efd6a37506e557c27
+2025-11-17 17:49:52,163 - lightrag - INFO - LLMmrg: `Primary CNS Lymphoma` | 0+9
+2025-11-17 17:49:55,944 - lightrag - INFO -  == LLM cache == saving: default:summary:7335a08c1bf2bf02f1bcd36227f372f7
+2025-11-17 17:49:55,944 - lightrag - INFO - LLMmrg: `Complete Blood Count (CBC)` | 0+8
+2025-11-17 17:50:15,133 - lightrag - INFO -  == LLM cache == saving: default:summary:c7fc3fd7620219c7ecdec971f040746b
+2025-11-17 17:50:15,134 - lightrag - INFO - LLMmrg: `Cervical Cancer` | 0+10
+2025-11-17 17:50:54,589 - lightrag - INFO -  == LLM cache == saving: default:summary:636a9b91d68d97d08e709bd6492166c5
+2025-11-17 17:50:54,589 - lightrag - INFO - LLMmrg: `Bladder Cancer` | 0+10
+2025-11-17 17:51:04,323 - lightrag - INFO -  == LLM cache == saving: default:summary:7b1976268ca7945673e1d9934cc9a12e
+2025-11-17 17:51:04,324 - lightrag - INFO - LLMmrg: `Anal Cancer` | 0+9
+2025-11-17 17:51:11,083 - lightrag - INFO - Phase 2: Processing 1927 relations from doc-3d7a4f05339f0e3f3870b407d21d9c8a (async: 8)
+2025-11-17 17:51:13,383 - lightrag - INFO - Chunks appended from relation: `Nausea and Vomiting`
+2025-11-17 17:51:14,119 - lightrag - INFO - Chunks appended from relation: `Ovarian Cancer`
+2025-11-17 17:51:16,272 - lightrag - INFO - Chunks appended from relation: `Cancer Treatments`
+2025-11-17 17:51:18,299 - lightrag - INFO - Chunks appended from relation: `Cancer Cells`
+2025-11-17 17:51:19,367 - lightrag - INFO - Chunks appended from relation: `Biopsy`
+2025-11-17 17:51:21,079 - lightrag - INFO - Chunks appended from relation: `Cancer Treatment`
+2025-11-17 17:51:21,729 - lightrag - INFO - Chunks appended from relation: `Cancer Staging`
+2025-11-17 17:51:22,801 - lightrag - INFO - Chunks appended from relation: `Tumor Testing`
+2025-11-17 17:51:23,239 - lightrag - INFO - Chunks appended from relation: `Throat Cancer`
+2025-11-17 17:51:24,510 - lightrag - INFO - Chunks appended from relation: `B-cell Lymphoblasts`
+2025-11-17 17:51:26,403 - lightrag - INFO - Chunks appended from relation: `Rectal Cancer`
+2025-11-17 17:51:27,114 - lightrag - INFO - Chunks appended from relation: `Colonoscopy`
+2025-11-17 17:51:27,905 - lightrag - INFO - Chunks appended from relation: `Cancer`
+2025-11-17 17:51:28,649 - lightrag - INFO - Chunks appended from relation: `Radiation Therapy`
+2025-11-17 17:51:29,296 - lightrag - INFO - Chunks appended from relation: `Malignant Polyps`
+2025-11-17 17:51:35,814 - lightrag - INFO - Chunks appended from relation: `Targeted Therapy`
+2025-11-17 17:51:45,582 - lightrag - INFO - Chunks appended from relation: `Family History`
+2025-11-17 17:51:46,319 - lightrag - INFO - Chunks appended from relation: `Age`
+2025-11-17 17:51:52,396 - lightrag - INFO - Chunks appended from relation: `Age`
+2025-11-17 17:51:55,922 - lightrag - INFO - Chunks appended from relation: `Cancer`
+2025-11-17 17:52:00,600 - lightrag - INFO - Chunks appended from relation: `Fertility`
+2025-11-17 17:52:06,985 - lightrag - INFO - Chunks appended from relation: `Research Team`
+2025-11-17 17:52:10,343 - lightrag - INFO - Chunks appended from relation: `HIV`
+2025-11-17 17:52:13,014 - lightrag - INFO - Chunks appended from relation: `High-Risk CSCC`
+2025-11-17 17:52:20,937 - lightrag - INFO - Chunks appended from relation: `Immunotherapy`
+2025-11-17 17:52:23,689 - lightrag - INFO - Chunks appended from relation: `Colon Cancer`
+2025-11-17 17:52:24,167 - lightrag - INFO - Chunks appended from relation: `Mismatch Repair Testing`
+2025-11-17 17:52:31,722 - lightrag - INFO - Chunks appended from relation: `Cancer`
+2025-11-17 17:52:31,725 - lightrag - INFO - Chunks appended from relation: `Tumor Mutation Testing`
+2025-11-17 17:52:32,540 - lightrag - INFO - Chunks appended from relation: `AJCC`
+2025-11-17 17:52:32,761 - lightrag - INFO - Chunks appended from relation: `NSCLC`
+2025-11-17 17:52:34,188 - lightrag - INFO - Chunks appended from relation: `HPV`
+2025-11-17 17:52:36,797 - lightrag - INFO - Chunks appended from relation: `Cervical Cancer`
+2025-11-17 17:52:37,823 - lightrag - INFO - Chunks appended from relation: `Cervix`
+2025-11-17 17:52:39,019 - lightrag - INFO - Chunks appended from relation: `Fertility Preservation`
+2025-11-17 17:52:41,333 - lightrag - INFO - Chunks appended from relation: `Cancer Treatment`
+2025-11-17 17:52:43,415 - lightrag - INFO - Chunks appended from relation: `Cervical Cancer`
+2025-11-17 17:52:45,492 - lightrag - INFO - Chunks appended from relation: `EBRT`
+2025-11-17 17:52:50,344 - lightrag - INFO - Chunks appended from relation: `Stomach`
+2025-11-17 17:52:50,625 - lightrag - INFO - Chunks appended from relation: `Cancer Care`
+2025-11-17 17:52:51,998 - lightrag - INFO - Chunks appended from relation: `Radical Hysterectomy`
+2025-11-17 17:52:53,075 - lightrag - INFO - Chunks appended from relation: `Fertility-Sparing Treatment`
+2025-11-17 17:52:56,202 - lightrag - INFO - Chunks appended from relation: `Chemotherapy`
+2025-11-17 17:52:56,299 - lightrag - INFO - Chunks appended from relation: `Immune Checkpoint Inhibitors`
+2025-11-17 17:52:58,662 - lightrag - INFO - Chunks appended from relation: `Family History`
+2025-11-17 17:52:59,506 - lightrag - INFO - Chunks appended from relation: `Chemotherapy`
+2025-11-17 17:53:01,460 - lightrag - INFO - Chunks appended from relation: `Leukemia`
+2025-11-17 17:53:03,697 - lightrag - INFO - Chunks appended from relation: `RAI Therapy`
+2025-11-17 17:53:04,027 - lightrag - INFO - Chunks appended from relation: `Thyroid Cancer`
+2025-11-17 17:53:05,828 - lightrag - INFO - Chunks appended from relation: `Bone Cancer`
+2025-11-17 17:53:07,018 - lightrag - INFO - Chunks appended from relation: `Treatment Plan`
+2025-11-17 17:53:07,277 - lightrag - INFO - Chunks appended from relation: `Diagnostic Tests`
+2025-11-17 17:53:08,228 - lightrag - INFO - Chunks appended from relation: `Cancer Diagnosis`
+2025-11-17 17:53:11,136 - lightrag - INFO - Chunks appended from relation: `Bone`
+2025-11-17 17:53:11,997 - lightrag - INFO - Chunks appended from relation: `Patient`
+2025-11-17 17:53:14,543 - lightrag - INFO - Chunks appended from relation: `Cancer`
+2025-11-17 17:53:25,751 - lightrag - INFO - Chunks appended from relation: `Anesthesia`
+2025-11-17 17:53:25,890 - lightrag - INFO - Chunks appended from relation: `Smoking`
+2025-11-17 17:53:26,908 - lightrag - INFO - Chunks appended from relation: `Diagnosis`
+2025-11-17 17:53:31,173 - lightrag - INFO - Chunks appended from relation: `Bladder`
+2025-11-17 17:53:36,097 - lightrag - INFO - Chunks appended from relation: `Patient`
+2025-11-17 17:53:38,566 - lightrag - INFO - Chunks appended from relation: `Cancer Treatment`
+2025-11-17 17:53:38,782 - lightrag - INFO - Chunks appended from relation: `Cancer Grade`
+2025-11-17 17:53:39,892 - lightrag - INFO - Chunks appended from relation: `Lymphocytes`
+2025-11-17 17:53:41,550 - lightrag - INFO - Chunks appended from relation: `Bladder Cancer`
+2025-11-17 17:53:45,410 - lightrag - INFO - Chunks appended from relation: `Anal Cancer`
+2025-11-17 17:53:48,844 - lightrag - INFO - Chunks appended from relation: `Cancer Treatment`
+2025-11-17 17:53:50,586 - lightrag - INFO - Chunks appended from relation: `Surgical Staging`
+2025-11-17 17:53:51,233 - lightrag - INFO - Chunks appended from relation: `Local Excision`
+2025-11-17 17:53:52,499 - lightrag - INFO - Chunks appended from relation: `Radiation Therapy`
+2025-11-17 17:53:52,502 - lightrag - INFO - Chunks appended from relation: `Chemoradiation`
+2025-11-17 17:53:52,902 - lightrag - INFO - Chunks appended from relation: `Surveillance`
+2025-11-17 17:53:53,476 - lightrag - INFO - Chunks appended from relation: `Anal Cancer`
+2025-11-17 17:53:57,800 - lightrag - INFO - Chunks appended from relation: `Cancer Cells`
+2025-11-17 17:53:58,064 - lightrag - INFO - Chunks appended from relation: `Radiotracer`
+2025-11-17 17:53:58,909 - lightrag - INFO - Chunks appended from relation: `Radiation Therapy`
+2025-11-17 17:53:59,737 - lightrag - INFO - Chunks appended from relation: `Anal Cancer Foundation`
+2025-11-17 17:54:00,531 - lightrag - INFO - Chunks appended from relation: `Treatment`
+2025-11-17 17:54:02,371 - lightrag - INFO - Chunks appended from relation: `Cancer Treatments`
+2025-11-17 17:54:02,514 - lightrag - INFO - Chunks appended from relation: `Clinical Trials`
+2025-11-17 17:54:03,114 - lightrag - INFO - Chunks appended from relation: `NCCN Guidelines for Patients`
+2025-11-17 17:54:05,656 - lightrag - INFO - Phase 3: Updating final 1756(1692+64) entities and  1927 relations from doc-3d7a4f05339f0e3f3870b407d21d9c8a
+2025-11-17 17:54:05,658 - lightrag - INFO - Completed merging: 1692 entities, 64 extra entities, 1927 relations
+2025-11-17 17:54:05,995 - lightrag - INFO - [_] Writing graph with 1756 nodes, 1927 edges
+2025-11-17 17:54:06,078 - lightrag - INFO - In memory DB persist to disk
+2025-11-17 17:54:06,079 - lightrag - INFO - Completed processing file 1/1: unknown_source
+2025-11-17 17:54:06,080 - lightrag - INFO - Enqueued document processing pipeline stopped
+2025-11-17 17:54:06,133 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:06,134 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:06,149 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:09,213 - lightrag - INFO -  == LLM cache == saving: naive:query:ff4c73a6c8b04e28be84f76efa673c7e
+2025-11-17 17:54:09,326 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:09,327 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:09,347 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:12,225 - lightrag - INFO -  == LLM cache == saving: naive:query:88167b888ec27d6618913bc5e223c8ec
+2025-11-17 17:54:12,346 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:12,347 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:12,366 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:16,080 - lightrag - INFO -  == LLM cache == saving: naive:query:8ab5e0d22897135a177409ea810af073
+2025-11-17 17:54:16,200 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:16,201 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:16,227 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:21,382 - lightrag - INFO -  == LLM cache == saving: naive:query:71dd25e69fe30870d78060b9e104a554
+2025-11-17 17:54:21,493 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:21,494 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:21,520 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:28,156 - lightrag - INFO -  == LLM cache == saving: naive:query:fad0d21efca99dc732dd433313ac23e2
+2025-11-17 17:54:28,274 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:28,275 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:28,295 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:33,630 - lightrag - INFO -  == LLM cache == saving: naive:query:f67a99f80347ab9393d3612cf433641b
+2025-11-17 17:54:33,759 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:33,760 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:33,776 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:40,572 - lightrag - INFO -  == LLM cache == saving: naive:query:9093e3ca3003507fc36187e2d4025505
+2025-11-17 17:54:40,697 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:40,699 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:40,714 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:44,380 - lightrag - INFO -  == LLM cache == saving: naive:query:2d80dd890a137c1c4e40afe0fb6fa3a0
+2025-11-17 17:54:44,509 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:44,510 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:44,533 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:49,039 - lightrag - INFO -  == LLM cache == saving: naive:query:06e86c43e21e8e229cbaea56ac421c42
+2025-11-17 17:54:49,136 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:49,137 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:49,155 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:51,225 - lightrag - INFO -  == LLM cache == saving: naive:query:8ea01caa2d284feee7089b7b718ff41e
+2025-11-17 17:54:51,357 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:51,357 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:51,371 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:54:55,100 - lightrag - INFO -  == LLM cache == saving: naive:query:92b914580fd439df6746b37e39a7de70
+2025-11-17 17:54:55,232 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:54:55,233 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:54:55,257 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:00,690 - lightrag - INFO -  == LLM cache == saving: naive:query:bdb4a8166cf34ed82b7617950b680f69
+2025-11-17 17:55:00,812 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:00,813 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:00,832 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:08,571 - lightrag - INFO -  == LLM cache == saving: naive:query:e3b2c0b580ad01f5e456dd1932d74526
+2025-11-17 17:55:08,674 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:08,675 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:08,693 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:16,487 - lightrag - INFO -  == LLM cache == saving: naive:query:7f24822bc6adc3ecef7bec53b6c64295
+2025-11-17 17:55:16,579 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:16,580 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:16,607 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:23,668 - lightrag - INFO -  == LLM cache == saving: naive:query:0422c83799cbb7cf9972534ba965723f
+2025-11-17 17:55:23,793 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:23,794 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:23,815 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:27,348 - lightrag - INFO -  == LLM cache == saving: naive:query:a6ee314ed2cf2ec06b457bc5be031def
+2025-11-17 17:55:27,471 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:27,473 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:27,491 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:32,311 - lightrag - INFO -  == LLM cache == saving: naive:query:611a65b7f8ccb94795541a007563a18b
+2025-11-17 17:55:32,431 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:32,432 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:32,456 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:36,062 - lightrag - INFO -  == LLM cache == saving: naive:query:2521f5c0bfd2c5fb3f578a190934084a
+2025-11-17 17:55:36,190 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:36,191 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:36,211 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:40,384 - lightrag - INFO -  == LLM cache == saving: naive:query:6d9fc1f3d43802cf612dfec76b73bb1b
+2025-11-17 17:55:40,508 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:40,508 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:40,528 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:44,475 - lightrag - INFO -  == LLM cache == saving: naive:query:6b076ab2344b17fe06c3c7fe51ae09ac
+2025-11-17 17:55:44,605 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:44,605 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:44,621 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:48,697 - lightrag - INFO -  == LLM cache == saving: naive:query:1d3b1bfb5a34e76b5dbc810533064e1d
+2025-11-17 17:55:48,826 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:48,827 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:48,850 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:56,217 - lightrag - INFO -  == LLM cache == saving: naive:query:a3ea68acde7aae51a264832d8ee58edd
+2025-11-17 17:55:56,333 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:56,334 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:56,362 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:55:57,933 - lightrag - INFO -  == LLM cache == saving: naive:query:dffba0934d582dc74909212e2544ec18
+2025-11-17 17:55:58,054 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:55:58,055 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:55:58,079 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:05,288 - lightrag - INFO -  == LLM cache == saving: naive:query:27efe5687fcbb4e458a9717b334ec602
+2025-11-17 17:56:05,406 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:05,407 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:05,429 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:09,235 - lightrag - INFO -  == LLM cache == saving: naive:query:870d024d978575ce2b8ea42a80c820df
+2025-11-17 17:56:09,371 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:09,372 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:09,399 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:13,308 - lightrag - INFO -  == LLM cache == saving: naive:query:8b55728ee979099263dec28e82f4f409
+2025-11-17 17:56:13,452 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:13,453 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:13,468 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:17,164 - lightrag - INFO -  == LLM cache == saving: naive:query:070729e8e98e0f151f97c92499f95076
+2025-11-17 17:56:17,257 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:17,258 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:17,274 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:19,186 - lightrag - INFO -  == LLM cache == saving: naive:query:7d6ee05673c721a56cd6d788688b31e0
+2025-11-17 17:56:19,315 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:19,316 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:19,332 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:22,094 - lightrag - INFO -  == LLM cache == saving: naive:query:a435b23f2817fabcd38b3d08db8dfeae
+2025-11-17 17:56:22,228 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:22,229 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:22,246 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:34,943 - lightrag - INFO -  == LLM cache == saving: naive:query:970817e9816476eb73a0432e2c48a9b2
+2025-11-17 17:56:35,053 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:35,054 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:35,074 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:38,563 - lightrag - INFO -  == LLM cache == saving: naive:query:75bb8ac180f8d3d17bafe3231b7530d6
+2025-11-17 17:56:38,689 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:38,689 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:38,707 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:38,709 - lightrag - INFO -  == LLM cache == Query cache hit, using cached response as query result
+2025-11-17 17:56:38,756 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:38,757 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:38,776 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:41,595 - lightrag - INFO -  == LLM cache == saving: naive:query:6874e88199798b37204248497555074f
+2025-11-17 17:56:41,719 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:41,720 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:41,736 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:46,079 - lightrag - INFO -  == LLM cache == saving: naive:query:4ec0a9039648f7dcce56a98b663b09f0
+2025-11-17 17:56:46,194 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:46,194 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:46,214 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:51,666 - lightrag - INFO -  == LLM cache == saving: naive:query:30152d760d6996cc3eed1f0fad3b9937
+2025-11-17 17:56:51,765 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:51,765 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:51,788 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:56:58,979 - lightrag - INFO -  == LLM cache == saving: naive:query:4ccc6c95a44697e714f2e92e5471fde4
+2025-11-17 17:56:59,105 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:56:59,106 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:56:59,129 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:02,335 - lightrag - INFO -  == LLM cache == saving: naive:query:d8635ae48c87b686100774f7dfbea46f
+2025-11-17 17:57:02,452 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:02,453 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:02,475 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:06,428 - lightrag - INFO -  == LLM cache == saving: naive:query:388895ca2b401c37515b7afc090cf422
+2025-11-17 17:57:06,549 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:06,549 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:06,566 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:11,064 - lightrag - INFO -  == LLM cache == saving: naive:query:43bec3c0434aae638434ecabd5a24302
+2025-11-17 17:57:11,188 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:11,188 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:11,207 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:11,208 - lightrag - INFO -  == LLM cache == Query cache hit, using cached response as query result
+2025-11-17 17:57:11,245 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:11,246 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:11,260 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:12,652 - lightrag - INFO -  == LLM cache == saving: naive:query:a5b1f49140be38f7c29247c10de86d41
+2025-11-17 17:57:12,755 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:12,755 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:12,774 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:12,775 - lightrag - INFO -  == LLM cache == Query cache hit, using cached response as query result
+2025-11-17 17:57:12,823 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:12,825 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:12,845 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:14,774 - lightrag - INFO -  == LLM cache == saving: naive:query:aa8a4c0308628fdaa5e59ccf53063d00
+2025-11-17 17:57:14,894 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:14,895 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:14,922 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:19,858 - lightrag - INFO -  == LLM cache == saving: naive:query:adeaf1a87459d2d8b2f9d1070cc2d9e6
+2025-11-17 17:57:19,988 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:19,989 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:20,017 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:26,072 - lightrag - INFO -  == LLM cache == saving: naive:query:b3534c6ba1d2b445b790ca4c9f4bcf27
+2025-11-17 17:57:26,192 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:26,193 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:26,209 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:29,266 - lightrag - INFO -  == LLM cache == saving: naive:query:4113f43ed8001f11a81032f0e0d0390e
+2025-11-17 17:57:29,370 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:29,372 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:29,399 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:29,400 - lightrag - INFO -  == LLM cache == Query cache hit, using cached response as query result
+2025-11-17 17:57:29,441 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:29,442 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:29,460 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:32,368 - lightrag - INFO -  == LLM cache == saving: naive:query:aaaca23fa38969acff63b5f11291fbc7
+2025-11-17 17:57:32,480 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:32,481 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:32,502 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:35,481 - lightrag - INFO -  == LLM cache == saving: naive:query:3771c2da3500cce17a02ec8ca8159883
+2025-11-17 17:57:35,617 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:35,618 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:35,636 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:38,484 - lightrag - INFO -  == LLM cache == saving: naive:query:7cbd76de1f0f28d2237cc8badcccd982
+2025-11-17 17:57:38,605 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:38,606 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:38,633 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:38,634 - lightrag - INFO -  == LLM cache == Query cache hit, using cached response as query result
+2025-11-17 17:57:38,680 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:38,681 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:38,699 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:42,842 - lightrag - INFO -  == LLM cache == saving: naive:query:48f2347410a353853344308c6709b02d
+2025-11-17 17:57:42,961 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:42,962 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:42,982 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:45,177 - lightrag - INFO -  == LLM cache == saving: naive:query:d606cfc0e0fcb4e5542e865bc327cec6
+2025-11-17 17:57:45,307 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:45,309 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:45,334 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:48,687 - lightrag - INFO -  == LLM cache == saving: naive:query:369e385c9931c67c6c688878e21c71c3
+2025-11-17 17:57:48,810 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:48,811 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:48,834 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:52,302 - lightrag - INFO -  == LLM cache == saving: naive:query:5d77cf2191f7df2d93ac581095575ad9
+2025-11-17 17:57:52,425 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:52,426 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:52,446 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:57:54,169 - lightrag - INFO -  == LLM cache == saving: naive:query:e1dd5b19ae0042e20887f3791da5d592
+2025-11-17 17:57:54,300 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:57:54,301 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:57:54,322 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:01,619 - lightrag - INFO -  == LLM cache == saving: naive:query:784531839d7d73a8fb895b8755dc4efa
+2025-11-17 17:58:01,719 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:01,720 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:01,741 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:08,254 - lightrag - INFO -  == LLM cache == saving: naive:query:64ce3b1fdf3d89bd3d989ff7dc308708
+2025-11-17 17:58:08,380 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:08,381 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:08,402 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:10,925 - lightrag - INFO -  == LLM cache == saving: naive:query:e6a9c3c981c6562c85dc8724c3d8f017
+2025-11-17 17:58:11,041 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:11,042 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:11,069 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:12,713 - lightrag - INFO -  == LLM cache == saving: naive:query:775d5ff7bbaa703be1de045da9810a44
+2025-11-17 17:58:12,802 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:12,803 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:12,821 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:21,340 - lightrag - INFO -  == LLM cache == saving: naive:query:4c697a4005c732649afb7bc77948c9de
+2025-11-17 17:58:21,466 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:21,467 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:21,484 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:27,277 - lightrag - INFO -  == LLM cache == saving: naive:query:8995d45813843cf7c5c82a0aed2e0afc
+2025-11-17 17:58:27,396 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:27,397 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:27,421 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:30,676 - lightrag - INFO -  == LLM cache == saving: naive:query:0f0a3b63f72e488e420062e2b18034f0
+2025-11-17 17:58:30,807 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:30,808 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:30,824 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:34,140 - lightrag - INFO -  == LLM cache == saving: naive:query:2f6260093d6a871460d09c6b4344d3c9
+2025-11-17 17:58:34,263 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:34,264 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:34,283 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:36,872 - lightrag - INFO -  == LLM cache == saving: naive:query:4f9832c9a8f3c8ce6c2053acdb464038
+2025-11-17 17:58:36,998 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:36,999 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:37,018 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:40,065 - lightrag - INFO -  == LLM cache == saving: naive:query:28caf12195a371cfff5fe94dd36e1221
+2025-11-17 17:58:40,202 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:40,202 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:40,219 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:43,693 - lightrag - INFO -  == LLM cache == saving: naive:query:f9a342e10b0169a03f515f834365cc72
+2025-11-17 17:58:43,819 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:43,819 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:43,839 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:50,439 - lightrag - INFO -  == LLM cache == saving: naive:query:622a1de6076d3a85446e58ccb55d2fca
+2025-11-17 17:58:50,572 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:50,573 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:50,600 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:57,406 - lightrag - INFO -  == LLM cache == saving: naive:query:1a10553c100af0462b56c64b67da513c
+2025-11-17 17:58:57,547 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:57,549 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:57,569 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:58:59,536 - lightrag - INFO -  == LLM cache == saving: naive:query:fc7dfba12e9f2c34faea2da23d1158e1
+2025-11-17 17:58:59,663 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:58:59,664 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:58:59,684 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:03,137 - lightrag - INFO -  == LLM cache == saving: naive:query:6d182e9d2c59f24d06858246daf3152e
+2025-11-17 17:59:03,277 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:03,278 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:03,293 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:09,993 - lightrag - INFO -  == LLM cache == saving: naive:query:64f6ef3d2683138dbe4ca2051e3e3a8c
+2025-11-17 17:59:10,115 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:10,116 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:10,133 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:14,183 - lightrag - INFO -  == LLM cache == saving: naive:query:1782f0e6cd4794e97545673da6ac63e8
+2025-11-17 17:59:14,320 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:14,321 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:14,336 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:23,487 - lightrag - INFO -  == LLM cache == saving: naive:query:886359b9a26ff005e402011330f203ea
+2025-11-17 17:59:23,624 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:23,625 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:23,647 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:26,837 - lightrag - INFO -  == LLM cache == saving: naive:query:97f92ce70d45b397e6d6c66669166a42
+2025-11-17 17:59:26,967 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:26,969 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:26,987 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:30,877 - lightrag - INFO -  == LLM cache == saving: naive:query:e882015efeeb2b36d05f03ea9030b9d0
+2025-11-17 17:59:31,002 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:31,003 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:31,027 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:35,417 - lightrag - INFO -  == LLM cache == saving: naive:query:955121df7e399c3af5cdce3c4a0c538b
+2025-11-17 17:59:35,561 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:35,562 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:35,582 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:39,856 - lightrag - INFO -  == LLM cache == saving: naive:query:9253c5dd3036bb3451400edc305722c0
+2025-11-17 17:59:39,972 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:39,972 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:39,991 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:42,682 - lightrag - INFO -  == LLM cache == saving: naive:query:18dfabc8a0d0d5cb9e51cadc877ea71b
+2025-11-17 17:59:42,812 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:42,813 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:42,833 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:47,128 - lightrag - INFO -  == LLM cache == saving: naive:query:afff753265cae465826a19276a7c4490
+2025-11-17 17:59:47,259 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:47,260 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:47,287 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 17:59:58,395 - lightrag - INFO -  == LLM cache == saving: naive:query:06ca74dcdaed873ee78e6f0191ac78a2
+2025-11-17 17:59:58,529 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 17:59:58,529 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 17:59:58,547 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:01,664 - lightrag - INFO -  == LLM cache == saving: naive:query:54a7119239258b8095c78d90fc1ff1a4
+2025-11-17 18:00:01,765 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:01,766 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:01,788 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:05,322 - lightrag - INFO -  == LLM cache == saving: naive:query:90c95c47a8a68b6f1fedf34c5a27d348
+2025-11-17 18:00:05,447 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:05,447 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:05,466 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:09,490 - lightrag - INFO -  == LLM cache == saving: naive:query:2d5b006a4a47acb63940d5e65518c258
+2025-11-17 18:00:09,627 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:09,627 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:09,651 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:14,451 - lightrag - INFO -  == LLM cache == saving: naive:query:d0de1195145c98e6f13d8dbc81dd06bb
+2025-11-17 18:00:14,586 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:14,587 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:14,603 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:22,063 - lightrag - INFO -  == LLM cache == saving: naive:query:67ec5ae820bd4dd996b58ab21c970fcf
+2025-11-17 18:00:22,180 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:22,181 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:22,205 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:25,138 - lightrag - INFO -  == LLM cache == saving: naive:query:a94d2adff78975693aef003146cf720d
+2025-11-17 18:00:25,276 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:25,278 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:25,299 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:31,157 - lightrag - INFO -  == LLM cache == saving: naive:query:0a59f39c4973857ad1101f3d7331bab0
+2025-11-17 18:00:31,296 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:31,297 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:31,312 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:37,665 - lightrag - INFO -  == LLM cache == saving: naive:query:2f68f75b3a741e17f61a8bf5ea8ab993
+2025-11-17 18:00:37,795 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:37,796 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:37,814 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:43,253 - lightrag - INFO -  == LLM cache == saving: naive:query:6bed45c9622102bddc32d58f33d22902
+2025-11-17 18:00:43,392 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:43,393 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:43,413 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:47,166 - lightrag - INFO -  == LLM cache == saving: naive:query:5ba89e3ac0f04bbcf63ac453665846bc
+2025-11-17 18:00:47,299 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:47,300 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:47,319 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:52,542 - lightrag - INFO -  == LLM cache == saving: naive:query:63ce02c53d1e24ce80fe6966281821b3
+2025-11-17 18:00:52,681 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:52,682 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:52,703 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:00:56,106 - lightrag - INFO -  == LLM cache == saving: naive:query:443fc811e03935830ae756029fb62afb
+2025-11-17 18:00:56,236 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:00:56,237 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:00:56,254 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:01:07,259 - lightrag - INFO -  == LLM cache == saving: naive:query:7f5158b0a260153674199fbe7f467f2c
+2025-11-17 18:01:07,381 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:01:07,382 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:01:07,397 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:01:10,196 - lightrag - INFO -  == LLM cache == saving: naive:query:df6f901d2456d53d436f3610ea1acdf0
+2025-11-17 18:01:10,334 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:01:10,335 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:01:10,363 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:01:13,877 - lightrag - INFO -  == LLM cache == saving: naive:query:243c04158de966c85f32083fa54c1c33
+2025-11-17 18:01:14,003 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:01:14,004 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:01:14,020 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:01:21,363 - lightrag - INFO -  == LLM cache == saving: naive:query:fccbf5adfa933493a4e64b7df585825a
+2025-11-17 18:01:21,495 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:01:21,496 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:01:21,511 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:01:27,019 - lightrag - INFO -  == LLM cache == saving: naive:query:33853a1e003c591204d28c12e970cbe3
+2025-11-17 18:01:27,152 - lightrag - INFO - Naive query: 20 chunks (chunk_top_k:20 cosine:0.2)
+2025-11-17 18:01:27,152 - lightrag - WARNING - Rerank is enabled but no rerank model is configured. Please set up a rerank model or set enable_rerank=False in query parameters.
+2025-11-17 18:01:27,172 - lightrag - INFO - Final context: 20 chunks
+2025-11-17 18:01:32,647 - lightrag - INFO - Successfully finalized 12 storages
+2025-11-17 18:04:09,220 - lightrag - INFO - [_] Created new empty graph file: 395-scripts/lightrag/gpt-4o-mini\medical\graph_chunk_entity_relation.graphml
+2025-11-17 18:04:09,221 - lightrag - INFO - [_] Process 5296 KV load full_docs with 0 records
+2025-11-17 18:04:09,221 - lightrag - INFO - [_] Process 5296 KV load text_chunks with 0 records
+2025-11-17 18:04:09,231 - lightrag - INFO - [_] Process 5296 KV load full_entities with 1 records
+2025-11-17 18:04:09,240 - lightrag - INFO - [_] Process 5296 KV load full_relations with 1 records
+2025-11-17 18:04:09,252 - lightrag - INFO - [_] Process 5296 KV load entity_chunks with 1756 records
+2025-11-17 18:04:09,266 - lightrag - INFO - [_] Process 5296 KV load relation_chunks with 1927 records
+2025-11-17 18:04:09,266 - lightrag - INFO - [_] Process 5296 KV load llm_response_cache with 0 records
+2025-11-17 18:04:09,266 - lightrag - INFO - [_] Process 5296 doc status load doc_status with 0 records
+2025-11-17 18:04:09,266 - lightrag - INFO - Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
+2025-11-17 18:04:09,638 - lightrag - INFO - Processing 1 document(s)
+2025-11-17 18:04:09,638 - lightrag - INFO - Extracting stage 1/1: unknown_source
+2025-11-17 18:04:09,639 - lightrag - INFO - Processing d-id: doc-3d7a4f05339f0e3f3870b407d21d9c8a
+2025-11-17 18:06:25,556 - lightrag - INFO - LLM func: 4 new workers initialized (Timeouts: Func: 180s, Worker: 360s, Health Check: 375s)
+2025-11-17 18:06:38,516 - lightrag - INFO -  == LLM cache == saving: default:extract:3f0c5284d546c6e8876f3e9708b04f45
+2025-11-17 18:06:46,270 - lightrag - INFO -  == LLM cache == saving: default:extract:09ddf8c9c01ddd8acf35d5bc25a2e099
+2025-11-17 18:06:46,270 - lightrag - INFO - Chunk 1 of 199 extracted 10 Ent + 8 Rel chunk-f8eae4d6dadf6a6fbd339efa4dec2172
+2025-11-17 18:06:47,966 - lightrag - INFO -  == LLM cache == saving: default:extract:8c7c3f7da148bf7fc198864a5240645f
+2025-11-17 18:06:49,647 - lightrag - INFO -  == LLM cache == saving: default:extract:c65a8db5afa2aa12d67305b414685b9a
+2025-11-17 18:06:50,698 - lightrag - INFO -  == LLM cache == saving: default:extract:d322fd5592a6c96c43efb757f843b529
+2025-11-17 18:06:50,699 - lightrag - INFO - Chunk 2 of 199 extracted 11 Ent + 9 Rel chunk-aa14ecd19e2d721cb99ea9590f0ede3a
+2025-11-17 18:06:55,644 - lightrag - INFO -  == LLM cache == saving: default:extract:988b89395e55fed107cffa2e6775f9ce
+2025-11-17 18:06:55,644 - lightrag - INFO - Chunk 3 of 199 extracted 17 Ent + 13 Rel chunk-66dd071b6c2be50e36cee1a1c1bd3b33
+2025-11-17 18:06:56,072 - lightrag - INFO -  == LLM cache == saving: default:extract:86c679055eb728c0c2ad08a8bbcb7aff
+2025-11-17 18:07:00,558 - lightrag - INFO -  == LLM cache == saving: default:extract:bcff938d9d040be9a53abce9fe9ff5f5
+2025-11-17 18:07:00,559 - lightrag - INFO - Chunk 4 of 199 extracted 21 Ent + 11 Rel chunk-7102a43dfb62e649d725bc95ba292688
+2025-11-17 18:07:10,635 - lightrag - INFO -  == LLM cache == saving: default:extract:59baebc6c382c70aa12683cbdddd018c
+2025-11-17 18:07:11,864 - lightrag - INFO -  == LLM cache == saving: default:extract:9a7588816002c7f859b53f06a8ac7359
+2025-11-17 18:07:12,129 - lightrag - INFO -  == LLM cache == saving: default:extract:08cf23f3a780a751199cff878c68d9b2
+2025-11-17 18:07:14,846 - lightrag - INFO -  == LLM cache == saving: default:extract:29b04692ebc8c1869b00d94dc9d03377
+2025-11-17 18:07:14,846 - lightrag - INFO - Chunk 5 of 199 extracted 14 Ent + 7 Rel chunk-6eafb110f88c7af38808f77f59ed155d
+2025-11-17 18:07:19,442 - lightrag - INFO -  == LLM cache == saving: default:extract:8684a74e6e24d09ac1aad9aaa8674745
+2025-11-17 18:07:19,442 - lightrag - INFO - Chunk 6 of 199 extracted 15 Ent + 13 Rel chunk-3821a6febf2d21784059ac62a6e659c1
+2025-11-17 18:07:19,667 - lightrag - INFO -  == LLM cache == saving: default:extract:77074f2689162ce832f4b69d7c31b4b2
+2025-11-17 18:07:19,668 - lightrag - INFO - Chunk 7 of 199 extracted 19 Ent + 14 Rel chunk-f1379433bc205cdec8af2edc77613acb
+2025-11-17 18:07:32,388 - lightrag - INFO -  == LLM cache == saving: default:extract:1c6f6e096548e0374299d4a5e203c715
+2025-11-17 18:07:33,704 - lightrag - INFO -  == LLM cache == saving: default:extract:31a5717e59a85ba329343a49b0082c8b
+2025-11-17 18:07:34,979 - lightrag - INFO -  == LLM cache == saving: default:extract:74612a833f550e79ebe94f27ea6a82f6
+2025-11-17 18:07:36,206 - lightrag - INFO -  == LLM cache == saving: default:extract:a020ea732885ab3cbb245e50523b019c
+2025-11-17 18:07:36,207 - lightrag - INFO - Chunk 8 of 199 extracted 25 Ent + 12 Rel chunk-e8ac9bf8f198bc5ad54fd1a7b843e810
+2025-11-17 18:07:39,643 - lightrag - INFO -  == LLM cache == saving: default:extract:95e05ad52cbce28f02b7fa2ce5fa2d67
+2025-11-17 18:07:39,644 - lightrag - INFO - Chunk 9 of 199 extracted 15 Ent + 9 Rel chunk-7d994e430bb9890c905d7914fad9c118
+2025-11-17 18:07:42,084 - lightrag - INFO -  == LLM cache == saving: default:extract:d2c9fb44f56a3c60159decfc801dd028
+2025-11-17 18:07:42,084 - lightrag - INFO - Chunk 10 of 199 extracted 16 Ent + 8 Rel chunk-e9cc65c1c26b9e24bfb2c8c966f734a0
+2025-11-17 18:07:46,647 - lightrag - INFO -  == LLM cache == saving: default:extract:c05fa6edeebe8cf2af16f7d305b211a8
+2025-11-17 18:07:52,080 - lightrag - INFO -  == LLM cache == saving: default:extract:5e49ddee294d8b2278c21d06b38bb779
+2025-11-17 18:07:52,307 - lightrag - INFO -  == LLM cache == saving: default:extract:6d2f15e0de1e0e3a3d56b49d43406bdc
+2025-11-17 18:07:52,308 - lightrag - INFO - Chunk 11 of 199 extracted 20 Ent + 12 Rel chunk-f6fd03791661f76f6c1a246b2074b2a0
+2025-11-17 18:07:56,469 - lightrag - INFO -  == LLM cache == saving: default:extract:238f9994fa1e614fcf27c7ade0470a86
+2025-11-17 18:08:03,317 - lightrag - INFO -  == LLM cache == saving: default:extract:90d305053f2c65d42afbe85fdc1c90cc
+2025-11-17 18:08:03,318 - lightrag - INFO - Chunk 12 of 199 extracted 16 Ent + 9 Rel chunk-60426652ddf8265bf75caba550026d38
+2025-11-17 18:08:04,910 - lightrag - INFO -  == LLM cache == saving: default:extract:eb02031e96eb15e422cd4c3e8530e526
+2025-11-17 18:08:04,911 - lightrag - INFO - Chunk 13 of 199 extracted 13 Ent + 9 Rel chunk-a9d0006f1c78fe4fa7bb74b756033104
+2025-11-17 18:08:08,607 - lightrag - INFO -  == LLM cache == saving: default:extract:26cbfdb0e8a9425526b1be02b0c96908
+2025-11-17 18:08:15,408 - lightrag - INFO -  == LLM cache == saving: default:extract:8cc74cc035bb8f3ceffcd0d87dbc1f9a
+2025-11-17 18:08:18,984 - lightrag - INFO -  == LLM cache == saving: default:extract:51622314bf071a0aefd8acd027bbcf2f
+2025-11-17 18:08:18,985 - lightrag - INFO - Chunk 14 of 199 extracted 17 Ent + 12 Rel chunk-50c5e5d6c7a62da56b73abb9a3384301
+2025-11-17 18:08:20,748 - lightrag - INFO -  == LLM cache == saving: default:extract:05d77d961a3876e4c17e24e932852001
+2025-11-17 18:08:21,887 - lightrag - INFO -  == LLM cache == saving: default:extract:a140f27a89b83705c20f8a39c92ec9c8
+2025-11-17 18:08:23,799 - lightrag - INFO -  == LLM cache == saving: default:extract:25b332677bf25317699f25b9c4987187
+2025-11-17 18:08:23,800 - lightrag - INFO - Chunk 15 of 199 extracted 14 Ent + 13 Rel chunk-64895edc4d35c98b293c555e32022a37
+2025-11-17 18:08:26,178 - lightrag - INFO -  == LLM cache == saving: default:extract:ccdd8a269f34bcb3b73a3077281a16df
+2025-11-17 18:08:26,178 - lightrag - INFO - Chunk 16 of 199 extracted 10 Ent + 7 Rel chunk-8b66e38931f28ed6ac9b231faaf202fb
+2025-11-17 18:08:27,522 - lightrag - INFO -  == LLM cache == saving: default:extract:3a7190563572717fabee7edb11441128
+2025-11-17 18:08:27,523 - lightrag - INFO - Chunk 17 of 199 extracted 11 Ent + 7 Rel chunk-ef6586b896c47b361bf4f6aabb4c35d5
+2025-11-17 18:08:46,046 - lightrag - INFO -  == LLM cache == saving: default:extract:dc83c0f540cf50cb307eb30ecb6861ef
+2025-11-17 18:08:48,399 - lightrag - INFO -  == LLM cache == saving: default:extract:a16e3d9f843ca0dcafda9f3134243766
+2025-11-17 18:08:53,417 - lightrag - INFO -  == LLM cache == saving: default:extract:d4d5641ae7a0de75adef00cc10f9f72c
+2025-11-17 18:08:54,489 - lightrag - INFO -  == LLM cache == saving: default:extract:4a90bcb173aa61d8b1d19b8fa1c008dc
+2025-11-17 18:08:55,940 - lightrag - INFO -  == LLM cache == saving: default:extract:d7e53c8e883dd78b753cf10238dce4af
+2025-11-17 18:08:55,940 - lightrag - INFO - Chunk 18 of 199 extracted 13 Ent + 10 Rel chunk-08475506372bb4ce9ec1bd326caf0fe9
+2025-11-17 18:08:56,683 - lightrag - INFO -  == LLM cache == saving: default:extract:55d0c8498e96e72daac4b6b1fbcb7f63
+2025-11-17 18:08:56,684 - lightrag - INFO - Chunk 19 of 199 extracted 21 Ent + 14 Rel chunk-bd06bc83e13e7562ce65d6eee1b6024f
+2025-11-17 18:08:58,058 - lightrag - INFO -  == LLM cache == saving: default:extract:1b07bf1cf691dfabc552f48e44caec2c
+2025-11-17 18:08:58,058 - lightrag - INFO - Chunk 20 of 199 extracted 15 Ent + 9 Rel chunk-ecc6c4bcd3cab65fa05ab5f3c55e528d
+2025-11-17 18:09:04,846 - lightrag - INFO -  == LLM cache == saving: default:extract:6e95acf807a282deafc8fc453c07a648
+2025-11-17 18:09:04,847 - lightrag - INFO - Chunk 21 of 199 extracted 22 Ent + 16 Rel chunk-7843955573cdc294b34e74019195fafb
+2025-11-17 18:09:12,999 - lightrag - INFO -  == LLM cache == saving: default:extract:d651d607b554496f9bc8c6b81171e211
+2025-11-17 18:09:14,042 - lightrag - INFO -  == LLM cache == saving: default:extract:faf9fe0d22727e419c3797e6db235c66
+2025-11-17 18:09:15,684 - lightrag - INFO -  == LLM cache == saving: default:extract:a253d1acf6290c40940d164c0251559a
+2025-11-17 18:09:15,684 - lightrag - INFO - Chunk 22 of 199 extracted 10 Ent + 7 Rel chunk-64f36a4a5be80c8fa51631db16e52b85
+2025-11-17 18:09:24,487 - lightrag - INFO -  == LLM cache == saving: default:extract:826df9a7951eb4dd2e7942e65ebe2125
+2025-11-17 18:09:24,488 - lightrag - INFO - Chunk 23 of 199 extracted 14 Ent + 10 Rel chunk-cb36cedd3f66584d65304e58b668eeab
+2025-11-17 18:09:27,040 - lightrag - INFO -  == LLM cache == saving: default:extract:c6285935cdbf6079a710d2fe7f476172
+2025-11-17 18:09:30,530 - lightrag - INFO -  == LLM cache == saving: default:extract:7b8de99cbd00989b1b0bf700427cfea7
+2025-11-17 18:09:34,761 - lightrag - INFO -  == LLM cache == saving: default:extract:6e7f90019580492fd03cd5a9d893f102
+2025-11-17 18:09:34,762 - lightrag - INFO - Chunk 24 of 199 extracted 15 Ent + 9 Rel chunk-b00f93aa3d24d0275d4290db3fb2cca3
+2025-11-17 18:09:36,583 - lightrag - INFO -  == LLM cache == saving: default:extract:40e36dc1731217460c151265ccf1b2b3
+2025-11-17 18:09:36,584 - lightrag - INFO - Chunk 25 of 199 extracted 20 Ent + 13 Rel chunk-d67bee20d5e5400994f8c8f03052dd06
+2025-11-17 18:09:36,918 - lightrag - INFO -  == LLM cache == saving: default:extract:5ccdc5db3ff181796e86ef552730e47f
+2025-11-17 18:09:37,432 - lightrag - INFO -  == LLM cache == saving: default:extract:f50848fb5ac150ad153298783b750cb9
+2025-11-17 18:09:47,723 - lightrag - INFO -  == LLM cache == saving: default:extract:7d51e6f971b37f85f2f12779f94bd66d
+2025-11-17 18:09:47,724 - lightrag - INFO - Chunk 26 of 199 extracted 12 Ent + 10 Rel chunk-f43f96815f23658d5b24fe95ed4bd5ed
+2025-11-17 18:09:50,331 - lightrag - INFO -  == LLM cache == saving: default:extract:7f872c4b08d08f94d6620a666c4e3213
+2025-11-17 18:09:51,022 - lightrag - INFO -  == LLM cache == saving: default:extract:6aa9ac1ec97351d26c5c76c6c10eb847
+2025-11-17 18:09:51,023 - lightrag - INFO - Chunk 27 of 199 extracted 15 Ent + 12 Rel chunk-829d6b7840e9f2c8d97d22d2ce2c43c1
+2025-11-17 18:09:59,044 - lightrag - INFO -  == LLM cache == saving: default:extract:ed9c428f6ff75266ee08649a51720233
+2025-11-17 18:09:59,045 - lightrag - INFO - Chunk 28 of 199 extracted 15 Ent + 10 Rel chunk-d47a420aa2acde1175ad95bf6dc2e664
+2025-11-17 18:10:01,649 - lightrag - INFO -  == LLM cache == saving: default:extract:4dad2c67c70df5b56ed9cb4422cc5647
+2025-11-17 18:10:06,128 - lightrag - INFO -  == LLM cache == saving: default:extract:f97a4950a442278bb7e8e13e880363f4
+2025-11-17 18:10:06,129 - lightrag - INFO - Chunk 29 of 199 extracted 12 Ent + 10 Rel chunk-7bdde77ad1be3ee9308db3c7703674b0
+2025-11-17 18:10:13,771 - lightrag - INFO -  == LLM cache == saving: default:extract:bb2e0f3236d9a0fe4db1542d8f39b000
+2025-11-17 18:10:16,472 - lightrag - INFO -  == LLM cache == saving: default:extract:c3c09390d5af4a4b83fba45e667468ed
+2025-11-17 18:10:16,732 - lightrag - INFO -  == LLM cache == saving: default:extract:e05e5b2bd6a0c357020d9c7b5760ed17
+2025-11-17 18:10:16,734 - lightrag - INFO - Chunk 30 of 199 extracted 16 Ent + 13 Rel chunk-705ff2bd04b2b58b98187f60f23a659e
+2025-11-17 18:10:23,538 - lightrag - INFO -  == LLM cache == saving: default:extract:c285928f7169113d4b4a31074889c6d8
+2025-11-17 18:10:24,717 - lightrag - INFO -  == LLM cache == saving: default:extract:f435a8f6ab82e6babbaea0313a5b7593
+2025-11-17 18:10:24,717 - lightrag - INFO - Chunk 31 of 199 extracted 13 Ent + 10 Rel chunk-3d609bd1a55d409470c55ad55e2d125d
+2025-11-17 18:10:25,963 - lightrag - INFO -  == LLM cache == saving: default:extract:ecec774c40cc8d523468b4286782d361
+2025-11-17 18:10:29,127 - lightrag - INFO -  == LLM cache == saving: default:extract:df2912879f40ac4577a570b1bb1b30ba
+2025-11-17 18:10:29,128 - lightrag - INFO - Chunk 32 of 199 extracted 21 Ent + 10 Rel chunk-28e4e845dfd1390f7f94cfb11bee1526
+2025-11-17 18:10:29,350 - lightrag - INFO -  == LLM cache == saving: default:extract:0dfe93394b27b4740349d3eea60c72e4
+2025-11-17 18:10:29,350 - lightrag - INFO - Chunk 33 of 199 extracted 14 Ent + 7 Rel chunk-d9882c04dd7676c6433074e5e393c72e
+2025-11-17 18:10:34,544 - lightrag - INFO -  == LLM cache == saving: default:extract:c863200902e9459340d80f7b42ff7a44
+2025-11-17 18:10:38,192 - lightrag - INFO -  == LLM cache == saving: default:extract:6d505c21132839bd956c21fee614c36d
+2025-11-17 18:10:39,044 - lightrag - INFO -  == LLM cache == saving: default:extract:8d28a9bc1f05da95044a5a024da5ab7e
+2025-11-17 18:10:39,045 - lightrag - INFO - Chunk 34 of 199 extracted 13 Ent + 8 Rel chunk-bd7ea43a74059d6781866faec437f19a
+2025-11-17 18:10:46,828 - lightrag - INFO -  == LLM cache == saving: default:extract:c94ea69ed5df68bc0fd1a4fd6e3fb747
+2025-11-17 18:10:46,829 - lightrag - INFO - Chunk 35 of 199 extracted 12 Ent + 9 Rel chunk-69e63736c94b8b08a565c3d8679d3b57
+2025-11-17 18:10:50,440 - lightrag - INFO -  == LLM cache == saving: default:extract:d9d5e04ab9c5939ea749a6d56fcc1dde
+2025-11-17 18:10:56,497 - lightrag - INFO -  == LLM cache == saving: default:extract:6a2d44a66be5935487b82f435a92c843
+2025-11-17 18:10:58,811 - lightrag - INFO -  == LLM cache == saving: default:extract:1b4950088e4d48532d6aa00d5079825d
+2025-11-17 18:11:00,379 - lightrag - INFO -  == LLM cache == saving: default:extract:9d3208c4dfe14886b092404f202a677d
+2025-11-17 18:11:00,380 - lightrag - INFO - Chunk 36 of 199 extracted 16 Ent + 10 Rel chunk-b63f0a9aec8d42c8426ded05a9bf92b4
+2025-11-17 18:11:01,074 - lightrag - INFO -  == LLM cache == saving: default:extract:997cb92262f5809a369d20c2e985852b
+2025-11-17 18:11:01,074 - lightrag - INFO - Chunk 37 of 199 extracted 15 Ent + 11 Rel chunk-4724f6acaaa7931560b29614efc2927f
+2025-11-17 18:11:05,163 - lightrag - INFO -  == LLM cache == saving: default:extract:af7c06abc620b3abb76f540257a5b8e4
+2025-11-17 18:11:05,427 - lightrag - INFO -  == LLM cache == saving: default:extract:936695d214016ef0b759ae5d40917bde
+2025-11-17 18:11:05,428 - lightrag - INFO - Chunk 38 of 199 extracted 21 Ent + 11 Rel chunk-d73843c009e523101e1464a2b28bc144
+2025-11-17 18:11:13,899 - lightrag - INFO -  == LLM cache == saving: default:extract:6b41cdc88d26aca547aefb49f84da882
+2025-11-17 18:11:13,900 - lightrag - INFO - Chunk 39 of 199 extracted 15 Ent + 9 Rel chunk-97836a515d346931beb424ae40a89877
+2025-11-17 18:11:19,837 - lightrag - INFO -  == LLM cache == saving: default:extract:fd93834c16c26b5fc80b0ecf034c3944
+2025-11-17 18:11:25,221 - lightrag - INFO -  == LLM cache == saving: default:extract:ee36bf1173fbc7fc02fa2fcf5bf84859
+2025-11-17 18:11:27,707 - lightrag - INFO -  == LLM cache == saving: default:extract:712cda029f7c858efe757f24dfc3a47a
+2025-11-17 18:11:28,570 - lightrag - INFO -  == LLM cache == saving: default:extract:3bdef043eb72b826d3cfdf93240dff5d
+2025-11-17 18:11:28,571 - lightrag - INFO - Chunk 40 of 199 extracted 12 Ent + 11 Rel chunk-e5406c28b41e499fad4ae44f2c44fdd7
+2025-11-17 18:11:31,874 - lightrag - INFO -  == LLM cache == saving: default:extract:250031b5429c99b4022a9ef292c38001
+2025-11-17 18:11:31,874 - lightrag - INFO - Chunk 41 of 199 extracted 23 Ent + 8 Rel chunk-53afdc6713818c4177b64a712ecce11b
+2025-11-17 18:11:35,122 - lightrag - INFO -  == LLM cache == saving: default:extract:00b77177cb6ea503078d5ce252398b46
+2025-11-17 18:11:35,122 - lightrag - INFO - Chunk 42 of 199 extracted 25 Ent + 8 Rel chunk-b4da30dee72e228147daa825e4f5be72
+2025-11-17 18:11:40,238 - lightrag - INFO -  == LLM cache == saving: default:extract:1e0798c7459fc11beae3099bfd188bb0
+2025-11-17 18:11:47,505 - lightrag - INFO -  == LLM cache == saving: default:extract:13aa9ea46d19c3163b4a21ea50c6cd2a
+2025-11-17 18:11:47,506 - lightrag - INFO - Chunk 43 of 199 extracted 19 Ent + 12 Rel chunk-ae40f53e9d867c255e1e6901f5cfb058
+2025-11-17 18:11:50,746 - lightrag - INFO -  == LLM cache == saving: default:extract:7469bbde640927f360212ef9dae988d1
+2025-11-17 18:11:59,836 - lightrag - INFO -  == LLM cache == saving: default:extract:18be813dc9741822f860a8f962a3b718
+2025-11-17 18:11:59,837 - lightrag - INFO - Chunk 44 of 199 extracted 15 Ent + 14 Rel chunk-77ac570b4029abb181150e0d0975aefb
+2025-11-17 18:12:09,968 - lightrag - INFO -  == LLM cache == saving: default:extract:ec7d51bd7b15c6199700fb2149b348c0
+2025-11-17 18:12:13,367 - lightrag - INFO -  == LLM cache == saving: default:extract:b554a45dfde995178b4b9c2810138d35
+2025-11-17 18:12:13,367 - lightrag - INFO - Chunk 45 of 199 extracted 16 Ent + 14 Rel chunk-cf2d987135a5936876bc819136e3a5b5
+2025-11-17 18:12:15,284 - lightrag - INFO -  == LLM cache == saving: default:extract:be29d1a799607f9293ac60e1451d3c2b
+2025-11-17 18:12:18,952 - lightrag - INFO -  == LLM cache == saving: default:extract:efec98ab5be19dee89d5c108b45161e2
+2025-11-17 18:12:21,884 - lightrag - INFO -  == LLM cache == saving: default:extract:2c41aa6d401239c347598bb736e40bda
+2025-11-17 18:12:28,447 - lightrag - INFO -  == LLM cache == saving: default:extract:c11fc6bda17375439f413262a7cec5bf
+2025-11-17 18:12:28,447 - lightrag - INFO - Chunk 46 of 199 extracted 39 Ent + 19 Rel chunk-96238b4b361e393ff452a09d1ce26154
+2025-11-17 18:12:29,020 - lightrag - INFO -  == LLM cache == saving: default:extract:bbbc39dbc7e370f5dad6ae30e0547084
+2025-11-17 18:12:29,020 - lightrag - INFO - Chunk 47 of 199 extracted 15 Ent + 13 Rel chunk-8b44f0b4da13a804cd1dfb917ac7e981
+2025-11-17 18:12:37,138 - lightrag - INFO -  == LLM cache == saving: default:extract:ce7c7846898b9bd5c3a13ac26f66476c
+2025-11-17 18:12:37,140 - lightrag - INFO - Chunk 48 of 199 extracted 24 Ent + 26 Rel chunk-b69d38fafe014cece3427bd0459ae42b
+2025-11-17 18:12:37,364 - lightrag - INFO -  == LLM cache == saving: default:extract:cf75015c491ae79d140df9a9ad76c04c
+2025-11-17 18:12:42,652 - lightrag - INFO -  == LLM cache == saving: default:extract:2b51d428e5bff6cba3def48f70b3fdcb
+2025-11-17 18:12:42,653 - lightrag - INFO - Chunk 49 of 199 extracted 14 Ent + 12 Rel chunk-c622c677deca24391324ecd5f16ce4a3
+2025-11-17 18:12:43,486 - lightrag - INFO -  == LLM cache == saving: default:extract:69ef67d45755352faf067d9080cd05cc
+2025-11-17 18:12:45,056 - lightrag - INFO -  == LLM cache == saving: default:extract:f149b078dbb8b03c4b0af52bf8a98493
+2025-11-17 18:12:49,316 - lightrag - INFO -  == LLM cache == saving: default:extract:565bb5eb321a27a3ea9946a0cb4bef99
+2025-11-17 18:12:49,317 - lightrag - INFO - Chunk 50 of 199 extracted 13 Ent + 8 Rel chunk-5a84075aaac61b0ad85e5f811fc4f24b
+2025-11-17 18:12:50,655 - lightrag - INFO -  == LLM cache == saving: default:extract:a0ebd5fa0abc9ebec80ab23ebcc7bf9c
+2025-11-17 18:12:50,656 - lightrag - INFO - Chunk 51 of 199 extracted 11 Ent + 10 Rel chunk-38185832d6395b9952def9a72ecc339d
+2025-11-17 18:12:57,725 - lightrag - INFO -  == LLM cache == saving: default:extract:e4281fb9aaa3df83f33fcb91670b6bbf
+2025-11-17 18:12:58,442 - lightrag - INFO -  == LLM cache == saving: default:extract:cfc2e81731e6ffa52a0fe69fa0c3c5fd
+2025-11-17 18:13:02,072 - lightrag - INFO -  == LLM cache == saving: default:extract:4b74815214605a7841016a538d50a710
+2025-11-17 18:13:02,072 - lightrag - INFO - Chunk 52 of 199 extracted 11 Ent + 7 Rel chunk-5fa7c7369d88ae71c842152510867223
+2025-11-17 18:13:04,252 - lightrag - INFO -  == LLM cache == saving: default:extract:1472eb0a714a72e75c886fc567fafa65
+2025-11-17 18:13:04,957 - lightrag - INFO -  == LLM cache == saving: default:extract:9a2c04f294bea177955d1bbfe7279286
+2025-11-17 18:13:04,958 - lightrag - INFO - Chunk 53 of 199 extracted 18 Ent + 10 Rel chunk-33608457001e818e2b300adae9c6c0d9
+2025-11-17 18:13:07,262 - lightrag - INFO -  == LLM cache == saving: default:extract:f731394cbbd19c258be7fcf22238a78d
+2025-11-17 18:13:09,046 - lightrag - INFO -  == LLM cache == saving: default:extract:8eddfae793e2efe707f0d1d55f8e3dff
+2025-11-17 18:13:09,047 - lightrag - INFO - Chunk 54 of 199 extracted 12 Ent + 7 Rel chunk-50531346164ea7c08dd087a868b3cc2a
+2025-11-17 18:13:19,994 - lightrag - INFO -  == LLM cache == saving: default:extract:68f140d38bf206486375b227e30a51de
+2025-11-17 18:13:19,995 - lightrag - INFO - Chunk 55 of 199 extracted 17 Ent + 11 Rel chunk-0739b33959299ea67072f390ce38bffd
+2025-11-17 18:13:24,617 - lightrag - INFO -  == LLM cache == saving: default:extract:0f461526306f0b4388c4e02dc88498bb
+2025-11-17 18:13:24,928 - lightrag - INFO -  == LLM cache == saving: default:extract:3bf799bed5351f5c5d55dfec99fa619e
+2025-11-17 18:13:28,240 - lightrag - INFO -  == LLM cache == saving: default:extract:25abcebebd74414b7cabbe6dc833854d
+2025-11-17 18:13:32,232 - lightrag - INFO -  == LLM cache == saving: default:extract:b8a2d4bf5294d8ea4c96c243681edd8b
+2025-11-17 18:13:32,233 - lightrag - INFO - Chunk 56 of 199 extracted 17 Ent + 8 Rel chunk-f8639a06098656be20a04fe129660616
+2025-11-17 18:13:33,259 - lightrag - INFO -  == LLM cache == saving: default:extract:8fffea1166b73386ecf33aa354d26b12
+2025-11-17 18:13:33,260 - lightrag - INFO - Chunk 57 of 199 extracted 13 Ent + 6 Rel chunk-81c87ec3c2682da4d531da53f6e5e18c
+2025-11-17 18:13:37,165 - lightrag - INFO -  == LLM cache == saving: default:extract:8da9d562a19f7f9b1f90955ef9fa2833
+2025-11-17 18:13:37,166 - lightrag - INFO - Chunk 58 of 199 extracted 15 Ent + 11 Rel chunk-5d8e20e6004dd43ae0f68185383b594d
+2025-11-17 18:13:44,145 - lightrag - INFO -  == LLM cache == saving: default:extract:fc98d5843c423b6cdad966c766d31535
+2025-11-17 18:13:50,758 - lightrag - INFO -  == LLM cache == saving: default:extract:c739b6e4e60be51519c0108438f2318a
+2025-11-17 18:13:50,759 - lightrag - INFO - Chunk 59 of 199 extracted 16 Ent + 12 Rel chunk-c5bc83f5f4f3e29b7f0a6f4787c3ad83
+2025-11-17 18:13:53,106 - lightrag - INFO -  == LLM cache == saving: default:extract:9eca2c38b715966c0900c4c7ac2705be
+2025-11-17 18:13:54,249 - lightrag - INFO -  == LLM cache == saving: default:extract:4abc9585321f6b2b75d88e1ddeb397dc
+2025-11-17 18:13:57,023 - lightrag - INFO -  == LLM cache == saving: default:extract:d8d83b9d328e67f6672cbdd5c035099a
+2025-11-17 18:13:57,023 - lightrag - INFO - Chunk 60 of 199 extracted 13 Ent + 10 Rel chunk-925a474b4538dda470bfd817f9d9a17d
+2025-11-17 18:14:01,860 - lightrag - INFO -  == LLM cache == saving: default:extract:995bf6ae7301bc3e56fb5c6d187f4f61
+2025-11-17 18:14:01,861 - lightrag - INFO - Chunk 61 of 199 extracted 13 Ent + 10 Rel chunk-f2c9770fd98dbbe3c7947601fb3e654c
+2025-11-17 18:14:08,788 - lightrag - INFO -  == LLM cache == saving: default:extract:0310676b33dd14863542a598fd7e0494
+2025-11-17 18:14:13,204 - lightrag - INFO -  == LLM cache == saving: default:extract:6c3d2478006df36ee870998a32eb2ffd
+2025-11-17 18:14:13,205 - lightrag - INFO - Chunk 62 of 199 extracted 23 Ent + 17 Rel chunk-594536d6aaa61f8f1699ba50bf218a33
+2025-11-17 18:14:16,356 - lightrag - INFO -  == LLM cache == saving: default:extract:4bd8f53c8aec22b994f43f404c1ea2e8
+2025-11-17 18:14:23,146 - lightrag - INFO -  == LLM cache == saving: default:extract:ebf35ab8ec75d3be8bf35967e5338d94
+2025-11-17 18:14:24,642 - lightrag - INFO -  == LLM cache == saving: default:extract:f676d94fe09779fcd0a5e590080f02bb
+2025-11-17 18:14:24,643 - lightrag - INFO - Chunk 63 of 199 extracted 17 Ent + 13 Rel chunk-37bca9f4d2ebaeed359c9b4eb7a0c1de
+2025-11-17 18:14:27,288 - lightrag - INFO -  == LLM cache == saving: default:extract:053af9cd34eac82265c0304e9563bdde
+2025-11-17 18:14:27,289 - lightrag - INFO - Chunk 64 of 199 extracted 19 Ent + 7 Rel chunk-48e138ec8da954a5667dc785e919c86b
+2025-11-17 18:14:28,635 - lightrag - INFO -  == LLM cache == saving: default:extract:e895ff9d89e454d4c84e60b9d623939f
+2025-11-17 18:14:32,992 - lightrag - INFO -  == LLM cache == saving: default:extract:30075bfd9f1fdcea19f1d5d2a01c2cb3
+2025-11-17 18:14:32,992 - lightrag - INFO - Chunk 65 of 199 extracted 20 Ent + 9 Rel chunk-a08bd0a819ea613e781d07188a350438
+2025-11-17 18:14:43,906 - lightrag - INFO -  == LLM cache == saving: default:extract:088b7115e8d2e0b5b0e56a19dcfaf8fa
+2025-11-17 18:14:44,919 - lightrag - INFO -  == LLM cache == saving: default:extract:9d99d0827cc3692a96615d2bdde72152
+2025-11-17 18:14:45,492 - lightrag - INFO -  == LLM cache == saving: default:extract:c4365b0a12ef03bcd5a4bfd8d6eb4e02
+2025-11-17 18:14:46,592 - lightrag - INFO -  == LLM cache == saving: default:extract:9dfbd802c40656e3890d4449873d35e2
+2025-11-17 18:14:47,036 - lightrag - INFO -  == LLM cache == saving: default:extract:f142cc708a804d51ceba907e30e1b482
+2025-11-17 18:14:47,036 - lightrag - INFO - Chunk 66 of 199 extracted 17 Ent + 13 Rel chunk-a99a89bec88823cedf4c1f0cd1a78e81
+2025-11-17 18:14:47,828 - lightrag - INFO -  == LLM cache == saving: default:extract:52f9c9dbd7151ac1043fd6ae4f24831a
+2025-11-17 18:14:47,828 - lightrag - INFO - Chunk 67 of 199 extracted 11 Ent + 8 Rel chunk-82c7205fc2067a4d00e43fd22276db22
+2025-11-17 18:14:48,961 - lightrag - INFO -  == LLM cache == saving: default:extract:c556b1fcd5ab3398fdbf292ef812cd1f
+2025-11-17 18:14:48,962 - lightrag - INFO - Chunk 68 of 199 extracted 10 Ent + 7 Rel chunk-2dc31077c053f79ff82959575d335956
+2025-11-17 18:14:53,771 - lightrag - INFO -  == LLM cache == saving: default:extract:f6bfab110f80e12c441bb7911209d166
+2025-11-17 18:14:53,772 - lightrag - INFO - Chunk 69 of 199 extracted 14 Ent + 8 Rel chunk-ae28e3852f4a9f229250fc19eb39036b
+2025-11-17 18:15:12,937 - lightrag - INFO -  == LLM cache == saving: default:extract:684a389beedb7676d01b836ffa903376
+2025-11-17 18:15:13,615 - lightrag - INFO -  == LLM cache == saving: default:extract:256d00e6b35cd8616396f3d83710aa56
+2025-11-17 18:15:13,842 - lightrag - INFO -  == LLM cache == saving: default:extract:105f7013f157ac14fc85f2d05ebd5c78
+2025-11-17 18:15:20,749 - lightrag - INFO -  == LLM cache == saving: default:extract:6d2b1db63e4fd6fd6e3734387420353c
+2025-11-17 18:15:20,750 - lightrag - INFO - Chunk 70 of 199 extracted 25 Ent + 8 Rel chunk-9fa573748870dc50a98a935843997c68
+2025-11-17 18:15:21,796 - lightrag - INFO -  == LLM cache == saving: default:extract:b1ad33a5a5d5762d05255d4004ab467f
+2025-11-17 18:15:21,796 - lightrag - INFO - Chunk 71 of 199 extracted 17 Ent + 10 Rel chunk-0786666c65b5bf00705439d5cb60d5a0
+2025-11-17 18:15:26,346 - lightrag - INFO -  == LLM cache == saving: default:extract:7a5a05a1302f82889a56866cac92879d
+2025-11-17 18:15:26,347 - lightrag - INFO - Chunk 72 of 199 extracted 19 Ent + 15 Rel chunk-db4e8318949a3fda5683c53985c6af05
+2025-11-17 18:15:30,441 - lightrag - INFO -  == LLM cache == saving: default:extract:98d9657696ad78b2a3dc0154c554cc92
+2025-11-17 18:15:38,391 - lightrag - INFO -  == LLM cache == saving: default:extract:04667d2abd799307c96f549595f841a4
+2025-11-17 18:15:38,392 - lightrag - INFO - Chunk 73 of 199 extracted 19 Ent + 12 Rel chunk-29c9b8b5fd2cd967c48522af79a9598f
+2025-11-17 18:15:44,824 - lightrag - INFO -  == LLM cache == saving: default:extract:225935353b491f5f0e081d33982f5f57
+2025-11-17 18:15:47,395 - lightrag - INFO -  == LLM cache == saving: default:extract:70c5e94dd468cedb593c586812e4490c
+2025-11-17 18:15:48,008 - lightrag - INFO -  == LLM cache == saving: default:extract:89950d7be1b77a6a22243091b8345559
+2025-11-17 18:15:51,965 - lightrag - INFO -  == LLM cache == saving: default:extract:bb8d3c019154ea050c9862aa58be8d3d
+2025-11-17 18:15:51,966 - lightrag - INFO - Chunk 74 of 199 extracted 15 Ent + 11 Rel chunk-8333423c91919d7adde114b8286cca7e
+2025-11-17 18:15:56,894 - lightrag - INFO -  == LLM cache == saving: default:extract:0d4af3fc7d2c47a5e7a8937fd6caf898
+2025-11-17 18:15:56,895 - lightrag - INFO - Chunk 75 of 199 extracted 13 Ent + 10 Rel chunk-7606b44d6a30ad0519bc4c10785de79a
+2025-11-17 18:15:58,877 - lightrag - INFO -  == LLM cache == saving: default:extract:b0fede81926d33c46d5e75677b43e003
+2025-11-17 18:16:01,467 - lightrag - INFO -  == LLM cache == saving: default:extract:b996a142342bd579bea8870b66955531
+2025-11-17 18:16:01,468 - lightrag - INFO - Chunk 76 of 199 extracted 16 Ent + 11 Rel chunk-06f823f3a91fcbc32c62fac3c6347715
+2025-11-17 18:16:04,670 - lightrag - INFO -  == LLM cache == saving: default:extract:5696883fd3aa2a7bf81ee9400d14b12e
+2025-11-17 18:16:04,671 - lightrag - INFO - Chunk 77 of 199 extracted 14 Ent + 8 Rel chunk-53e3a9418b1d7916e3c8717a397bbb58
+2025-11-17 18:16:19,513 - lightrag - INFO -  == LLM cache == saving: default:extract:63d1b21ee8db3601c925e32dc8825765
+2025-11-17 18:16:21,495 - lightrag - INFO -  == LLM cache == saving: default:extract:c432dc54e7aafadb182d561ea2dd263b
+2025-11-17 18:16:24,411 - lightrag - INFO -  == LLM cache == saving: default:extract:2d6067400da9b9f893251760cabc4c02
+2025-11-17 18:16:24,411 - lightrag - INFO - Chunk 78 of 199 extracted 16 Ent + 9 Rel chunk-c6d28b36fe82792dfb86e98ef76b3b04
+2025-11-17 18:16:26,003 - lightrag - INFO -  == LLM cache == saving: default:extract:4bb1794e5d35cc0f2bc2ae6212789c93
+2025-11-17 18:16:29,187 - lightrag - INFO -  == LLM cache == saving: default:extract:a0335b6784f824f18e2395f1632711ac
+2025-11-17 18:16:29,189 - lightrag - WARNING - chunk-6268b6efa690f6e094e443dca6b4cb52: LLM output format error; found 4/5 fields on REALTION `Stage 1 Pancreatic Cancer<|diff_marker|>Pancreatic Cancer`~`cancer progression, early stage`
+2025-11-17 18:16:30,014 - lightrag - INFO -  == LLM cache == saving: default:extract:00d7f1c76d20e4581c14b4933abea652
+2025-11-17 18:16:30,015 - lightrag - INFO - Chunk 79 of 199 extracted 20 Ent + 9 Rel chunk-b11b0c66441242d2f687a0c55adee585
+2025-11-17 18:16:33,368 - lightrag - INFO -  == LLM cache == saving: default:extract:9a04b0ca2241a71d5a51e044f6fd269f
+2025-11-17 18:16:33,369 - lightrag - INFO - Chunk 80 of 199 extracted 27 Ent + 9 Rel chunk-0fb70c1c798caae12ac2d64e61bcbad4
+2025-11-17 18:16:37,650 - lightrag - INFO -  == LLM cache == saving: default:extract:8cb1eecde780aea07e395030a1208773
+2025-11-17 18:16:37,651 - lightrag - INFO - Chunk 81 of 199 extracted 21 Ent + 19 Rel chunk-6268b6efa690f6e094e443dca6b4cb52
+2025-11-17 18:16:41,652 - lightrag - INFO -  == LLM cache == saving: default:extract:efd333a790426055f26b549b0a5c5d90
+2025-11-17 18:16:46,806 - lightrag - INFO -  == LLM cache == saving: default:extract:ebd244853350ed5619802dcab34a8bcd
+2025-11-17 18:16:49,829 - lightrag - INFO -  == LLM cache == saving: default:extract:7583765cdfa5f8488079ba292197712d
+2025-11-17 18:16:49,830 - lightrag - INFO - Chunk 82 of 199 extracted 17 Ent + 9 Rel chunk-6232dd9ed168a1113955e7300645338b
+2025-11-17 18:16:52,162 - lightrag - INFO -  == LLM cache == saving: default:extract:003b4e0592d855c6a5b378948568bcd1
+2025-11-17 18:16:52,164 - lightrag - INFO - Chunk 83 of 199 extracted 12 Ent + 8 Rel chunk-aeafa486bfd320cdaa7811ad75777912
+2025-11-17 18:16:54,440 - lightrag - INFO -  == LLM cache == saving: default:extract:2a15449d1774b2561bfb890a825e278a
+2025-11-17 18:16:54,732 - lightrag - INFO -  == LLM cache == saving: default:extract:075e89d854a441766c416b194fc0d561
+2025-11-17 18:16:58,956 - lightrag - INFO -  == LLM cache == saving: default:extract:da8fde2c1b7e9fe388cb1ea5f9d557ba
+2025-11-17 18:16:58,957 - lightrag - INFO - Chunk 84 of 199 extracted 10 Ent + 7 Rel chunk-b3c0f6d26f2f58ca13201c1a90b0a180
+2025-11-17 18:17:04,271 - lightrag - INFO -  == LLM cache == saving: default:extract:0481941dcc68ee4fc4a87d8dce66db20
+2025-11-17 18:17:07,226 - lightrag - INFO -  == LLM cache == saving: default:extract:95489ddb841c834335427df9ff04c167
+2025-11-17 18:17:08,555 - lightrag - INFO -  == LLM cache == saving: default:extract:3bfa6623bb9530710da2d1cc7fb34b64
+2025-11-17 18:17:08,556 - lightrag - INFO - Chunk 85 of 199 extracted 10 Ent + 7 Rel chunk-1d61a5e7031ea811cc4dcc55a0a0e8fa
+2025-11-17 18:17:14,767 - lightrag - INFO -  == LLM cache == saving: default:extract:ed36a7bbb1c3ce93ae3acd04675c7cf6
+2025-11-17 18:17:14,768 - lightrag - INFO - Chunk 86 of 199 extracted 18 Ent + 8 Rel chunk-789ec6c06f8c999ac21c89b085b3fdb7
+2025-11-17 18:17:16,764 - lightrag - INFO -  == LLM cache == saving: default:extract:660ecd62f4ce9e53f9e02dd1b32a49a2
+2025-11-17 18:17:21,414 - lightrag - INFO -  == LLM cache == saving: default:extract:849175aae6717b90d31225e589232af3
+2025-11-17 18:17:21,415 - lightrag - INFO - Chunk 87 of 199 extracted 24 Ent + 20 Rel chunk-9dc281a303d0d4c5300c0c1c45b739ed
+2025-11-17 18:17:21,735 - lightrag - INFO -  == LLM cache == saving: default:extract:ba81826e2c293cffe1c09f2056ebf6c5
+2025-11-17 18:17:21,735 - lightrag - INFO - Chunk 88 of 199 extracted 13 Ent + 7 Rel chunk-1c7418fb993bb3daa95d8563909da1de
+2025-11-17 18:17:27,631 - lightrag - INFO -  == LLM cache == saving: default:extract:d2d49834b422992d635b0d9642ef9898
+2025-11-17 18:17:32,782 - lightrag - INFO -  == LLM cache == saving: default:extract:f543b6f20868df3cfb6c1c94e53fdfbd
+2025-11-17 18:17:32,782 - lightrag - INFO - Chunk 89 of 199 extracted 16 Ent + 8 Rel chunk-aa251c48fc1fccfe45605a384f743662
+2025-11-17 18:17:34,366 - lightrag - INFO -  == LLM cache == saving: default:extract:c104e8e1cd87f012d00a2196acb3aaa7
+2025-11-17 18:17:37,308 - lightrag - INFO -  == LLM cache == saving: default:extract:2768df6fc8d53cd8a16fbe35c9161bac
+2025-11-17 18:17:37,309 - lightrag - INFO - Chunk 90 of 199 extracted 11 Ent + 8 Rel chunk-697db1653f51e966e79b92eefeb01ec6
+2025-11-17 18:17:40,069 - lightrag - INFO -  == LLM cache == saving: default:extract:c12b39a4a53269a4185a84889144af06
+2025-11-17 18:17:46,333 - lightrag - INFO -  == LLM cache == saving: default:extract:b6b5df542d875f364de202fc76b14766
+2025-11-17 18:17:46,334 - lightrag - INFO - Chunk 91 of 199 extracted 12 Ent + 12 Rel chunk-975e540ddee1810d43caf8df4adcf205
+2025-11-17 18:17:52,931 - lightrag - INFO -  == LLM cache == saving: default:extract:10059576491bd9d46ab931faf8551ba5
+2025-11-17 18:17:56,940 - lightrag - INFO -  == LLM cache == saving: default:extract:7207a0acfbc105d7dc903dad9499dcad
+2025-11-17 18:18:02,565 - lightrag - INFO -  == LLM cache == saving: default:extract:2b62b4d0af9f1202934459c66ace3b28
+2025-11-17 18:18:02,566 - lightrag - INFO - Chunk 92 of 199 extracted 13 Ent + 9 Rel chunk-b3958b5f7df8a8fc2661705e37dc1e06
+2025-11-17 18:18:03,560 - lightrag - INFO -  == LLM cache == saving: default:extract:4bcf819e7e4c72d96771958937af96d9
+2025-11-17 18:18:03,561 - lightrag - INFO - Chunk 93 of 199 extracted 17 Ent + 14 Rel chunk-965e5a6bad03f2129a98be4373f99176
+2025-11-17 18:18:10,780 - lightrag - INFO -  == LLM cache == saving: default:extract:4c4d99387931e8d14a6e279e8873a882
+2025-11-17 18:18:11,495 - lightrag - INFO - Enqueued document processing pipeline stopped
+2025-11-17 18:18:11,527 - lightrag - INFO - Successfully finalized 12 storages
