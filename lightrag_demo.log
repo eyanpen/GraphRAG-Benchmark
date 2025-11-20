@@ -10681,3 +10681,30 @@ KeyError: 'C[1/199]: chunk-7102a43dfb62e649d725bc95ba292688: OPENAI_API_KEY'
 2025-11-18 07:31:30,901 - lightrag - INFO - [_] Process 31724 doc status load doc_status with 0 records
 2025-11-18 07:31:30,901 - lightrag - INFO - Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
 2025-11-18 07:31:31,076 - lightrag - INFO - Successfully finalized 12 storages
+2025-11-20 00:15:34,113 - lightrag - INFO - [_] Created new empty graph file: 395-scripts/lightrag/gpt-4o-mini\novel\graph_chunk_entity_relation.graphml
+2025-11-20 00:15:34,115 - lightrag - INFO - [_] Process 28828 KV load full_docs with 0 records
+2025-11-20 00:15:34,115 - lightrag - INFO - [_] Process 28828 KV load text_chunks with 0 records
+2025-11-20 00:15:34,116 - lightrag - INFO - [_] Process 28828 KV load full_entities with 0 records
+2025-11-20 00:15:34,116 - lightrag - INFO - [_] Process 28828 KV load full_relations with 0 records
+2025-11-20 00:15:34,116 - lightrag - INFO - [_] Process 28828 KV load entity_chunks with 0 records
+2025-11-20 00:15:34,116 - lightrag - INFO - [_] Process 28828 KV load relation_chunks with 0 records
+2025-11-20 00:15:34,116 - lightrag - INFO - [_] Process 28828 KV load llm_response_cache with 0 records
+2025-11-20 00:15:34,116 - lightrag - INFO - [_] Process 28828 doc status load doc_status with 0 records
+2025-11-20 00:15:34,117 - lightrag - INFO - Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
+2025-11-20 00:15:34,769 - lightrag - INFO - Successfully finalized 12 storages
+2025-11-20 00:19:00,307 - lightrag - INFO - [_] Created new empty graph file: 395-scripts/lightrag/gpt-4o-mini\novel\graph_chunk_entity_relation.graphml
+2025-11-20 00:19:00,309 - lightrag - INFO - [_] Process 33280 KV load full_docs with 0 records
+2025-11-20 00:19:00,309 - lightrag - INFO - [_] Process 33280 KV load text_chunks with 0 records
+2025-11-20 00:19:00,309 - lightrag - INFO - [_] Process 33280 KV load full_entities with 0 records
+2025-11-20 00:19:00,310 - lightrag - INFO - [_] Process 33280 KV load full_relations with 0 records
+2025-11-20 00:19:00,310 - lightrag - INFO - [_] Process 33280 KV load entity_chunks with 0 records
+2025-11-20 00:19:00,310 - lightrag - INFO - [_] Process 33280 KV load relation_chunks with 0 records
+2025-11-20 00:19:00,310 - lightrag - INFO - [_] Process 33280 KV load llm_response_cache with 0 records
+2025-11-20 00:19:00,311 - lightrag - INFO - [_] Process 33280 doc status load doc_status with 0 records
+2025-11-20 00:19:00,311 - lightrag - INFO - Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
+2025-11-20 00:19:00,507 - lightrag - INFO - Processing 1 document(s)
+2025-11-20 00:19:00,508 - lightrag - INFO - Extracting stage 1/1: unknown_source
+2025-11-20 00:19:00,508 - lightrag - INFO - Processing d-id: doc-97e5addcb57a253adb01c0d40c96fb3e
+2025-11-20 00:19:06,947 - lightrag - INFO - Embedding func: Creating 1 new workers
+2025-11-20 00:19:06,948 - lightrag - INFO - Enqueued document processing pipeline stopped
+2025-11-20 00:19:06,948 - lightrag - INFO - Successfully finalized 12 storages
