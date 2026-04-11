@@ -152,24 +152,52 @@ async def compute_answer_correctness(
     embeddings: Embeddings,
     weights: List[float] = [0.75, 0.25],
     beta: float = 1.0,
-    callbacks: Callbacks = None
-) -> float:
-    """Compute answer correctness score combining factuality and semantic similarity"""
+    callbacks: Callbacks = None,
+    return_details: bool = False,
+) -> float | Dict:
+    """Compute answer correctness score combining factuality and semantic similarity.
+
+    If return_details=True, returns a dict with all intermediate results:
+    {score, factuality, similarity, tp, fp, fn, answer_statements, gt_statements,
+     classification, weights}
+    """
     # Generate statements from answer and ground truth
     answer_statements = await generate_statements(llm, question, answer, callbacks)
     gt_statements = await generate_statements(llm, question, ground_truth, callbacks)
 
     # Calculate factuality score using statement classification
-    factuality_score = await calculate_factuality(
-        llm, question, answer_statements, gt_statements, callbacks, beta
-    ) if weights[0] != 0 else 0.0
+    factuality_result = await calculate_factuality(
+        llm, question, answer_statements, gt_statements, callbacks, beta,
+        return_details=return_details,
+    ) if weights[0] != 0 else (0.0 if not return_details else {"score": 0.0, "tp": 0, "fp": 0, "fn": 0, "classification": {}})
+
     # Calculate semantic similarity
     similarity_score = await calculate_semantic_similarity(
         embeddings, answer, ground_truth
     ) if weights[1] != 0 else 0.0
 
-    # Combine scores using weighted average
-    return float(np.average([factuality_score, similarity_score], weights=weights))
+    if return_details:
+        factuality_score = factuality_result["score"]
+    else:
+        factuality_score = factuality_result
+
+    final_score = float(np.average([factuality_score, similarity_score], weights=weights))
+
+    if not return_details:
+        return final_score
+
+    return {
+        "score": final_score,
+        "factuality": factuality_score,
+        "similarity": similarity_score,
+        "tp": factuality_result.get("tp", 0),
+        "fp": factuality_result.get("fp", 0),
+        "fn": factuality_result.get("fn", 0),
+        "answer_statements": answer_statements,
+        "gt_statements": gt_statements,
+        "classification": factuality_result.get("classification", {}),
+        "weights": weights,
+    }
 
 async def generate_statements(
     llm: BaseLanguageModel, question: str, answer:str, callbacks: Callbacks
@@ -199,11 +227,17 @@ async def calculate_factuality(
     answer_stmts: List[str],
     gt_stmts: List[str],
     callbacks: Callbacks,
-    beta: float
-) -> float:
-    """Classify statements and calculate factuality F-beta score"""
+    beta: float,
+    return_details: bool = False,
+) -> float | Dict:
+    """Classify statements and calculate factuality F-beta score.
+
+    If return_details=True, returns dict with score, tp, fp, fn, classification.
+    """
     if not answer_stmts and not gt_stmts:
-        return 1.0  # Perfect score if both empty
+        if return_details:
+            return {"score": 1.0, "tp": 0, "fp": 0, "fn": 0, "classification": {}}
+        return 1.0
 
     # Prepare examples for prompt
     examples = "\n".join(
@@ -225,9 +259,24 @@ async def calculate_factuality(
         tp = len(classification.TP)
         fp = len(classification.FP)
         fn = len(classification.FN)
-        return fbeta_score(tp, fp, fn, beta)
+        score = fbeta_score(tp, fp, fn, beta)
+        if return_details:
+            return {
+                "score": score,
+                "tp": tp,
+                "fp": fp,
+                "fn": fn,
+                "classification": {
+                    "TP": [s.model_dump() for s in classification.TP],
+                    "FP": [s.model_dump() for s in classification.FP],
+                    "FN": [s.model_dump() for s in classification.FN],
+                },
+            }
+        return score
     except (json.JSONDecodeError, TypeError):
-        return 0.0  # Return minimum score on failure
+        if return_details:
+            return {"score": 0.0, "tp": 0, "fp": 0, "fn": 0, "classification": {}, "error": "JSON parse failed"}
+        return 0.0
 
 async def calculate_semantic_similarity(
     embeddings: Embeddings, answer: str, ground_truth: str
